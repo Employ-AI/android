@@ -15,7 +15,6 @@ class AndroidApplicationConventionPlugin : Plugin<Project> {
             with(pluginManager) {
                 apply("com.android.application")
                 apply("org.jetbrains.kotlin.android")
-                apply("com.dropbox.dependency-guard")
             }
 
             extensions.configure<ApplicationExtension> {
