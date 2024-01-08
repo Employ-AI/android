@@ -2,6 +2,9 @@ plugins {
     alias(libs.plugins.employ.android.application)
     alias(libs.plugins.employ.android.application.compose)
     alias(libs.plugins.employ.android.hilt)
+    alias(libs.plugins.employ.android.application.firebase)
+    alias(libs.plugins.baselineprofile)
+    alias(libs.plugins.roborazzi)
     alias(libs.plugins.ksp)
 }
 
@@ -24,7 +27,12 @@ android {
 
     buildTypes {
         debug {
-
+            isMinifyEnabled = false
+            isDebuggable = true
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
         }
         release {
             isMinifyEnabled = false
@@ -33,20 +41,6 @@ android {
                 "proguard-rules.pro"
             )
         }
-    }
-
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
-    }
-
-    buildFeatures {
-        compose = true
-        buildConfig = true
-    }
-
-    composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.6"
     }
 
     packaging {

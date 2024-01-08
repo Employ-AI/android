@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "com.client.core.designSystem"
+    namespace = "com.client.employ.core.designSystem"
 
     defaultConfig {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"

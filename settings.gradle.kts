@@ -15,10 +15,9 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "Employ"
-include(":app")
-
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
+include(":app")
 include(
     ":core",
     ":core:data",
