@@ -12,6 +12,8 @@
 /.idea/deploymentTargetDropDown.xml
 /.idea/gradle.xml
 /.idea/compiler.xml
+/.idea/kotlinc.xml
+/.idea/migrations.xml
 
 .DS_Store
 /build
