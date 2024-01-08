@@ -1,4 +1,5 @@
 pluginManagement {
+    includeBuild("build-logic")
     repositories {
         google()
         mavenCentral()
@@ -16,6 +17,8 @@ dependencyResolutionManagement {
 rootProject.name = "Employ"
 include(":app")
 
+enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
+
 include(
     ":core",
     ":core:data",
@@ -30,5 +33,3 @@ include(
     ":feature:main"
 )
 
-include(":build-logic")
-include(":build-logic:convention")
