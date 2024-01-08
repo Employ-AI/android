@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="feature_dashboard_recommendation">Recommendation</string>
+    <string name="feature_dashboard_see_all">See All</string>
+    <string name="feature_dashboard_search_for_a_job_or_company">Search for a job or company</string>
+</resources>
