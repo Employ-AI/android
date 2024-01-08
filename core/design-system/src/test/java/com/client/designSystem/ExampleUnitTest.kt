@@ -1,8 +1,7 @@
-package com.client.design_system
-
-import org.junit.Test
+package com.client.designSystem
 
 import org.junit.Assert.*
+import org.junit.Test
 
 /**
  * Example local unit test, which will execute on the development machine (host).
