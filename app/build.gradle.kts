@@ -1,6 +1,7 @@
 plugins {
-    alias(libs.plugins.android.application)
-    alias(libs.plugins.hilt)
+    alias(libs.plugins.employ.android.application)
+    alias(libs.plugins.employ.android.application.compose)
+    alias(libs.plugins.employ.android.hilt)
     alias(libs.plugins.ksp)
 }
 
@@ -62,17 +63,16 @@ android {
 }
 
 dependencies {
-    implementation(project(":core:common"))
-    //implementation(project(":core:data"))
-    //implementation(project(":core:design-system"))
-    //implementation(project(":core:ui"))
+    implementation(projects.core.common)
+    implementation(projects.core.data)
+    implementation(projects.core.designSystem)
+    implementation(projects.core.ui)
 
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.core.splashscreen)
     implementation(libs.androidx.tracing.ktx)
     implementation(libs.androidx.lifecycle.runtimeCompose)
-    implementation(libs.androidx.compose.material3.windowSizeClass)
     implementation(libs.androidx.navigation.compose)
     implementation(libs.androidx.profileinstaller)
     implementation(libs.kotlinx.coroutines.guava)
