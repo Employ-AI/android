@@ -2,7 +2,7 @@ name: cd
 
 on:
   workflow_run:
-    workflows: ["ci"]
+    workflows: [ "ci" ]
     branches:
       - beta
     types:
@@ -33,7 +33,6 @@ jobs:
           signingKeyBase64: ${{ secrets.SIGNING_KEY }}
           alias: ${{ secrets.KEY_ALIAS }}
           keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
-          keyPassword: ${{ secrets.KEY_PASSWORD }}
         env:
           BUILD_TOOLS_VERSION: "30.0.2"
 
@@ -45,7 +44,7 @@ jobs:
 
   deploy:
     name: Deploy APK release on Firebase App Distribution
-    needs: [apk]
+    needs: [ apk ]
     runs-on: self-hosted
     steps:
       - name: Create service_account.json
@@ -55,7 +54,7 @@ jobs:
         uses: wzieba/Firebase-Distribution-Github-Action@v1.0.0
         with:
           appId: ${{ secrets.FIREBASE_APP_ID }}
-          token: ${{ secrets.FIREBASE_TOKEN }}
+          serviceCredentialsFileContent: ${{ secrets.CREDENTIAL_FILE_CONTENT }}
           groups: "qa"
           # releaseNotes: - TODO
           apkPath: ${{ needs.apk.outputs.app-release }}
