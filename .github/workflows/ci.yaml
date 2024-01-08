@@ -3,7 +3,7 @@ name: build
 on:
   push:
     branches:
-      - master
+      - develop
   pull_request:
 
 concurrency:
@@ -62,7 +62,7 @@ jobs:
     runs-on: macOS-12
     strategy:
       matrix:
-        device-config: [ "pixel6api31aospDebugAndroidTest" ]
+        device-config: [ "pixel6api31aosp" ]
 
     steps:
       - name: Checkout
