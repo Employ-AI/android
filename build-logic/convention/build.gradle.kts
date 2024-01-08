@@ -4,7 +4,7 @@ plugins {
     `kotlin-dsl`
 }
 
-group = "com.client.build-logic"
+group = "com.client.employ.build-logic"
 
 java {
     sourceCompatibility = JavaVersion.VERSION_17
@@ -31,6 +31,7 @@ dependencies {
 
 tasks {
     validatePlugins {
+        enableStricterValidation = true
         failOnWarning = true
     }
 }
@@ -50,6 +51,11 @@ gradlePlugin {
         register("androidLibraryCompose") {
             id = "employ.android.library.compose"
             implementationClass = "AndroidLibraryComposeConventionPlugin"
+        }
+
+        register("androidFirebase") {
+            id = "employ.android.application.firebase"
+            implementationClass = "AndroidApplicationFirebaseConventionPlugin"
         }
 
         register("androidLibrary") {
