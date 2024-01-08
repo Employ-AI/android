@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.employ.android.application)
     alias(libs.plugins.employ.android.application.compose)
+    alias(libs.plugins.employ.kotlin.detekt)
 }
 
 android {

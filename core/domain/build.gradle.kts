@@ -1,5 +1,6 @@
 plugins {
     alias(libs.plugins.employ.android.library)
+    alias(libs.plugins.employ.kotlin.detekt)
     alias(libs.plugins.ksp)
 }
 

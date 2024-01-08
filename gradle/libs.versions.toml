@@ -176,6 +176,7 @@ employ-android-application = { id = "employ.android.application", version = "uns
 employ-android-application-compose = { id = "employ.android.application.compose", version = "unspecified" }
 employ-android-application-firebase = { id = "employ.android.application.firebase", version = "unspecified" }
 employ-android-feature = { id = "employ.android.feature", version = "unspecified" }
+employ-kotlin-detekt = { id = "employ.kotlin.detekt", version = "unspecified" }
 employ-android-hilt = { id = "employ.android.hilt", version = "unspecified" }
 employ-android-library = { id = "employ.android.library", version = "unspecified" }
 employ-android-library-compose = { id = "employ.android.library.compose", version = "unspecified" }
