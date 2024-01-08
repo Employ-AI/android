@@ -10,6 +10,7 @@ android {
 
 dependencies {
     api(projects.core.data)
-
     implementation(libs.javax.inject)
+
+    testImplementation(libs.junit)
 }

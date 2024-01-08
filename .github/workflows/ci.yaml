@@ -62,7 +62,7 @@ jobs:
     runs-on: macOS-12
     strategy:
       matrix:
-        device-config: [ "pixel_6api31aosp" ]
+        device-config: [ "pixel6api31aospDebugAndroidTest" ]
 
     steps:
       - name: Checkout
