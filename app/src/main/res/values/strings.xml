@@ -1,4 +1,17 @@
 <resources>
     <string name="app_name">Employ</string>
     <string name="good_morning">Good Morning 👋</string>
+    <string name="good_afternoon">Good Afternoon 👋</string>
+    <string name="good_evening">Good Evening 👋</string>
+
+    <string name="dashboard">Dashboard</string>
+    <string name="profile">Profile</string>
+    <string name="applications">Applications</string>
+    <string name="message">Message</string>
+    <string name="saved_jobs">Saved Jobs</string>
+
+    <string name="settings">Settings</string>
+    <string name="logout">Logout</string>
+    <string name="Login">Login</string>
+
 </resources>

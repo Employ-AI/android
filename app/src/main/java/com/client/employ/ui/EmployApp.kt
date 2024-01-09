@@ -12,15 +12,22 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.testTag
+import androidx.navigation.NavDestination
+import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavHostController
 import com.client.employ.ui.navigation.AppNavHost
 import com.client.employ.ui.navigation.AppState
+import com.client.employ.ui.navigation.TabsDestinations
 import com.client.employ.ui.navigation.navigationAppState
 
 @Composable
 internal fun EmployApp(
     appState: AppState = navigationAppState()
 ) {
+    val currentDestination = appState.currentDestination
+    val destination = appState.currentTopLevelDestination
+
     Scaffold(
         containerColor = Color.Transparent,
         topBar = {
@@ -29,6 +36,14 @@ internal fun EmployApp(
                 currentDestination = appState.currentDestination,
                 name = "Mohsen Rzna",
                 notificationCount = 0
+            )
+        },
+        bottomBar = {
+           BottomBar(
+                destinations = appState.topLevelDestinations,
+                onNavigateToDestination = appState::navigateToSpecificDestination,
+                currentDestination = appState.currentDestination,
+                modifier = Modifier.testTag("BottomBar")
             )
         },
         contentColor = MaterialTheme.colorScheme.onBackground,
@@ -56,3 +71,9 @@ private fun AppNavigation(
             .consumeWindowInsets(padding)
     )
 }
+
+fun NavDestination?.isTopLevelDestinationInHierarchy(destination: TabsDestinations) =
+    this?.hierarchy?.any {
+        it.route?.contains(destination.name, true) ?: false
+    } ?: false
+
