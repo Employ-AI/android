@@ -62,6 +62,8 @@ dependencies {
     implementation(projects.core.designSystem)
     implementation(projects.core.ui)
 
+    implementation(projects.feature.dashboard)
+
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.core.splashscreen)
@@ -74,6 +76,9 @@ dependencies {
 
     implementation(libs.hilt.android)
     ksp(libs.hilt.compiler)
+
+    implementation(libs.coil.kt)
+    implementation(libs.coil.kt.compose)
 
     api(libs.androidx.test.core)
     api(libs.kotlinx.coroutines.test)

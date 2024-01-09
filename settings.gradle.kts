@@ -29,6 +29,9 @@ include(
 
 include(
     ":feature",
-    ":feature:main"
+    ":feature:dashboard",
+    ":feature:applications",
+    ":feature:auth",
+    ":feature:profile",
+    ":feature:onboarding",
 )
-
