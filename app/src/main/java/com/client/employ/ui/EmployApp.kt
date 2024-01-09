@@ -39,7 +39,7 @@ internal fun EmployApp(
             )
         },
         bottomBar = {
-           BottomBar(
+            BottomBar(
                 destinations = appState.topLevelDestinations,
                 onNavigateToDestination = appState::navigateToSpecificDestination,
                 currentDestination = appState.currentDestination,
@@ -76,4 +76,3 @@ fun NavDestination?.isTopLevelDestinationInHierarchy(destination: TabsDestinatio
     this?.hierarchy?.any {
         it.route?.contains(destination.name, true) ?: false
     } ?: false
-
