@@ -9,7 +9,7 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 
 @Composable
-fun rememberAppState(
+internal fun navigationAppState(
     navController: NavHostController = rememberNavController()
 ): AppState {
     return remember(navController) {
@@ -18,7 +18,7 @@ fun rememberAppState(
 }
 
 @Stable
-class AppState(
+internal class AppState(
     val navController: NavHostController
 ) {
 

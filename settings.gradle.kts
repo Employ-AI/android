@@ -32,6 +32,6 @@ include(
     ":feature:dashboard",
     ":feature:applications",
     ":feature:auth",
-    ":feature:profile"
+    ":feature:profile",
+    ":feature:onboarding",
 )
-

@@ -15,11 +15,11 @@ import androidx.compose.ui.graphics.Color
 import androidx.navigation.NavHostController
 import com.client.employ.ui.navigation.AppNavHost
 import com.client.employ.ui.navigation.AppState
-import com.client.employ.ui.navigation.rememberAppState
+import com.client.employ.ui.navigation.navigationAppState
 
 @Composable
 internal fun EmployApp(
-    appState: AppState = rememberAppState()
+    appState: AppState = navigationAppState()
 ) {
     Scaffold(
         containerColor = Color.Transparent,

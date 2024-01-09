@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "com.client.employ.feature.dashboard"
+    namespace = "com.client.employ.feature.onboarding"
 
     defaultConfig {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -16,7 +16,6 @@ android {
 dependencies {
     implementation(projects.core.common)
     implementation(projects.core.data)
-    implementation(projects.core.ui)
 
     implementation(libs.coil.kt)
     implementation(libs.coil.kt.compose)
