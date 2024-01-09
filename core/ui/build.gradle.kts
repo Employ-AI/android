@@ -1,7 +1,6 @@
 plugins {
     alias(libs.plugins.employ.android.library)
     alias(libs.plugins.employ.android.library.compose)
-    alias(libs.plugins.employ.kotlin.detekt)
 }
 
 android {
@@ -13,6 +12,7 @@ android {
 }
 
 dependencies {
+    implementation(projects.core.designSystem)
     api(libs.androidx.metrics)
 
     implementation(libs.coil.kt)

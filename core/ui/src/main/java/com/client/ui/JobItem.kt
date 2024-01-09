@@ -1,4 +1,4 @@
-package com.client.feature.dashboard.components
+package com.client.ui
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Arrangement
@@ -38,10 +38,10 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
-import com.client.employ.feature.dashboard.R
+import com.client.employ.core.ui.R
 
 @Composable
-internal fun RecommendedJobItem(
+fun JobItem(
     modifier: Modifier = Modifier,
     positionTitle: String,
     companyName: String,
@@ -54,12 +54,12 @@ internal fun RecommendedJobItem(
     OutlinedCard(
         modifier = modifier
             .fillMaxWidth()
-            .size(width = 360.dp, height = 220.dp),
+            .size(width = 370.dp, height = 220.dp),
         shape = RoundedCornerShape(32.dp),
         colors = CardDefaults.cardColors(containerColor = Color.White),
         border = BorderStroke(
             width = 1.dp,
-            color = colorResource(R.color.feature_dashboard_border_color)
+            color = colorResource(R.color.core_ui_border_color)
         )
     ) {
         Column(
@@ -85,7 +85,7 @@ internal fun RecommendedJobItem(
                         colors = CardDefaults.cardColors(containerColor = Color.White),
                         border = BorderStroke(
                             width = 1.dp,
-                            color = colorResource(R.color.feature_dashboard_border_color)
+                            color = colorResource(R.color.core_ui_border_color)
                         )
                     ) {
                         AsyncImage(
@@ -127,8 +127,7 @@ internal fun RecommendedJobItem(
                     IconButton(
                         onClick = {
                             isBookmarked.value = !isBookmarked.value
-                        }
-                    ) {
+                        }) {
                         Icon(
                             modifier = Modifier.size(24.dp),
                             imageVector = Icons.Outlined.Bookmark,
@@ -201,7 +200,7 @@ private fun BelowSection(
                     },
                     onClick = {},
                     border = SuggestionChipDefaults.suggestionChipBorder(
-                        borderColor = colorResource(R.color.feature_dashboard_text_field_search_background)
+                        borderColor = colorResource(R.color.core_ui_border_color)
                     ),
                     enabled = false
                 )
@@ -215,9 +214,13 @@ private fun BelowSection(
     backgroundColor = 0xFFFFFFFF
 )
 @Composable
-private fun RecommendedJobItemPreview() {
-    Column {
-        RecommendedJobItem(
+private fun JobItemPreview() {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp)
+    ) {
+        JobItem(
             positionTitle = "Senior Full Stack Engineer Remote",
             companyName = "Google",
             companyLogoUrl = "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png",
