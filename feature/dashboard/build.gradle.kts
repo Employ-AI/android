@@ -20,6 +20,7 @@ dependencies {
 
     implementation(libs.coil.kt)
     implementation(libs.coil.kt.compose)
+    implementation(libs.androidx.compose.ui.test)
 
     testImplementation(libs.junit)
     testImplementation(libs.junit4)
