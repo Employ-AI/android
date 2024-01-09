@@ -1,4 +1,4 @@
-package com.client.employ.ui.theme
+package com.client.designSystem.theme
 
 import androidx.compose.ui.graphics.Color
 
