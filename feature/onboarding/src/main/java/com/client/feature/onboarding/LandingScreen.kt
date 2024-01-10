@@ -79,7 +79,6 @@ internal fun LandingScreen(
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.Bottom
             ) {
-
                 Text(
                     modifier = modifier.padding(horizontal = 16.dp),
                     text = stringResource(R.string.feature_onboarding_landing_title),
