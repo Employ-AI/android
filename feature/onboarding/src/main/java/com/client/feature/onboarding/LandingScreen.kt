@@ -75,7 +75,7 @@ internal fun LandingScreen(
             Column(
                 modifier = modifier
                     .fillMaxSize()
-                    .padding(vertical = 16.dp, horizontal = 16.dp),
+                    .padding(32.dp),
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.Bottom
             ) {
@@ -89,7 +89,7 @@ internal fun LandingScreen(
                 Spacer(modifier = Modifier.height(32.dp))
 
                 ElevatedButton(
-                    onClick = { /*TODO*/ },
+                    onClick = onGetStartedClick,
                     colors = ButtonDefaults.buttonColors(
                         containerColor = Color.White,
                         contentColor = MaterialTheme.colorScheme.primary

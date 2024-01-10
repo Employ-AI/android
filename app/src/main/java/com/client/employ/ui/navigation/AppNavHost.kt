@@ -6,6 +6,7 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.client.common.NavRoutes
 import com.client.feature.dashboard.DashboardRoute
 import com.client.feature.onboarding.navigation.landingScreen
 import com.client.feature.onboarding.navigation.loginScreen
@@ -18,13 +19,15 @@ internal fun AppNavHost(
 ) {
     NavHost(
         navController = navController,
-        startDestination = NavRoutes.mainScreen,
+        startDestination = NavRoutes.landingScreen,
         modifier = modifier
     ) {
-        dashboardScreen(navController)
         landingScreen(navController)
+
         loginScreen(navController)
         registerScreen(navController)
+
+        dashboardScreen(navController)
     }
 }
 

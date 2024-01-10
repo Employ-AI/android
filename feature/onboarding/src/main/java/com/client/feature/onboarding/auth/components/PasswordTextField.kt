@@ -3,9 +3,13 @@ package com.client.feature.onboarding.auth.components
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Visibility
+import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material.icons.outlined.Lock
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
@@ -17,6 +21,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.client.employ.feature.onboarding.R
 
@@ -26,6 +34,8 @@ internal fun PasswordTextField(
 ) {
     val password = rememberSaveable { mutableStateOf("") }
     val containerColor = colorResource(R.color.feature_onboarding_text_field_background)
+    val passwordVisible = rememberSaveable { mutableStateOf(false) }
+
     TextField(
         modifier = modifier.fillMaxWidth(),
         value = password.value,
@@ -48,8 +58,29 @@ internal fun PasswordTextField(
                 tint = MaterialTheme.colorScheme.primary
             )
         },
-        label = {
+        placeholder = {
             Text(text = stringResource(R.string.feature_onboarding_password))
+        },
+        visualTransformation = if (passwordVisible.value) VisualTransformation.None else PasswordVisualTransformation(),
+        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
+        trailingIcon = {
+            val image = if (passwordVisible.value)
+                Icons.Filled.Visibility
+            else Icons.Filled.VisibilityOff
+
+            val description = if (passwordVisible.value) "Hide password" else "Show password"
+
+            IconButton(
+                modifier = modifier.padding(end = 16.dp),
+                onClick = { passwordVisible.value = !passwordVisible.value }) {
+                Icon(imageVector = image, description)
+            }
         }
     )
+}
+
+@Preview(showBackground = true, backgroundColor = 0xFFFFFFFF)
+@Composable
+private fun PasswordTextFieldPreview() {
+    PasswordTextField()
 }

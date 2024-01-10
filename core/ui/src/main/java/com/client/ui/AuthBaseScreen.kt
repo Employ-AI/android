@@ -8,6 +8,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -28,16 +30,17 @@ fun AuthBaseScreen(
     Column(
         modifier = modifier
             .fillMaxSize()
-            .padding(top = 100.dp, start = 16.dp, end = 16.dp),
+            .padding(top = 100.dp, start = 16.dp, end = 16.dp)
+            .verticalScroll(rememberScrollState()),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Image(
-            modifier = Modifier.size(100.dp),
+            modifier = Modifier.size(110.dp),
             painter = painterResource(R.drawable.logo),
             contentDescription = null
         )
 
-        Spacer(modifier = Modifier.height(20.dp))
+        Spacer(modifier = Modifier.height(24.dp))
 
         Text(
             text = stringResource(pageTitle),
