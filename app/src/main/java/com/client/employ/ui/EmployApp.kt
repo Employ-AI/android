@@ -32,14 +32,13 @@ internal fun EmployApp(
     Scaffold(
         containerColor = Color.White,
         topBar = {
-            if (!isFirstLogin) {
-                AppTopBar(
-                    navController = appState.navController,
-                    currentDestination = appState.currentDestination,
-                    name = "Mohsen Rzna",
-                    notificationCount = 0
-                )
-            }
+            AppTopBar(
+                isFirstLogin = isFirstLogin,
+                navController = appState.navController,
+                currentDestination = appState.currentDestination,
+                name = "Mohsen Rzna",
+                notificationCount = 1
+            )
         },
         bottomBar = {
             if (!isFirstLogin) {
