@@ -64,15 +64,18 @@ internal fun PasswordTextField(
         visualTransformation = if (passwordVisible.value) VisualTransformation.None else PasswordVisualTransformation(),
         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
         trailingIcon = {
-            val image = if (passwordVisible.value)
+            val image = if (passwordVisible.value) {
                 Icons.Filled.Visibility
-            else Icons.Filled.VisibilityOff
+            } else {
+                Icons.Filled.VisibilityOff
+            }
 
             val description = if (passwordVisible.value) "Hide password" else "Show password"
 
             IconButton(
                 modifier = modifier.padding(end = 16.dp),
-                onClick = { passwordVisible.value = !passwordVisible.value }) {
+                onClick = { passwordVisible.value = !passwordVisible.value }
+            ) {
                 Icon(imageVector = image, description)
             }
         }
