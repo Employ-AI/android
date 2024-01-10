@@ -63,7 +63,8 @@ dependencies {
     implementation(projects.core.ui)
 
     implementation(projects.feature.dashboard)
-
+    implementation(projects.feature.onboarding)
+    
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.core.splashscreen)
@@ -74,6 +75,8 @@ dependencies {
     implementation(libs.androidx.profileinstaller)
     implementation(libs.kotlinx.coroutines.guava)
     implementation(libs.coil.kt)
+
+    implementation(libs.credential.manager)
 
     implementation(libs.hilt.android)
     ksp(libs.hilt.compiler)

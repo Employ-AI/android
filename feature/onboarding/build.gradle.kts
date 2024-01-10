@@ -21,6 +21,8 @@ dependencies {
     implementation(libs.coil.kt.compose)
     implementation(libs.androidx.compose.ui.test)
 
+    implementation(libs.credential.manager)
+
     testImplementation(libs.junit)
     testImplementation(libs.junit4)
     testImplementation(libs.androidx.test.core)
