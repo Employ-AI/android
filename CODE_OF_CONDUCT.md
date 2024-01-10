@@ -37,7 +37,4 @@ identity of the reporter will remain confidential and will not be disclosed to t
 situations where there's a risk of ongoing harassment or a threat to safety, we may take immediate
 action without prior notice.
 
-*This document was adapted from the [IndieWeb Code of Conduct][] and can also
-be found at <https://opensource.google/conduct/>.*
-
 [IndieWeb Code of Conduct]: https://indieweb.org/code-of-conduct
