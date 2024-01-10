@@ -7,7 +7,7 @@ androidTools = "31.2.1"
 androidxActivity = "1.8.2"
 androidxAppCompat = "1.6.1"
 androidxComposeBom = "2023.10.01"
-androidxComposeCompiler = "1.5.7"
+androidxComposeCompiler = "1.5.8"
 androidxComposeRuntimeTracing = "1.0.0-beta01"
 androidxCore = "1.12.0"
 androidxCoreSplashscreen = "1.0.1"
@@ -33,7 +33,7 @@ googleOss = "17.0.1"
 googleOssPlugin = "0.10.6"
 hilt = "2.50"
 hiltExt = "1.1.0"
-kotlin = "1.9.21"
+kotlin = "1.9.22"
 kotlinxCoroutines = "1.7.3"
 kotlinxDatetime = "0.5.0"
 kotlinxSerializationJson = "1.6.2"
@@ -50,6 +50,8 @@ secrets = "2.0.1"
 truth = "1.2.0"
 detekt = "1.23.4"
 material = "1.11.0"
+
+credential-manager = "1.1.0"
 
 # Test versions
 kluent = "1.73"
@@ -141,6 +143,8 @@ room-compiler = { group = "androidx.room", name = "room-compiler", version.ref =
 room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room" }
 room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "room" }
 truth = { group = "com.google.truth", name = "truth", version.ref = "truth" }
+
+credential-manager = { group = "com.google.android.libraries.identity.googleid", name = "googleid", version.ref = "credential-manager"}
 
 # Dependencies of the included build-logic
 android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "androidGradlePlugin" }

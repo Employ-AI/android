@@ -27,24 +27,28 @@ internal fun EmployApp(
 ) {
     val currentDestination = appState.currentDestination
     val destination = appState.currentTopLevelDestination
+    val isFirstLogin = true
 
     Scaffold(
-        containerColor = Color.Transparent,
+        containerColor = Color.White,
         topBar = {
             AppTopBar(
+                isFirstLogin = isFirstLogin,
                 navController = appState.navController,
                 currentDestination = appState.currentDestination,
                 name = "Mohsen Rzna",
-                notificationCount = 0
+                notificationCount = 1
             )
         },
         bottomBar = {
-            BottomBar(
-                destinations = appState.topLevelDestinations,
-                onNavigateToDestination = appState::navigateToSpecificDestination,
-                currentDestination = appState.currentDestination,
-                modifier = Modifier.testTag("BottomBar")
-            )
+            if (!isFirstLogin) {
+                BottomBar(
+                    destinations = appState.topLevelDestinations,
+                    onNavigateToDestination = appState::navigateToSpecificDestination,
+                    currentDestination = appState.currentDestination,
+                    modifier = Modifier.testTag("BottomBar")
+                )
+            }
         },
         contentColor = MaterialTheme.colorScheme.onBackground,
         contentWindowInsets = WindowInsets(0, 0, 0, 0)
