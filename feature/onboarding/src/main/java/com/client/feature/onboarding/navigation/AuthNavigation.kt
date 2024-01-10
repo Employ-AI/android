@@ -48,4 +48,3 @@ fun NavGraphBuilder.forgotPasswordScreen(navController: NavHostController) {
         ForgotPass()
     }
 }
-

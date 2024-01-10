@@ -83,7 +83,6 @@ internal fun LandingScreen(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Bottom
         ) {
-
             Spacer(modifier = Modifier.height(32.dp))
 
             Button(
