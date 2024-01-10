@@ -6,11 +6,13 @@ import androidx.navigation.NavHostController
 import androidx.navigation.NavOptions
 import androidx.navigation.compose.composable
 import com.client.common.NavRoutes
+import com.client.feature.onboarding.auth.forgot.ForgotPass
 import com.client.feature.onboarding.auth.login.LoginRoute
 import com.client.feature.onboarding.auth.register.RegisterRoute
 
 const val loginNavigationRoute = NavRoutes.loginRoute
 const val registerNavigationRoute = NavRoutes.registerRoute
+const val forgotPassNavigationRoute = NavRoutes.forgotPassRoute
 
 fun NavController.navigateToLogin(navOptions: NavOptions? = null) {
     this.navigate(loginNavigationRoute, navOptions)
@@ -19,8 +21,8 @@ fun NavController.navigateToLogin(navOptions: NavOptions? = null) {
 fun NavGraphBuilder.loginScreen(navController: NavHostController) {
     composable(route = loginNavigationRoute) {
         LoginRoute(
-            onDontHaveAnAccountClick = {},
-            onForgotPassClick = {}
+            onDontHaveAnAccountClick = { navController.navigateToRegister() },
+            onForgotPassClick = { navController.navigateToForgotPassword() }
         )
     }
 }
@@ -36,3 +38,14 @@ fun NavGraphBuilder.registerScreen(navController: NavHostController) {
         )
     }
 }
+
+fun NavController.navigateToForgotPassword(navOptions: NavOptions? = null) {
+    this.navigate(forgotPassNavigationRoute, navOptions)
+}
+
+fun NavGraphBuilder.forgotPasswordScreen(navController: NavHostController) {
+    composable(route = forgotPassNavigationRoute) {
+        ForgotPass()
+    }
+}
+

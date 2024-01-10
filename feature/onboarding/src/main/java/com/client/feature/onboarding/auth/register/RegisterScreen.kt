@@ -18,7 +18,6 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.client.employ.feature.onboarding.R
 import com.client.feature.onboarding.auth.components.EmailTextField
 import com.client.feature.onboarding.auth.components.PasswordTextField
-import com.client.feature.onboarding.auth.components.RememberMeCheckBox
 import com.client.feature.onboarding.auth.components.TextWithHorizontalLines
 import com.client.ui.AuthBaseScreen
 import com.client.ui.SignInWithIcons
@@ -31,7 +30,8 @@ fun RegisterRoute(
     RegisterScreen(
         onGoogleSignInClick = {},
         onAppleSignInClick = {},
-        onAlreadyAccountExistClick = onAlreadyAccountExistClick
+        onAlreadyAccountExistClick = onAlreadyAccountExistClick,
+        onSignUpClick = {}
     )
 }
 
@@ -40,7 +40,8 @@ internal fun RegisterScreen(
     modifier: Modifier = Modifier,
     onGoogleSignInClick: () -> Unit,
     onAppleSignInClick: () -> Unit,
-    onAlreadyAccountExistClick: () -> Unit
+    onAlreadyAccountExistClick: () -> Unit,
+    onSignUpClick: () -> Unit
 ) {
     AuthBaseScreen(pageTitle = R.string.feature_onboarding_create_new_account) {
         Spacer(modifier = modifier.height(25.dp))
@@ -51,12 +52,10 @@ internal fun RegisterScreen(
 
         PasswordTextField()
 
-        RememberMeCheckBox()
+        Spacer(modifier = modifier.height(16.dp))
 
         Button(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(top = 10.dp),
+            modifier = Modifier.fillMaxWidth(),
             onClick = { /*TODO*/ }
         ) {
             Text(
@@ -94,6 +93,7 @@ private fun LoginScreenPreview() {
     RegisterScreen(
         onGoogleSignInClick = {},
         onAppleSignInClick = {},
-        onAlreadyAccountExistClick = {}
+        onAlreadyAccountExistClick = {},
+        onSignUpClick = {}
     )
 }

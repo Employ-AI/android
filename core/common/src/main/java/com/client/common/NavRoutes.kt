@@ -10,4 +10,5 @@ object NavRoutes {
     const val landingScreen = "landing_screen"
     const val loginRoute = "login_route"
     const val registerRoute = "register_route"
+    const val forgotPassRoute = "forgot_password"
 }

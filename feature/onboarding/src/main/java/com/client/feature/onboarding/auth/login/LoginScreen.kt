@@ -33,7 +33,8 @@ fun LoginRoute(
         onGoogleSignInClick = {},
         onAppleSignInClick = {},
         onDontHaveAnAccountClick = onDontHaveAnAccountClick,
-        onForgotPassClick = onForgotPassClick
+        onForgotPassClick = onForgotPassClick,
+        onSignInClick = {}
     )
 }
 
@@ -43,7 +44,8 @@ internal fun LoginScreen(
     onGoogleSignInClick: () -> Unit,
     onAppleSignInClick: () -> Unit,
     onDontHaveAnAccountClick: () -> Unit,
-    onForgotPassClick: () -> Unit
+    onForgotPassClick: () -> Unit,
+    onSignInClick: () -> Unit
 ) {
     AuthBaseScreen(pageTitle = R.string.feature_onboarding_login_to_your_account) {
         Spacer(modifier = modifier.height(25.dp))
@@ -60,7 +62,7 @@ internal fun LoginScreen(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(top = 10.dp),
-            onClick = { /*TODO*/ }
+            onClick = onSignInClick
         ) {
             Text(
                 modifier = Modifier.padding(8.dp),
@@ -108,6 +110,7 @@ private fun LoginScreenPreview() {
         onGoogleSignInClick = {},
         onAppleSignInClick = {},
         onDontHaveAnAccountClick = {},
-        onForgotPassClick = {}
+        onForgotPassClick = {},
+        onSignInClick = {}
     )
 }

@@ -1,7 +1,9 @@
 package com.client.feature.onboarding.auth.components
 
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.Text
@@ -24,7 +26,7 @@ internal fun RememberMeCheckBox(
 
     Row(
         modifier = modifier.padding(top = 10.dp),
-        horizontalArrangement = Arrangement.Center,
+        horizontalArrangement = Arrangement.Start,
         verticalAlignment = Alignment.CenterVertically
     ) {
         Checkbox(
@@ -42,5 +44,11 @@ internal fun RememberMeCheckBox(
 @Preview(showBackground = true, backgroundColor = 0xFFFFFFFF)
 @Composable
 private fun RememberMeCheckBoxPreview() {
-    RememberMeCheckBox()
+    Column(
+        modifier = Modifier.fillMaxSize(),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
+    ) {
+        RememberMeCheckBox()
+    }
 }

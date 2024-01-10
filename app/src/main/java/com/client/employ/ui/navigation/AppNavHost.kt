@@ -8,6 +8,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.client.common.NavRoutes
 import com.client.feature.dashboard.DashboardRoute
+import com.client.feature.onboarding.navigation.forgotPasswordScreen
 import com.client.feature.onboarding.navigation.landingScreen
 import com.client.feature.onboarding.navigation.loginScreen
 import com.client.feature.onboarding.navigation.registerScreen
@@ -26,6 +27,7 @@ internal fun AppNavHost(
 
         loginScreen(navController)
         registerScreen(navController)
+        forgotPasswordScreen(navController)
 
         dashboardScreen(navController)
     }
