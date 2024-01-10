@@ -1,4 +1,4 @@
-package com.client.feature.onboarding.auth
+package com.client.feature.onboarding.auth.register
 
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -23,24 +24,26 @@ import com.client.ui.AuthBaseScreen
 import com.client.ui.SignInWithIcons
 
 @Composable
-fun LoginRoute(
-    loginViewModel: LoginViewModel = hiltViewModel()
+fun RegisterRoute(
+    registerViewModel: RegisterViewModel = hiltViewModel(),
+    onAlreadyAccountExistClick: () -> Unit
 ) {
-    LoginScreen(
+    RegisterScreen(
         onGoogleSignInClick = {},
-        onAppleSignInClick = {}
+        onAppleSignInClick = {},
+        onAlreadyAccountExistClick = onAlreadyAccountExistClick
     )
 }
 
 @Composable
-internal fun LoginScreen(
+internal fun RegisterScreen(
     modifier: Modifier = Modifier,
     onGoogleSignInClick: () -> Unit,
-    onAppleSignInClick: () -> Unit
+    onAppleSignInClick: () -> Unit,
+    onAlreadyAccountExistClick: () -> Unit
 ) {
     AuthBaseScreen(
-        pageTitle =
-        R.string.feature_onboarding_login_to_your_account
+        pageTitle = R.string.feature_onboarding_create_new_account
     ) {
         Spacer(modifier = modifier.height(25.dp))
 
@@ -60,15 +63,11 @@ internal fun LoginScreen(
         ) {
             Text(
                 modifier = Modifier.padding(8.dp),
-                text = stringResource(R.string.feature_onboarding_sign_in),
+                text = stringResource(R.string.feature_onboarding_sign_up),
                 style = MaterialTheme.typography.bodyLarge,
                 fontWeight = FontWeight.Bold
             )
         }
-
-        Spacer(modifier = modifier.height(32.dp))
-
-        Text(text = stringResource(R.string.feature_onboarding_forgot_the_password))
 
         Spacer(modifier = modifier.height(32.dp))
 
@@ -81,19 +80,22 @@ internal fun LoginScreen(
 
         Spacer(modifier = modifier.height(36.dp))
 
-        Text(
-            text = stringResource(R.string.feature_onboarding_don_t_have_an_account),
-            style = MaterialTheme.typography.bodyMedium,
-            fontWeight = FontWeight.Bold
-        )
+        TextButton(onClick = onAlreadyAccountExistClick) {
+            Text(
+                text = stringResource(R.string.feature_onboarding_already_have_an_account),
+                style = MaterialTheme.typography.bodyMedium,
+                fontWeight = FontWeight.Bold
+            )
+        }
     }
 }
 
 @Preview(showBackground = true, backgroundColor = 0xFFFFFFFF)
 @Composable
 private fun LoginScreenPreview() {
-    LoginScreen(
+    RegisterScreen(
         onGoogleSignInClick = {},
-        onAppleSignInClick = {}
+        onAppleSignInClick = {},
+        onAlreadyAccountExistClick = {}
     )
 }

@@ -7,6 +7,9 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.client.feature.dashboard.DashboardRoute
+import com.client.feature.onboarding.navigation.landingScreen
+import com.client.feature.onboarding.navigation.loginScreen
+import com.client.feature.onboarding.navigation.registerScreen
 
 @Composable
 internal fun AppNavHost(
@@ -19,6 +22,9 @@ internal fun AppNavHost(
         modifier = modifier
     ) {
         dashboardScreen(navController)
+        landingScreen(navController)
+        loginScreen(navController)
+        registerScreen(navController)
     }
 }
 

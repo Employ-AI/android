@@ -63,7 +63,8 @@ dependencies {
     implementation(projects.core.ui)
 
     implementation(projects.feature.dashboard)
-
+    implementation(projects.feature.onboarding)
+    
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.core.splashscreen)

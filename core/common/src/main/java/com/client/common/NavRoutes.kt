@@ -8,5 +8,5 @@ object NavRoutes {
     // Onboarding
     const val landingScreen = "landing_screen"
     const val loginRoute = "login_route"
-    const val signUpRoute = "signUp_route"
+    const val registerRoute = "register_route"
 }

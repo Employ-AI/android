@@ -1,4 +1,4 @@
-package com.client.feature.onboarding.auth
+package com.client.feature.onboarding.auth.login
 
 import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel

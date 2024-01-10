@@ -10,8 +10,11 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.client.employ.feature.onboarding.R
 
 @Composable
 internal fun RememberMeCheckBox(
@@ -29,7 +32,10 @@ internal fun RememberMeCheckBox(
             onCheckedChange = { checked.value = it },
         )
 
-        Text(text = "Remember me")
+        Text(
+            text = stringResource(R.string.feature_onboarding_remember_me),
+            fontWeight = FontWeight.Bold
+        )
     }
 }
 
