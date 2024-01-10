@@ -7,6 +7,6 @@ Fixes #<issue_number_goes_here>
 
 **Do tests pass?**
 - [ ] Run local tests on `Debug` variant: `./gradlew test`
-- [ ] Check formatting (with Auto-Format): `../gradlew detekt --auto-format`
+- [ ] Check formatting: `./gradlew detekt`
 
 
