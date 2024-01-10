@@ -45,10 +45,7 @@ internal fun LoginScreen(
     onDontHaveAnAccountClick: () -> Unit,
     onForgotPassClick: () -> Unit
 ) {
-    AuthBaseScreen(
-        pageTitle =
-        R.string.feature_onboarding_login_to_your_account
-    ) {
+    AuthBaseScreen(pageTitle = R.string.feature_onboarding_login_to_your_account) {
         Spacer(modifier = modifier.height(25.dp))
 
         EmailTextField()
@@ -88,8 +85,8 @@ internal fun LoginScreen(
         TextWithHorizontalLines()
 
         SignInWithIcons(
-            onGoogleSignInClick = {},
-            onAppleSignInClick = {}
+            onGoogleSignInClick = onGoogleSignInClick,
+            onAppleSignInClick = onAppleSignInClick
         )
 
         Spacer(modifier = modifier.height(36.dp))

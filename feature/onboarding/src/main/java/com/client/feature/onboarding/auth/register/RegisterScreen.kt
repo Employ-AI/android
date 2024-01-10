@@ -42,9 +42,7 @@ internal fun RegisterScreen(
     onAppleSignInClick: () -> Unit,
     onAlreadyAccountExistClick: () -> Unit
 ) {
-    AuthBaseScreen(
-        pageTitle = R.string.feature_onboarding_create_new_account
-    ) {
+    AuthBaseScreen(pageTitle = R.string.feature_onboarding_create_new_account) {
         Spacer(modifier = modifier.height(25.dp))
 
         EmailTextField()
@@ -74,8 +72,8 @@ internal fun RegisterScreen(
         TextWithHorizontalLines()
 
         SignInWithIcons(
-            onGoogleSignInClick = {},
-            onAppleSignInClick = {}
+            onGoogleSignInClick = onGoogleSignInClick,
+            onAppleSignInClick = onAppleSignInClick
         )
 
         Spacer(modifier = modifier.height(36.dp))
