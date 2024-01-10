@@ -22,6 +22,6 @@
   ],
   "platformAutomerge": true,
   "requiredStatusChecks": [
-    "ci"
+    "build"
   ]
 }
