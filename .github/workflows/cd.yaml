@@ -2,9 +2,8 @@ name: cd
 
 on:
   workflow_run:
-    workflows: [ "ci" ]
-    branches:
-      - beta
+    workflows: ["build"]
+    branches: beta
     types:
       - completed
 
