@@ -1,4 +1,4 @@
-package com.client.feature.onboarding.landing
+package com.client.feature.onboarding
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
@@ -17,7 +17,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.paint
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -42,11 +41,7 @@ internal fun LandingScreen(
     onGetStartedClick: () -> Unit
 ) {
     Box(
-        modifier = modifier
-            .fillMaxSize()
-            .paint(
-                painter = painterResource(R.drawable.feature_onboarding_landing_background),
-            )
+        modifier = modifier.fillMaxSize()
     ) {
         Column(
             modifier = modifier.fillMaxSize()

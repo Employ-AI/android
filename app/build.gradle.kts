@@ -74,6 +74,8 @@ dependencies {
     implementation(libs.kotlinx.coroutines.guava)
     implementation(libs.coil.kt)
 
+    implementation(libs.credential.manager)
+
     implementation(libs.hilt.android)
     ksp(libs.hilt.compiler)
 
