@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="feature_onboarding_get_started">Get Started</string>
-    <string name="feature_onboarding_landing_title">Fast, efficient AI-based platform for Job Seekers</string>
+    <string name="feature_onboarding_landing_title">Fast &amp; efficient AI-based platform for Job Seekers</string>
     <string name="feature_onboarding_let_s_get_started">Let\'s get started</string>
     <string name="feature_onboarding_login_to_your_account">Login to Your Account</string>
     <string name="feature_onboarding_password">Password</string>

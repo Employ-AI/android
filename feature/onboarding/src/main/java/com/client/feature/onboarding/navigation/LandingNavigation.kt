@@ -17,7 +17,7 @@ fun NavController.navigateToLanding(navOptions: NavOptions? = null) {
 fun NavGraphBuilder.landingScreen(navController: NavHostController) {
     composable(route = landingNavigationRoute) {
         LandingRoute(
-            onGetStartedClick = { navController.navigate(NavRoutes.loginRoute) }
+            onGetStartedClick = { navController.navigateToLogin() }
         )
     }
 }
