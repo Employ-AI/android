@@ -126,7 +126,8 @@ fun JobItem(
                     IconButton(
                         onClick = {
                             isBookmarked.value = !isBookmarked.value
-                        }) {
+                        }
+                    ) {
                         Icon(
                             modifier = Modifier.size(24.dp),
                             imageVector = Icons.Outlined.Bookmark,

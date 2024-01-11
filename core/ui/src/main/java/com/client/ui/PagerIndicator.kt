@@ -43,7 +43,6 @@ fun PagerIndicator(
     orientation: IndicatorOrientation = IndicatorOrientation.Horizontal,
     onClick: ((Int) -> Unit)? = null
 ) {
-
     val listState = rememberLazyListState()
 
     val totalWidth: Dp = indicatorSize * indicatorCount + space * (indicatorCount - 1)
@@ -70,7 +69,6 @@ fun PagerIndicator(
                 (widthInPx / 2 - viewportSize.height / 2).toInt()
             )
         }
-
     }
 
     if (orientation == IndicatorOrientation.Horizontal) {
@@ -112,7 +110,6 @@ fun PagerIndicator(
             )
         }
     }
-
 }
 
 private fun LazyListScope.indicatorItems(
@@ -134,13 +131,17 @@ private fun LazyListScope.indicatorItems(
         val centerItemIndex = indicatorCount / 2
 
         val right1 =
-            (currentItem < centerItemIndex &&
-                    index >= indicatorCount - 1)
+            (
+                currentItem < centerItemIndex &&
+                    index >= indicatorCount - 1
+                )
 
         val right2 =
-            (currentItem >= centerItemIndex &&
+            (
+                currentItem >= centerItemIndex &&
                     index >= currentItem + centerItemIndex &&
-                    index < itemCount - centerItemIndex + 1)
+                    index < itemCount - centerItemIndex + 1
+                )
         val isRightEdgeItem = right1 || right2
 
         // Check if this item's distance to center item is smaller than half size of
@@ -150,8 +151,8 @@ private fun LazyListScope.indicatorItems(
         // 7-3= 4th item can be the first valid left edge item and
         val isLeftEdgeItem =
             index <= currentItem - centerItemIndex &&
-                    currentItem > centerItemIndex &&
-                    index < itemCount - indicatorCount + 1
+                currentItem > centerItemIndex &&
+                index < itemCount - indicatorCount + 1
 
         Box(
             modifier = Modifier
@@ -165,9 +166,7 @@ private fun LazyListScope.indicatorItems(
                     }
                     scaleX = scale
                     scaleY = scale
-
                 }
-
                 .clip(indicatorShape)
                 .size(indicatorSize)
                 .background(
@@ -180,7 +179,9 @@ private fun LazyListScope.indicatorItems(
                             .clickable {
                                 onClick.invoke(index)
                             }
-                    } else Modifier
+                    } else {
+                        Modifier
+                    }
                 )
         )
     }
