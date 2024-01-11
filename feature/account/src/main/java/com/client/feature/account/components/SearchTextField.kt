@@ -34,8 +34,8 @@ internal fun SearchTextField(
             searchQuery.value = it
         },
         colors = TextFieldDefaults.colors(
-            focusedContainerColor = colorResource(R.color.feature_country_selection_text_field_search_background),
-            unfocusedContainerColor = colorResource(R.color.feature_country_selection_text_field_search_background),
+            focusedContainerColor = colorResource(R.color.feature_account_border_color),
+            unfocusedContainerColor = colorResource(R.color.feature_account_border_color),
             disabledContainerColor = Color.Transparent,
             focusedIndicatorColor = Color.Transparent,
             unfocusedIndicatorColor = Color.Transparent,

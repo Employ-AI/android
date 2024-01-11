@@ -17,7 +17,7 @@ fun NavController.navigateToCountrySelection(navOptions: NavOptions? = null) {
 fun NavGraphBuilder.countrySelectionScreen(navController: NavHostController) {
     composable(route = countrySelectionNavigationRoute) {
         CountrySelectionRoute(
-            onContinueBtnClick = {}
+            onContinueBtnClick = { navController.navigateToChooseJobType() }
         )
     }
 }

@@ -60,7 +60,7 @@ internal fun JobTypeItem(
         colors = colors,
         border = BorderStroke(
             width = 1.dp,
-            color = colorResource(R.color.feature_dashboard_border_color)
+            color = colorResource(R.color.feature_account_border_color)
         )
     ) {
         Column(

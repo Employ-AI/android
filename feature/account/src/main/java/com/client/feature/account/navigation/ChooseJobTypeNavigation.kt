@@ -17,9 +17,7 @@ fun NavController.navigateToChooseJobType(navOptions: NavOptions? = null) {
 fun NavGraphBuilder.chooseJobTypeScreen(navController: NavHostController) {
     composable(route = chooseJobTypeNavigation) {
         ChooseJobTypeRoute(
-            onContinueClick = {
-                /*TODO*/
-            }
+            onContinueClick = { navController.navigateToExpertiseScreen() }
         )
     }
 }

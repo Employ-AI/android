@@ -15,4 +15,6 @@ object NavRoutes {
     // Account setup
     const val countrySelectionScreen = "country_selection_screen"
     const val chooseJobTypeScreen = "choose_job_type_screen"
+    const val expertiseScreen = "expertise_screen"
+    const val fillProfileScreen = "fill_profile_screen"
 }
