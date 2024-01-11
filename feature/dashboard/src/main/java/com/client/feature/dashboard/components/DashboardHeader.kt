@@ -90,7 +90,6 @@ internal fun DashboardHeader(
             modifier = Modifier.fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-
             Spacer(Modifier.height(15.dp))
 
             val pagerState1 = rememberPagerState(
