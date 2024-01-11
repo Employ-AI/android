@@ -2,4 +2,12 @@
 <resources>
     <string name="feature_account_search">Search</string>
     <string name="feature_account_continue">Continue</string>
+    <string name="feature_account_choose_job_type_title">Choose Your Job Type</string>
+    <string name="feature_account_choose_job_type_description">Choose whether you are looking for a job or you are an organization/company that needs employees</string>
+
+    <string name="feature_account_choose_job_type_find_job">Find a Job</string>
+    <string name="feature_account_choose_job_type_find_job_description">I want to find a job for myself</string>
+
+    <string name="feature_account_choose_job_type_find_employee">Find an Employee</string>
+    <string name="feature_account_choose_job_type_find_employee_description">I want to find employees</string>
 </resources>
