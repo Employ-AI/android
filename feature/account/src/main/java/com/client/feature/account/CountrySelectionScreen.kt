@@ -1,6 +1,6 @@
 package com.client.feature.account
 
-import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -9,15 +9,19 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Button
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.client.common.CountryHelper
 import com.client.employ.feature.account.R
 import com.client.feature.account.components.CountryItem
 import com.client.feature.account.components.SearchTextField
@@ -37,39 +41,50 @@ internal fun CountrySelectionScreen(
     onContinueBtnClick: () -> Unit
 ) {
     val searchQuery = remember { mutableStateOf("") }
-    Column(
+    val selectedCountry = rememberSaveable { mutableStateOf("") }
+
+    Box(
         modifier = modifier
             .fillMaxSize()
             .padding(16.dp)
     ) {
-        SearchTextField(
-            searchQuery = searchQuery
-        )
-
-        Spacer(modifier = Modifier.height(16.dp))
-
-        LazyColumn(
-            modifier = modifier.fillMaxWidth()
+        Column(
+            modifier = Modifier.align(Alignment.TopCenter)
         ) {
-            items(10) {
-                CountryItem(selectedItem = {})
+            SearchTextField(
+                searchQuery = searchQuery
+            )
+
+            Spacer(modifier = Modifier.height(16.dp))
+
+            LazyColumn(
+                modifier = Modifier.weight(1f)
+            ) {
+                item {
+                    val countries = CountryHelper.getCountries()
+                    CountryItem(
+                        countries = countries,
+                        selectedItem = { country ->
+                            selectedCountry.value = country
+                            println("selected country: $country")
+                        }
+                    )
+                }
             }
         }
 
-        Column(
-            modifier = modifier.fillMaxSize(),
-            verticalArrangement = Arrangement.Bottom,
-            horizontalAlignment = Alignment.CenterHorizontally
+        Button(
+            modifier = modifier
+                .fillMaxWidth()
+                .align(Alignment.BottomCenter),
+            onClick = onContinueBtnClick
         ) {
-            Button(
-                modifier = modifier.fillMaxWidth(),
-                onClick = onContinueBtnClick
-            ) {
-                Text(
-                    modifier = modifier.padding(8.dp),
-                    text = stringResource(R.string.feature_account_continue)
-                )
-            }
+            Text(
+                modifier = Modifier.padding(8.dp),
+                text = stringResource(R.string.feature_account_continue),
+                style = MaterialTheme.typography.bodyLarge,
+                fontWeight = FontWeight.Bold
+            )
         }
     }
 }
