@@ -64,6 +64,7 @@ dependencies {
 
     implementation(projects.feature.dashboard)
     implementation(projects.feature.onboarding)
+    implementation(projects.feature.account)
     
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.core.ktx)

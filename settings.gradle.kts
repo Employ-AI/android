@@ -33,4 +33,5 @@ include(
     ":feature:applications",
     ":feature:profile",
     ":feature:onboarding",
+    ":feature:account",
 )

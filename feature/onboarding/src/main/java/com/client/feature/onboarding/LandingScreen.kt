@@ -60,7 +60,7 @@ internal fun LandingScreen(
 
             Text(
                 modifier = modifier.padding(horizontal = 16.dp),
-                text = "Employ-AI",
+                text = stringResource(R.string.feature_onboarding_employ_ai),
                 style = MaterialTheme.typography.headlineLarge,
                 textAlign = TextAlign.Center,
                 fontWeight = FontWeight.Bold
