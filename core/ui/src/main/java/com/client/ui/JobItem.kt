@@ -56,9 +56,8 @@ fun JobItem(
             .fillMaxWidth()
             .size(width = 370.dp, height = 220.dp),
         shape = RoundedCornerShape(32.dp),
-        colors = CardDefaults.cardColors(containerColor = Color.White),
         border = BorderStroke(
-            width = 1.dp,
+            width = 0.5.dp,
             color = colorResource(R.color.core_ui_border_color)
         )
     ) {
@@ -84,7 +83,7 @@ fun JobItem(
                         shape = RoundedCornerShape(14.dp),
                         colors = CardDefaults.cardColors(containerColor = Color.White),
                         border = BorderStroke(
-                            width = 1.dp,
+                            width = 0.5.dp,
                             color = colorResource(R.color.core_ui_border_color)
                         )
                     ) {

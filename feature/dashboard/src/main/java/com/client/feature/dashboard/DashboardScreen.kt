@@ -40,7 +40,6 @@ internal fun DashboardScreen(
 
         item {
             LazyRow(
-                modifier = Modifier.padding(16.dp),
                 horizontalArrangement = Arrangement.spacedBy(16.dp)
             ) {
                 items(10) {
