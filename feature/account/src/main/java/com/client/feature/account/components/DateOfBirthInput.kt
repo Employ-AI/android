@@ -1,7 +1,6 @@
 package com.client.feature.account.components
 
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Text
@@ -39,10 +38,7 @@ internal fun DateOfBirthInput(
         ),
         shape = RoundedCornerShape(25.dp),
         placeholder = {
-            Text(
-                modifier = Modifier.padding(start = 16.dp),
-                text = stringResource(R.string.feature_account_date_of_birth)
-            )
+            Text(text = stringResource(R.string.feature_account_date_of_birth))
         },
         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email)
     )
