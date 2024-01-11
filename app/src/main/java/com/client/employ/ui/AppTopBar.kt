@@ -35,7 +35,6 @@ import coil.compose.AsyncImage
 import com.client.common.NavRoutes
 import com.client.employ.R
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 internal fun AppTopBar(
     modifier: Modifier = Modifier,
@@ -46,72 +45,100 @@ internal fun AppTopBar(
     currentDestination: NavDestination?
 ) {
     if (!isFirstLogin) {
-        TopAppBar(
-            modifier = modifier.fillMaxWidth(),
-            title = {
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                ) {
-                    IconButton(onClick = { /*TODO*/ }) {
-                        AsyncImage(
-                            modifier = Modifier.clip(CircleShape),
-                            model = "https://avatars.githubusercontent.com/u/3139113?v=4",
-                            placeholder = painterResource(R.drawable.baseline_person_24),
-                            contentDescription = null,
-                            contentScale = ContentScale.Crop
-                        )
-                    }
+        LoggedInToolbar(modifier)
+    } else {
+        FirstLoginToolbar(modifier, currentDestination, navController)
+    }
+}
 
-                    Spacer(modifier = Modifier.width(8.dp))
-
-                    Column(
-                        modifier = Modifier.padding(start = 8.dp)
-                    ) {
-                        Text(
-                            stringResource(R.string.good_morning),
-                            style = MaterialTheme.typography.bodyMedium
-                        )
-
-                        Text(
-                            "Mohsen Rzna",
-                            style = MaterialTheme.typography.bodyLarge,
-                            fontWeight = FontWeight.Bold
-                        )
-                    }
-                }
-            },
-            actions = {
-                IconButton(
-                    modifier = Modifier
-                        .padding(horizontal = 8.dp)
-                        .border(1.dp, Color.LightGray, CircleShape),
-                    onClick = { /*TODO*/ }
-                ) {
-                    Icon(
-                        modifier = Modifier.size(24.dp),
-                        imageVector = Icons.Default.Notifications,
+@Composable
+@OptIn(ExperimentalMaterial3Api::class)
+private fun LoggedInToolbar(modifier: Modifier) {
+    TopAppBar(
+        modifier = modifier.fillMaxWidth(),
+        title = {
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+            ) {
+                IconButton(onClick = { /*TODO*/ }) {
+                    AsyncImage(
+                        modifier = Modifier.clip(CircleShape),
+                        model = "https://avatars.githubusercontent.com/u/3139113?v=4",
+                        placeholder = painterResource(R.drawable.baseline_person_24),
                         contentDescription = null,
-                        tint = Color.Gray
+                        contentScale = ContentScale.Crop
+                    )
+                }
+
+                Spacer(modifier = Modifier.width(8.dp))
+
+                Column(
+                    modifier = Modifier.padding(start = 8.dp)
+                ) {
+                    Text(
+                        stringResource(R.string.good_morning),
+                        style = MaterialTheme.typography.bodyMedium
+                    )
+
+                    Text(
+                        "Mohsen Rzna",
+                        style = MaterialTheme.typography.bodyLarge,
+                        fontWeight = FontWeight.Bold
                     )
                 }
             }
-        )
-    } else {
-        TopAppBar(
-            modifier = modifier.fillMaxWidth(),
-            title = {},
-            navigationIcon = {
-                if (currentDestination?.route != NavRoutes.landingScreen) {
-                    IconButton(onClick = { navController.popBackStack() }) {
-                        Icon(
-                            imageVector = Icons.Default.ArrowBack,
-                            contentDescription = null
-                        )
-                    }
+        },
+        actions = {
+            IconButton(
+                modifier = Modifier
+                    .padding(horizontal = 8.dp)
+                    .border(1.dp, Color.LightGray, CircleShape),
+                onClick = { /*TODO*/ }
+            ) {
+                Icon(
+                    modifier = Modifier.size(24.dp),
+                    imageVector = Icons.Default.Notifications,
+                    contentDescription = null,
+                    tint = Color.Gray
+                )
+            }
+        }
+    )
+}
+
+@Composable
+@OptIn(ExperimentalMaterial3Api::class)
+private fun FirstLoginToolbar(
+    modifier: Modifier,
+    currentDestination: NavDestination?,
+    navController: NavHostController
+) {
+    val title = when (currentDestination?.route) {
+        NavRoutes.countrySelectionScreen -> "Select Country"
+        else -> stringResource(R.string.app_name)
+    }
+
+    TopAppBar(
+        modifier = modifier.fillMaxWidth(),
+        title = {
+            Text(
+                modifier = Modifier.padding(start = 8.dp),
+                text = title,
+                style = MaterialTheme.typography.bodyLarge,
+                fontWeight = FontWeight.Bold
+            )
+        },
+        navigationIcon = {
+            if (currentDestination?.route != NavRoutes.landingScreen) {
+                IconButton(onClick = { navController.popBackStack() }) {
+                    Icon(
+                        imageVector = Icons.Default.ArrowBack,
+                        contentDescription = null
+                    )
                 }
             }
-        )
-    }
+        }
+    )
 }
 
 @Preview
