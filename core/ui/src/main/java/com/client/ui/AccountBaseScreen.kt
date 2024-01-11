@@ -36,6 +36,7 @@ fun AccountBaseScreen(
     modifier: Modifier = Modifier,
     @StringRes pageTitle: Int,
     @StringRes description: Int,
+    shouldIconBeVisible: Boolean = true,
     onContinueClick: () -> Unit,
     content: @Composable () -> Unit
 ) {
@@ -61,11 +62,13 @@ fun AccountBaseScreen(
                         verticalArrangement = Arrangement.Top,
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
-                        Image(
-                            modifier = Modifier.size(110.dp),
-                            painter = painterResource(R.drawable.logo),
-                            contentDescription = null
-                        )
+                        if (shouldIconBeVisible) {
+                            Image(
+                                modifier = Modifier.size(110.dp),
+                                painter = painterResource(R.drawable.logo),
+                                contentDescription = null
+                            )
+                        }
 
                         Spacer(modifier = Modifier.height(24.dp))
 

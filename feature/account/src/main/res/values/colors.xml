@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="feature_country_selection_text_field_search_background">#F5F5F5</color>
-    <color name="feature_dashboard_border_color">#FFE0E0E0</color>
+    <color name="feature_account_text_field_search_background">#F5F5F5</color>
+    <color name="feature_account_border_color">#FFE0E0E0</color>
     <color name="feature_account_selected_card_background">#4CAF50</color>
 </resources>
