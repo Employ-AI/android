@@ -7,6 +7,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.client.common.NavRoutes
+import com.client.feature.account.navigation.countrySelectionScreen
 import com.client.feature.dashboard.DashboardRoute
 import com.client.feature.onboarding.navigation.forgotPasswordScreen
 import com.client.feature.onboarding.navigation.landingScreen
@@ -20,7 +21,7 @@ internal fun AppNavHost(
 ) {
     NavHost(
         navController = navController,
-        startDestination = NavRoutes.landingScreen,
+        startDestination = NavRoutes.countrySelectionScreen,
         modifier = modifier
     ) {
         landingScreen(navController)
@@ -30,6 +31,7 @@ internal fun AppNavHost(
         forgotPasswordScreen(navController)
 
         dashboardScreen(navController)
+        countrySelectionScreen(navController)
     }
 }
 
