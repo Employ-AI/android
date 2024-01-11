@@ -1,11 +1,12 @@
 plugins {
-    alias(libs.plugins.employ.android.library)
+    alias(libs.plugins.employ.android.feature)
     alias(libs.plugins.employ.android.library.compose)
+    alias(libs.plugins.employ.android.hilt)
     alias(libs.plugins.employ.kotlin.detekt)
 }
 
 android {
-    namespace = "com.client.employ.core.ui"
+    namespace = "com.client.employ.feature.account"
 
     defaultConfig {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -13,11 +14,12 @@ android {
 }
 
 dependencies {
-    implementation(projects.core.designSystem)
-    api(libs.androidx.metrics)
+    implementation(projects.core.common)
+    implementation(projects.core.data)
 
     implementation(libs.coil.kt)
     implementation(libs.coil.kt.compose)
+    implementation(libs.androidx.compose.ui.test)
 
     testImplementation(libs.junit)
     testImplementation(libs.junit4)

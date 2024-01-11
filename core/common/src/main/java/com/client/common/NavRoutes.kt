@@ -11,4 +11,10 @@ object NavRoutes {
     const val loginRoute = "login_route"
     const val registerRoute = "register_route"
     const val forgotPassRoute = "forgot_password"
+
+    // Account setup
+    const val countrySelectionScreen = "country_selection_screen"
+    const val chooseJobTypeScreen = "choose_job_type_screen"
+    const val expertiseScreen = "expertise_screen"
+    const val fillProfileScreen = "fill_profile_screen"
 }
