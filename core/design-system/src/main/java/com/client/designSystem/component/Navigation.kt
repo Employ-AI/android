@@ -18,7 +18,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.client.designSystem.theme.EmployTheme
+import com.client.designSystem.theme.EmployM3Theme
 
 @Composable
 fun RowScope.NavigationBarItem(
@@ -40,11 +40,11 @@ fun RowScope.NavigationBarItem(
         label = label,
         alwaysShowLabel = alwaysShowLabel,
         colors = NavigationBarItemDefaults.colors(
-            selectedIconColor = NiaNavigationDefaults.navigationSelectedItemColor(),
-            unselectedIconColor = NiaNavigationDefaults.navigationContentColor(),
-            selectedTextColor = NiaNavigationDefaults.navigationSelectedItemColor(),
-            unselectedTextColor = NiaNavigationDefaults.navigationContentColor(),
-            indicatorColor = NiaNavigationDefaults.navigationIndicatorColor(),
+            selectedIconColor = EmployNavigationDefaults.navigationSelectedItemColor(),
+            unselectedIconColor = EmployNavigationDefaults.navigationContentColor(),
+            selectedTextColor = EmployNavigationDefaults.navigationSelectedItemColor(),
+            unselectedTextColor = EmployNavigationDefaults.navigationContentColor(),
+            indicatorColor = EmployNavigationDefaults.navigationIndicatorColor(),
         ),
     )
 }
@@ -56,7 +56,7 @@ fun NavigationBar(
 ) {
     NavigationBar(
         modifier = modifier,
-        contentColor = NiaNavigationDefaults.navigationContentColor(),
+        contentColor = EmployNavigationDefaults.navigationContentColor(),
         tonalElevation = 0.dp,
         content = content,
     )
@@ -82,11 +82,11 @@ fun NavigationRailItem(
         label = label,
         alwaysShowLabel = alwaysShowLabel,
         colors = NavigationRailItemDefaults.colors(
-            selectedIconColor = NiaNavigationDefaults.navigationSelectedItemColor(),
-            unselectedIconColor = NiaNavigationDefaults.navigationContentColor(),
-            selectedTextColor = NiaNavigationDefaults.navigationSelectedItemColor(),
-            unselectedTextColor = NiaNavigationDefaults.navigationContentColor(),
-            indicatorColor = NiaNavigationDefaults.navigationIndicatorColor(),
+            selectedIconColor = EmployNavigationDefaults.navigationSelectedItemColor(),
+            unselectedIconColor = EmployNavigationDefaults.navigationContentColor(),
+            selectedTextColor = EmployNavigationDefaults.navigationSelectedItemColor(),
+            unselectedTextColor = EmployNavigationDefaults.navigationContentColor(),
+            indicatorColor = EmployNavigationDefaults.navigationIndicatorColor(),
         ),
     )
 }
@@ -100,7 +100,7 @@ fun NavigationRail(
     NavigationRail(
         modifier = modifier,
         containerColor = Color.Transparent,
-        contentColor = NiaNavigationDefaults.navigationContentColor(),
+        contentColor = EmployNavigationDefaults.navigationContentColor(),
         header = header,
         content = content,
     )
@@ -108,7 +108,7 @@ fun NavigationRail(
 
 @Preview(apiLevel = 33)
 @Composable
-fun NiaNavigationPreview() {
+fun EmployNavigationPreview() {
     val items = listOf("For you", "Saved", "Interests")
     val icons = listOf(
         Icons.Outlined.Upcoming
@@ -117,7 +117,7 @@ fun NiaNavigationPreview() {
         Icons.Outlined.Upcoming
     )
 
-    EmployTheme {
+    EmployM3Theme(dark = false) {
         NavigationBar {
             items.forEachIndexed { index, item ->
                 NavigationBarItem(
@@ -142,7 +142,7 @@ fun NiaNavigationPreview() {
     }
 }
 
-object NiaNavigationDefaults {
+object EmployNavigationDefaults {
     @Composable
     fun navigationContentColor() = MaterialTheme.colorScheme.onSurfaceVariant
 

@@ -54,9 +54,9 @@ internal fun RecommendedJobItem(
     OutlinedCard(
         modifier = modifier
             .fillMaxWidth()
+            .padding(horizontal = 8.dp)
             .size(width = 360.dp, height = 220.dp),
         shape = RoundedCornerShape(32.dp),
-        colors = CardDefaults.cardColors(containerColor = Color.White),
         border = BorderStroke(
             width = 1.dp,
             color = colorResource(R.color.feature_dashboard_border_color)

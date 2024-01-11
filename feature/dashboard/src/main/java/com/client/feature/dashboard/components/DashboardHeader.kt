@@ -1,10 +1,15 @@
 package com.client.feature.dashboard.components
 
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.pager.HorizontalPager
+import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -20,35 +25,36 @@ import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.client.employ.feature.dashboard.R
+import com.client.ui.PagerIndicator
+import kotlinx.coroutines.launch
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 internal fun DashboardHeader(
     modifier: Modifier = Modifier,
 ) {
     val searchQuery = remember { mutableStateOf("") }
 
-    Column(
-        modifier = modifier.padding(16.dp)
-    ) {
+    Column {
         TextField(
             modifier = modifier
                 .fillMaxWidth()
+                .padding(horizontal = 16.dp)
                 .clip(CircleShape),
             value = searchQuery.value,
             onValueChange = {
                 searchQuery.value = it
             },
             colors = TextFieldDefaults.colors(
-                focusedContainerColor = colorResource(R.color.feature_dashboard_text_field_search_background),
-                unfocusedContainerColor = colorResource(R.color.feature_dashboard_text_field_search_background),
                 disabledContainerColor = Color.Transparent,
                 focusedIndicatorColor = Color.Transparent,
                 unfocusedIndicatorColor = Color.Transparent,
@@ -59,7 +65,7 @@ internal fun DashboardHeader(
                     modifier = modifier.padding(start = 10.dp),
                     imageVector = Icons.Outlined.Search,
                     contentDescription = null,
-                    tint = Color.LightGray
+                    tint = MaterialTheme.colorScheme.primary
                 )
             },
             trailingIcon = {
@@ -67,7 +73,7 @@ internal fun DashboardHeader(
                     modifier = modifier.padding(end = 10.dp),
                     imageVector = Icons.Outlined.FilterList,
                     contentDescription = null,
-                    tint = Color.LightGray
+                    tint = MaterialTheme.colorScheme.primary
                 )
             },
             placeholder = {
@@ -79,25 +85,59 @@ internal fun DashboardHeader(
             }
         )
 
-        Card(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(top = 16.dp)
-                .size(170.dp),
-            shape = RoundedCornerShape(32.dp),
-            elevation = CardDefaults.cardElevation(
-                defaultElevation = 12.dp
-            )
+        /* View pager with dots */
+        Column(
+            modifier = Modifier.fillMaxSize(),
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Column(
-                modifier = modifier
-                    .fillMaxWidth()
-                    .padding(16.dp)
+            Spacer(Modifier.height(15.dp))
+
+            val pagerState1 = rememberPagerState(
+                initialPage = 0,
+                initialPageOffsetFraction = 0f
+            ) { 4 }
+            val coroutineScope = rememberCoroutineScope()
+
+            HorizontalPager(
+                state = pagerState1,
+                pageSpacing = 5.dp,
             ) {
-                Text(
-                    text = "See how you can \nfind a job quickly!",
-                    style = MaterialTheme.typography.bodyLarge
-                )
+                Card(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(16.dp)
+                        .size(170.dp),
+                    shape = RoundedCornerShape(32.dp),
+                    elevation = CardDefaults.cardElevation(
+                        defaultElevation = 12.dp
+                    ),
+                    colors = CardDefaults.cardColors(
+                        containerColor = MaterialTheme.colorScheme.primaryContainer
+                    )
+                ) {
+                    Column(
+                        modifier = modifier
+                            .fillMaxWidth()
+                            .padding(16.dp)
+                    ) {
+                        Text(
+                            text = "See how you can find a job quickly!",
+                            style = MaterialTheme.typography.bodyLarge
+                        )
+                    }
+                }
+            }
+
+            Spacer(Modifier.height(10.dp))
+
+            PagerIndicator(
+                pagerState = pagerState1,
+                indicatorSize = 10.dp,
+                activeColor = MaterialTheme.colorScheme.primaryContainer
+            ) {
+                coroutineScope.launch {
+                    pagerState1.scrollToPage(it)
+                }
             }
         }
     }
