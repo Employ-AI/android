@@ -1,6 +1,10 @@
 package com.client.feature.account.components
 
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -42,9 +46,7 @@ internal fun GenderDropDown(
                 .menuAnchor(),
             readOnly = true,
             value = selectedOptionText,
-            onValueChange = {
-                selectedOptionText = it
-            },
+            onValueChange = { selectedOptionText = it },
             trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded) },
             colors = ExposedDropdownMenuDefaults.textFieldColors(
                 focusedContainerColor = containerColor,
@@ -63,13 +65,16 @@ internal fun GenderDropDown(
             options.forEach { selectionOption ->
                 DropdownMenuItem(
                     text = {
-                        Text(text = selectionOption)
+                        Text(
+                            modifier = Modifier.padding(horizontal = 16.dp),
+                            text = selectionOption
+                        )
                     },
                     onClick = {
                         selectedOptionText = selectionOption
                         expanded = false
                     },
-                    contentPadding = ExposedDropdownMenuDefaults.ItemContentPadding
+                    contentPadding = PaddingValues(0.dp)
                 )
             }
         }
@@ -79,5 +84,11 @@ internal fun GenderDropDown(
 @Preview(showBackground = true)
 @Composable
 private fun GenderDropDownPreview() {
-    GenderDropDown()
+    Column(
+        modifier = Modifier
+            .padding(16.dp)
+            .fillMaxSize()
+    ) {
+        GenderDropDown()
+    }
 }
