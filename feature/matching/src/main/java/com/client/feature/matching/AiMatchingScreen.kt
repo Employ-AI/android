@@ -1,5 +1,6 @@
 package com.client.feature.matching
 
+import androidx.compose.foundation.layout.Column
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
@@ -16,6 +17,9 @@ fun AiMatchingRoute(
 internal fun AiMatchingScreen(
     modifier: Modifier = Modifier,
 ) {
+    Column {
+        // TODO: Add content
+    }
 }
 
 @Preview
