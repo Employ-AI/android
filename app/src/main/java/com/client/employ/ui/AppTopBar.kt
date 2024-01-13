@@ -44,7 +44,6 @@ internal fun AppTopBar(
     navController: NavHostController,
     currentDestination: NavDestination?
 ) {
-    val isAiMatchingRoute = NavRoutes.aiMatchingRoute == currentDestination?.route
     when {
         isFirstLogin -> FirstLoginToolbar(modifier, currentDestination, navController)
         else -> LoggedInToolbar(modifier)

@@ -76,8 +76,9 @@ internal fun AiMatchingScreen(
                 targetState = isMatchingEnabled.value,
                 transitionSpec = {
                     fadeIn(animationSpec = tween(durationMillis = 50)) togetherWith
-                            fadeOut(animationSpec = tween(durationMillis = 50))
-                }, label = ""
+                        fadeOut(animationSpec = tween(durationMillis = 50))
+                },
+                label = ""
             ) {
                 if (it) VisibleComponents()
             }
