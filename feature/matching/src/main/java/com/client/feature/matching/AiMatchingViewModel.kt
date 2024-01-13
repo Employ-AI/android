@@ -6,3 +6,9 @@ import javax.inject.Inject
 
 @HiltViewModel
 class AiMatchingViewModel @Inject constructor() : ViewModel()
+
+sealed interface AiMatchingState {
+    data object Idle : AiMatchingState
+    data object Matching : AiMatchingState
+    data object Matched : AiMatchingState
+}

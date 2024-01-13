@@ -25,7 +25,7 @@ internal fun AppNavHost(
 ) {
     NavHost(
         navController = navController,
-        startDestination = NavRoutes.aiMatchingRoute,
+        startDestination = NavRoutes.mainScreen,
         modifier = modifier
     ) {
         landingScreen(navController)

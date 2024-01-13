@@ -1,4 +1,4 @@
-package com.client.data.util
+package com.client.util
 
 import kotlinx.coroutines.flow.Flow
 

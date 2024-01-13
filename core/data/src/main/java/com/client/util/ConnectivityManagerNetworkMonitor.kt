@@ -1,4 +1,4 @@
-package com.client.data.util
+package com.client.util
 
 import android.content.Context
 import android.net.ConnectivityManager
