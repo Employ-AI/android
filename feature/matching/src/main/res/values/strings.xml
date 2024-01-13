@@ -2,4 +2,9 @@
 <resources>
     <string name="feature_matching_onboarding_progress">Onboarding Progress</string>
     <string name="feature_matching_complete_your_profile_to_get_started">Complete your profile to get started</string>
+    <string name="feature_matching_start_matching">Start Matching</string>
+    <string name="feature_matching_ai_matching">AI Matching</string>
+    <string name="feature_matching_ai_matching_description">We will match you with the best jobs based on your profile and preferences.</string>
+    <string name="feature_matching_this_may_take_a_while">This may take a while</string>
+    <string name="feature_matching_matching_in_progress">Matching in progress...</string>
 </resources>

@@ -16,6 +16,7 @@ import androidx.compose.ui.platform.testTag
 import androidx.navigation.NavDestination
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavHostController
+import com.client.common.NavRoutes
 import com.client.employ.ui.navigation.AppNavHost
 import com.client.employ.ui.navigation.AppState
 import com.client.employ.ui.navigation.TabsDestinations
@@ -27,18 +28,21 @@ internal fun EmployApp(
 ) {
     val currentDestination = appState.currentDestination
     val destination = appState.currentTopLevelDestination
+    val isAiMatchingRoute = NavRoutes.aiMatchingRoute == currentDestination?.route
     val isFirstLogin = true
 
     Scaffold(
         containerColor = Color.White,
         topBar = {
-            AppTopBar(
-                isFirstLogin = isFirstLogin,
-                navController = appState.navController,
-                currentDestination = appState.currentDestination,
-                name = "Mohsen Rzna",
-                notificationCount = 1
-            )
+            if (!isAiMatchingRoute) {
+                AppTopBar(
+                    isFirstLogin = isFirstLogin,
+                    navController = appState.navController,
+                    currentDestination = appState.currentDestination,
+                    name = "Mohsen Rzna",
+                    notificationCount = 1
+                )
+            }
         },
         bottomBar = {
             if (!isFirstLogin) {
