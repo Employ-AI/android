@@ -27,10 +27,10 @@ internal fun EmployApp(
 ) {
     val currentDestination = appState.currentDestination
     val destination = appState.currentTopLevelDestination
-    val isFirstLogin = true
+    val isFirstLogin = false
 
     Scaffold(
-        containerColor = Color.White,
+        containerColor = Color.Transparent,
         topBar = {
             AppTopBar(
                 isFirstLogin = isFirstLogin,

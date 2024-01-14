@@ -92,51 +92,63 @@ internal fun DashboardHeader(
         ) {
             Spacer(Modifier.height(15.dp))
 
-            val pagerState1 = rememberPagerState(
-                initialPage = 0,
-                initialPageOffsetFraction = 0f
-            ) { 4 }
-            val coroutineScope = rememberCoroutineScope()
-
-            HorizontalPager(
-                state = pagerState1,
-                pageSpacing = 5.dp,
+            Card(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp)
+                    .wrapContentSize(Alignment.Center),
+                shape = RoundedCornerShape(32.dp),
+                colors = CardDefaults.cardColors(
+                    containerColor = EmployColors.Purple.primary
+                )
             ) {
-                Card(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(16.dp)
-                        .size(170.dp),
-                    shape = RoundedCornerShape(32.dp),
-                    elevation = CardDefaults.cardElevation(
-                        defaultElevation = 12.dp
-                    ),
-                    colors = CardDefaults.cardColors(
-                        containerColor = MaterialTheme.colorScheme.primaryContainer
-                    )
+                Column(
+                    modifier = modifier.padding(16.dp)
                 ) {
-                    Column(
+                    Text(
                         modifier = modifier
                             .fillMaxWidth()
-                            .padding(16.dp)
+                            .padding(start = 16.dp, top = 8.dp, end = 16.dp),
+                        text = stringResource(R.string.feature_dashboard_card_title),
+                        style = MaterialTheme.typography.bodyLarge,
+                        color = Color.White,
+                        fontWeight = FontWeight.Bold
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    Text(
+                        modifier = modifier.padding(start = 16.dp, end = 16.dp),
+                        text = stringResource(R.string.feature_dashboard_card_description),
+                        style = MaterialTheme.typography.bodySmall,
+                        color = Color.White
+                    )
+                    // TODO: Add condition for employer
+                    Spacer(modifier = Modifier.height(10.dp))
+
+                    Column(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(top = 16.dp),
+                        horizontalAlignment = Alignment.End
                     ) {
-                        Text(
-                            text = "See how you can find a job quickly!",
-                            style = MaterialTheme.typography.bodyLarge
-                        )
+                        ElevatedButton(
+                            modifier = modifier.padding(start = 16.dp, end = 8.dp),
+                            onClick = { /*TODO*/ }
+                        ) {
+                            Icon(
+                                imageVector = Icons.Outlined.Launch,
+                                contentDescription = null
+                            )
+
+                            Spacer(modifier = Modifier.width(10.dp))
+
+                            Text(
+                                text = "Get Started",
+                                style = MaterialTheme.typography.bodyMedium,
+                                color = MaterialTheme.colorScheme.primary,
+                                fontWeight = FontWeight.Bold
+                            )
+                        }
                     }
-                }
-            }
-
-            Spacer(Modifier.height(10.dp))
-
-            PagerIndicator(
-                pagerState = pagerState1,
-                indicatorSize = 10.dp,
-                activeColor = MaterialTheme.colorScheme.primaryContainer
-            ) {
-                coroutineScope.launch {
-                    pagerState1.scrollToPage(it)
                 }
             }
         }

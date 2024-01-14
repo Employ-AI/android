@@ -35,14 +35,18 @@ internal fun DashboardScreen(
     modifier: Modifier = Modifier,
     jobsState: DashboardState
 ) {
-    LazyColumn(modifier = modifier.fillMaxSize()) {
+    LazyColumn(
+        modifier = modifier
+            .fillMaxSize()
+            .padding(top = 32.dp)
+    ) {
         item { DashboardHeader() }
 
         item { RecommendationRow() }
 
         item {
             LazyRow(
-                horizontalArrangement = Arrangement.spacedBy(16.dp)
+                horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
                 items(10) {
                     when (jobsState) {

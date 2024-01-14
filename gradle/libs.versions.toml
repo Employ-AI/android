@@ -55,7 +55,7 @@ lottie = "6.1.0"
 
 # Test versions
 kluent = "1.73"
-mockito = "5.8.0"
+mockito = "5.9.0"
 mockito-inline = "5.2.0"
 mockitoKotlin = "5.2.1"
 turbine = "1.0.0"

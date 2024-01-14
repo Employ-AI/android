@@ -38,7 +38,7 @@ import com.client.employ.R
 @Composable
 internal fun AppTopBar(
     modifier: Modifier = Modifier,
-    isFirstLogin: Boolean,
+    isFirstLogin: Boolean = false,
     name: String,
     notificationCount: Int,
     navController: NavHostController,
@@ -108,13 +108,13 @@ private fun LoggedInToolbar(modifier: Modifier) {
 @Composable
 @OptIn(ExperimentalMaterial3Api::class)
 private fun FirstLoginToolbar(
-    modifier: Modifier,
+    modifier: Modifier = Modifier,
     currentDestination: NavDestination?,
     navController: NavHostController
 ) {
     val title = when (currentDestination?.route) {
         NavRoutes.countrySelectionScreen -> "Select Country"
-        else -> stringResource(R.string.app_name)
+        else -> null
     }
 
     TopAppBar(
@@ -122,7 +122,7 @@ private fun FirstLoginToolbar(
         title = {
             Text(
                 modifier = Modifier.padding(start = 8.dp),
-                text = title,
+                text = title ?: "",
                 style = MaterialTheme.typography.bodyLarge,
                 fontWeight = FontWeight.Bold
             )
