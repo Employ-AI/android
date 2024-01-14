@@ -34,4 +34,5 @@ include(
     ":feature:profile",
     ":feature:onboarding",
     ":feature:account",
+    ":feature:matching"
 )

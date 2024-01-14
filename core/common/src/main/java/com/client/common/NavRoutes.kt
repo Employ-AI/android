@@ -17,4 +17,7 @@ object NavRoutes {
     const val chooseJobTypeScreen = "choose_job_type_screen"
     const val expertiseScreen = "expertise_screen"
     const val fillProfileScreen = "fill_profile_screen"
+
+    // Matching
+    const val aiMatchingRoute = "ai_matching_route"
 }

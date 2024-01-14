@@ -1,4 +1,4 @@
-package com.client.ui
+package com.client.ui.components
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background

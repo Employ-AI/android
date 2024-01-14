@@ -44,10 +44,9 @@ internal fun AppTopBar(
     navController: NavHostController,
     currentDestination: NavDestination?
 ) {
-    if (!isFirstLogin) {
-        LoggedInToolbar(modifier)
-    } else {
-        FirstLoginToolbar(modifier, currentDestination, navController)
+    when {
+        isFirstLogin -> FirstLoginToolbar(modifier, currentDestination, navController)
+        else -> LoggedInToolbar(modifier)
     }
 }
 

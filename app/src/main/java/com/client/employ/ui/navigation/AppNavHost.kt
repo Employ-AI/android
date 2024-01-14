@@ -12,6 +12,7 @@ import com.client.feature.account.navigation.countrySelectionScreen
 import com.client.feature.account.navigation.expertiseScreen
 import com.client.feature.account.navigation.fillProfileScreen
 import com.client.feature.dashboard.DashboardRoute
+import com.client.feature.matching.navigation.aiMatchingScreen
 import com.client.feature.onboarding.navigation.forgotPasswordScreen
 import com.client.feature.onboarding.navigation.landingScreen
 import com.client.feature.onboarding.navigation.loginScreen
@@ -24,7 +25,7 @@ internal fun AppNavHost(
 ) {
     NavHost(
         navController = navController,
-        startDestination = NavRoutes.fillProfileScreen,
+        startDestination = NavRoutes.aiMatchingRoute,
         modifier = modifier
     ) {
         landingScreen(navController)
@@ -40,6 +41,7 @@ internal fun AppNavHost(
         chooseJobTypeScreen(navController)
         expertiseScreen(navController)
         fillProfileScreen(navController)
+        aiMatchingScreen(navController)
     }
 }
 

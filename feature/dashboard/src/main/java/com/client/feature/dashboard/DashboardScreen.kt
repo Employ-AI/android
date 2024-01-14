@@ -12,6 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.client.feature.dashboard.components.DashboardHeader
 import com.client.feature.dashboard.components.RecentJobsChipRow
 import com.client.feature.dashboard.components.RecentJobsRow
@@ -19,19 +20,20 @@ import com.client.feature.dashboard.components.RecommendationRow
 import com.client.feature.dashboard.components.RecommendedJobItem
 import com.client.ui.JobItem
 
-private const val google_icon_url =
-    "https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/bce91c33647416.56b3aa52abc2d.png"
-
 @Composable
 fun DashboardRoute(
     dashboardViewModel: DashboardViewModel = hiltViewModel()
 ) {
-    DashboardScreen()
+    val jobsState = dashboardViewModel.jobsList.collectAsStateWithLifecycle()
+    DashboardScreen(
+        jobsState = jobsState.value
+    )
 }
 
 @Composable
 internal fun DashboardScreen(
     modifier: Modifier = Modifier,
+    jobsState: DashboardState
 ) {
     LazyColumn(modifier = modifier.fillMaxSize()) {
         item { DashboardHeader() }
@@ -43,14 +45,20 @@ internal fun DashboardScreen(
                 horizontalArrangement = Arrangement.spacedBy(16.dp)
             ) {
                 items(10) {
-                    RecommendedJobItem(
-                        positionTitle = "Senior Android Engineer (Remote)",
-                        companyName = "Google",
-                        companyLogoUrl = google_icon_url,
-                        location = "Mountain View, CA",
-                        salary = "$150,000 - $200,000",
-                        tags = listOf("Remote", "Full Time", "Senior")
-                    )
+                    when (jobsState) {
+                        is DashboardState.Loading -> Unit
+                        is DashboardState.Success -> {
+                            RecommendedJobItem(
+                                positionTitle = jobsState.jobs[it].title,
+                                companyName = jobsState.jobs[it].companyName,
+                                companyLogoUrl = jobsState.jobs[it].description,
+                                location = jobsState.jobs[it].location,
+                                salary = jobsState.jobs[it].slug,
+                                tags = jobsState.jobs[it].tags
+                            )
+                        }
+                        else -> Unit
+                    }
                 }
             }
         }
@@ -93,5 +101,5 @@ internal fun JobsList(
 )
 @Composable
 private fun DashboardScreenPreview() {
-    DashboardScreen()
+    DashboardScreen(jobsState = DashboardState.Success(listOf()))
 }

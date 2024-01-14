@@ -50,8 +50,8 @@ secrets = "2.0.1"
 truth = "1.2.0"
 detekt = "1.23.4"
 material = "1.11.0"
-
 credential-manager = "1.1.0"
+lottie = "6.1.0"
 
 # Test versions
 kluent = "1.73"
@@ -145,6 +145,7 @@ room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "
 truth = { group = "com.google.truth", name = "truth", version.ref = "truth" }
 
 credential-manager = { group = "com.google.android.libraries.identity.googleid", name = "googleid", version.ref = "credential-manager"}
+lottie = { group = "com.airbnb.android", name = "lottie-compose", version.ref = "lottie" }
 
 # Dependencies of the included build-logic
 android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "androidGradlePlugin" }
