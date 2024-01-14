@@ -54,7 +54,7 @@ internal fun RecommendedJobItem(
     OutlinedCard(
         modifier = modifier
             .fillMaxWidth()
-            .padding(horizontal = 8.dp)
+            .padding(horizontal = 4.dp)
             .size(width = 360.dp, height = 220.dp),
         shape = RoundedCornerShape(32.dp),
         border = BorderStroke(

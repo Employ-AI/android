@@ -23,12 +23,6 @@ enum class TabsDestinations(
         iconTextId = R.string.saved_jobs,
         titleTextId = R.string.saved_jobs,
     ),
-    PROFILE(
-        selectedIcon = EmployIcons.Profile,
-        unselectedIcon = EmployIcons.ProfileUnselected,
-        iconTextId = R.string.profile,
-        titleTextId = R.string.profile
-    ),
     APPLICATIONS(
         selectedIcon = EmployIcons.Applications,
         unselectedIcon = EmployIcons.ApplicationsUnselected,
@@ -41,4 +35,10 @@ enum class TabsDestinations(
         iconTextId = R.string.message,
         titleTextId = R.string.message
     ),
+    PROFILE(
+        selectedIcon = EmployIcons.Profile,
+        unselectedIcon = EmployIcons.ProfileUnselected,
+        iconTextId = R.string.profile,
+        titleTextId = R.string.profile
+    )
 }

@@ -24,7 +24,7 @@ internal fun AppNavHost(
 ) {
     NavHost(
         navController = navController,
-        startDestination = NavRoutes.fillProfileScreen,
+        startDestination = NavRoutes.dashboardRoute,
         modifier = modifier
     ) {
         landingScreen(navController)
@@ -32,6 +32,7 @@ internal fun AppNavHost(
         loginScreen(navController)
         registerScreen(navController)
         forgotPasswordScreen(navController)
+        // Auth
 
         dashboardScreen(navController)
 
@@ -44,7 +45,7 @@ internal fun AppNavHost(
 }
 
 private fun NavGraphBuilder.dashboardScreen(navController: NavHostController) {
-    composable(NavRoutes.mainScreen) {
+    composable(NavRoutes.dashboardRoute) {
         DashboardRoute()
     }
 }
