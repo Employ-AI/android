@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "615287912663",
+    "firebase_url": "https://employ-e2c02-default-rtdb.europe-west1.firebasedatabase.app",
     "project_id": "employ-e2c02",
     "storage_bucket": "employ-e2c02.appspot.com"
   },
@@ -12,7 +13,12 @@
           "package_name": "com.client.employ"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "615287912663-kvjek8ou1b6h5o9ccsr48c3sc8odvn93.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyAOYRw8--v3xRSfQdVp2dr7mGSBI1nWSlg"
@@ -20,7 +26,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "615287912663-kvjek8ou1b6h5o9ccsr48c3sc8odvn93.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }

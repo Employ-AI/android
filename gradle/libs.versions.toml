@@ -31,6 +31,7 @@ firebasePerfPlugin = "1.4.2"
 gmsPlugin = "4.4.0"
 googleOss = "17.0.1"
 googleOssPlugin = "0.10.6"
+googleServices = "20.7.0"
 hilt = "2.50"
 hiltExt = "1.1.0"
 kotlin = "1.9.22"
@@ -66,6 +67,8 @@ androidxTestExt = "1.1.5"
 androidxTestRules = "1.5.0"
 androidxTestRunner = "1.5.2"
 junit4 = "4.13.2"
+firebase-firestore = "24.10.0"
+firebase-auth = "22.3.0"
 
 [libraries]
 accompanist-permissions = { group = "com.google.accompanist", name = "accompanist-permissions", version.ref = "accompanist" }
@@ -117,6 +120,7 @@ firebase-crashlytics = { group = "com.google.firebase", name = "firebase-crashly
 firebase-performance = { group = "com.google.firebase", name = "firebase-perf-ktx" }
 google-oss-licenses = { group = "com.google.android.gms", name = "play-services-oss-licenses", version.ref = "googleOss" }
 google-oss-licenses-plugin = { group = "com.google.android.gms", name = "oss-licenses-plugin", version.ref = "googleOssPlugin" }
+google-services = { module = "com.google.gms:google-services", version.ref = "googleServices" }
 hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
 hilt-android-testing = { group = "com.google.dagger", name = "hilt-android-testing", version.ref = "hilt" }
 hilt-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "hilt" }
@@ -171,6 +175,11 @@ mockito-inline = { group = "org.mockito", name = "mockito-inline", version.ref =
 mockito-android = { group = "org.mockito", name = "mockito-android", version.ref = "mockito" }
 mockito-kotlin = { group = "org.mockito.kotlin", name = "mockito-kotlin", version.ref = "mockitoKotlin" }
 kluent = { group = "org.amshove.kluent", name = "kluent", version.ref = "kluent" }
+
+# Firebase dependencies
+firebase-firestore = { group = "com.google.firebase", name = "firebase-firestore", version.ref = "firebase-firestore" }
+firebase-auth = { group = "com.google.firebase", name = "firebase-auth", version.ref = "firebase-auth" }
+play-services-auth = { group = "com.google.android.gms", name = "play-services-auth", version.ref = "googleServices" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "androidGradlePlugin" }

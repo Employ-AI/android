@@ -1,6 +1,5 @@
 package com.client.di
 
-import com.client.employ.core.data.BuildConfig
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -27,9 +26,9 @@ internal object NetworkModule {
         .addInterceptor(
             HttpLoggingInterceptor()
                 .apply {
-                    if (BuildConfig.DEBUG) {
+                   /* if (BuildConfig.DEBUG) {
                         setLevel(HttpLoggingInterceptor.Level.BODY)
-                    }
+                    }*/
                 },
         )
         .build()

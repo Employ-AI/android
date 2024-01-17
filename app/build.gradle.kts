@@ -7,6 +7,7 @@ plugins {
     alias(libs.plugins.baselineprofile)
     alias(libs.plugins.roborazzi)
     alias(libs.plugins.ksp)
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -85,6 +86,11 @@ dependencies {
 
     implementation(libs.coil.kt)
     implementation(libs.coil.kt.compose)
+
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.firestore)
+    implementation(libs.firebase.auth)
+    implementation(libs.play.services.auth)
 
     api(libs.androidx.test.core)
     api(libs.kotlinx.coroutines.test)

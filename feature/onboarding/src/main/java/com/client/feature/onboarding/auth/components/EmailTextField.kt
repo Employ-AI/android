@@ -25,7 +25,8 @@ import com.client.employ.feature.onboarding.R
 
 @Composable
 internal fun EmailTextField(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onEmailChanged: (String) -> Unit
 ) {
     val email = rememberSaveable { mutableStateOf("") }
     val containerColor = colorResource(R.color.feature_onboarding_text_field_background)
@@ -35,6 +36,7 @@ internal fun EmailTextField(
         value = email.value,
         onValueChange = {
             email.value = it
+            if (it.isNotEmpty()) onEmailChanged(it)
         },
         colors = TextFieldDefaults.colors(
             focusedContainerColor = containerColor,
@@ -62,5 +64,5 @@ internal fun EmailTextField(
 @Preview(showBackground = true, backgroundColor = 0xFFFFFFFF)
 @Composable
 private fun EmailTextFieldPreview() {
-    EmailTextField()
+    EmailTextField(onEmailChanged = {})
 }

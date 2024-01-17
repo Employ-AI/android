@@ -30,7 +30,8 @@ import com.client.employ.feature.onboarding.R
 
 @Composable
 internal fun PasswordTextField(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onPasswordChanged: (String) -> Unit
 ) {
     val password = rememberSaveable { mutableStateOf("") }
     val containerColor = colorResource(R.color.feature_onboarding_text_field_background)
@@ -41,6 +42,7 @@ internal fun PasswordTextField(
         value = password.value,
         onValueChange = {
             password.value = it
+            if (it.length >= 6) onPasswordChanged(it)
         },
         colors = TextFieldDefaults.colors(
             focusedContainerColor = containerColor,
@@ -85,5 +87,5 @@ internal fun PasswordTextField(
 @Preview(showBackground = true, backgroundColor = 0xFFFFFFFF)
 @Composable
 private fun PasswordTextFieldPreview() {
-    PasswordTextField()
+    PasswordTextField(onPasswordChanged = {})
 }
