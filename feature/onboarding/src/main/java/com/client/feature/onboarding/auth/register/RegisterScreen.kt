@@ -46,11 +46,11 @@ internal fun RegisterScreen(
     AuthBaseScreen(pageTitle = R.string.feature_onboarding_create_new_account) {
         Spacer(modifier = modifier.height(25.dp))
 
-        EmailTextField()
+        EmailTextField(onEmailChanged = { /*TODO*/ })
 
         Spacer(modifier = modifier.height(10.dp))
 
-        PasswordTextField()
+        PasswordTextField(onPasswordChanged = { /*TODO*/ })
 
         Spacer(modifier = modifier.height(16.dp))
 

@@ -7,7 +7,6 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Email
 import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
@@ -25,7 +24,8 @@ import com.client.employ.feature.onboarding.R
 
 @Composable
 internal fun EmailTextField(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onEmailChanged: (String) -> Unit
 ) {
     val email = rememberSaveable { mutableStateOf("") }
     val containerColor = colorResource(R.color.feature_onboarding_text_field_background)
@@ -35,6 +35,7 @@ internal fun EmailTextField(
         value = email.value,
         onValueChange = {
             email.value = it
+            if (it.isNotEmpty()) onEmailChanged(it)
         },
         colors = TextFieldDefaults.colors(
             focusedContainerColor = containerColor,
@@ -49,7 +50,7 @@ internal fun EmailTextField(
                 modifier = modifier.padding(start = 16.dp),
                 imageVector = Icons.Outlined.Email,
                 contentDescription = null,
-                tint = MaterialTheme.colorScheme.primary
+                tint = Color.Gray
             )
         },
         placeholder = {
@@ -62,5 +63,5 @@ internal fun EmailTextField(
 @Preview(showBackground = true, backgroundColor = 0xFFFFFFFF)
 @Composable
 private fun EmailTextFieldPreview() {
-    EmailTextField()
+    EmailTextField(onEmailChanged = {})
 }

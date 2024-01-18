@@ -93,7 +93,7 @@ internal fun RecommendedJobItem(
                                 .padding(5.dp)
                                 .clip(CircleShape)
                                 .size(50.dp),
-                            model = companyLogoUrl,
+                            model = companyLogoUrl ?: "",
                             contentDescription = null,
                             contentScale = ContentScale.Inside
                         )

@@ -8,13 +8,19 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import com.client.designSystem.theme.EmployM3Theme
+import com.google.firebase.auth.FirebaseAuth
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
+    private lateinit var auth: FirebaseAuth
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        setupFirebaseAuth()
+
         setContent {
             EmployM3Theme(dark = false) {
                 Surface(
@@ -25,5 +31,15 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
+    }
+
+    private fun setupFirebaseAuth() {
+        auth = FirebaseAuth.getInstance()
+    }
+
+    override fun onStart() {
+        super.onStart()
+        val currentUser = auth.currentUser
+        // println("currentUser: $currentUser")
     }
 }

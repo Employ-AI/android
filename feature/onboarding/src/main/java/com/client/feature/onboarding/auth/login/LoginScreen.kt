@@ -9,6 +9,8 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -34,7 +36,7 @@ fun LoginRoute(
         onAppleSignInClick = {},
         onDontHaveAnAccountClick = onDontHaveAnAccountClick,
         onForgotPassClick = onForgotPassClick,
-        onSignInClick = {}
+        onSignInClick = loginViewModel::onLoginClick
     )
 }
 
@@ -45,16 +47,25 @@ internal fun LoginScreen(
     onAppleSignInClick: () -> Unit,
     onDontHaveAnAccountClick: () -> Unit,
     onForgotPassClick: () -> Unit,
-    onSignInClick: () -> Unit
+    onSignInClick: (String, String) -> Unit
 ) {
+    val email = remember { mutableStateOf("") }
+    val password = remember { mutableStateOf("") }
+
     AuthBaseScreen(pageTitle = R.string.feature_onboarding_login_to_your_account) {
         Spacer(modifier = modifier.height(25.dp))
 
-        EmailTextField()
+        EmailTextField(onEmailChanged = {
+            email.value = it
+        })
 
         Spacer(modifier = modifier.height(10.dp))
 
-        PasswordTextField()
+        PasswordTextField(
+            onPasswordChanged = {
+                password.value = it
+            }
+        )
 
         RememberMeCheckBox()
 
@@ -62,7 +73,7 @@ internal fun LoginScreen(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(top = 10.dp),
-            onClick = onSignInClick
+            onClick = { onSignInClick(email.value, password.value) }
         ) {
             Text(
                 modifier = Modifier.padding(8.dp),
@@ -111,6 +122,6 @@ private fun LoginScreenPreview() {
         onAppleSignInClick = {},
         onDontHaveAnAccountClick = {},
         onForgotPassClick = {},
-        onSignInClick = {}
+        onSignInClick = { _, _ -> }
     )
 }

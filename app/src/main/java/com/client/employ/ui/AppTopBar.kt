@@ -44,21 +44,15 @@ internal fun AppTopBar(
     navController: NavHostController,
     currentDestination: NavDestination?
 ) {
-    if (isFirstLogin) {
-        FirstLoginToolbar(
-            currentDestination = currentDestination,
-            navController = navController
-        )
-    } else {
-        LoggedInToolbar()
+    when {
+        isFirstLogin -> FirstLoginToolbar(modifier, currentDestination, navController)
+        else -> LoggedInToolbar(modifier)
     }
 }
 
 @Composable
 @OptIn(ExperimentalMaterial3Api::class)
-private fun LoggedInToolbar(
-    modifier: Modifier = Modifier
-) {
+private fun LoggedInToolbar(modifier: Modifier) {
     TopAppBar(
         modifier = modifier.fillMaxWidth(),
         title = {

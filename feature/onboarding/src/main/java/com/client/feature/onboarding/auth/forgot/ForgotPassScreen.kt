@@ -34,7 +34,7 @@ internal fun ForgotPass(
     ) {
         Spacer(modifier = modifier.height(25.dp))
 
-        EmailTextField()
+        EmailTextField(onEmailChanged = { /*TODO*/ })
 
         Spacer(modifier = modifier.height(10.dp))
 

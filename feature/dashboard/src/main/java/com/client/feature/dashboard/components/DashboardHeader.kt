@@ -83,6 +83,7 @@ internal fun DashboardHeader(
             }
         )
 
+        /* View pager with dots */
         Column(
             modifier = Modifier.fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally

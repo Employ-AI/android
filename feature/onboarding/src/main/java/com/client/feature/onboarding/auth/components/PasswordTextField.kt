@@ -10,7 +10,6 @@ import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material.icons.outlined.Lock
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
@@ -30,7 +29,8 @@ import com.client.employ.feature.onboarding.R
 
 @Composable
 internal fun PasswordTextField(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onPasswordChanged: (String) -> Unit
 ) {
     val password = rememberSaveable { mutableStateOf("") }
     val containerColor = colorResource(R.color.feature_onboarding_text_field_background)
@@ -41,6 +41,7 @@ internal fun PasswordTextField(
         value = password.value,
         onValueChange = {
             password.value = it
+            if (it.length >= 6) onPasswordChanged(it)
         },
         colors = TextFieldDefaults.colors(
             focusedContainerColor = containerColor,
@@ -55,7 +56,7 @@ internal fun PasswordTextField(
                 modifier = modifier.padding(start = 16.dp),
                 imageVector = Icons.Outlined.Lock,
                 contentDescription = null,
-                tint = MaterialTheme.colorScheme.primary
+                tint = Color.Gray
             )
         },
         placeholder = {
@@ -70,13 +71,15 @@ internal fun PasswordTextField(
                 Icons.Filled.VisibilityOff
             }
 
-            val description = if (passwordVisible.value) "Hide password" else "Show password"
-
             IconButton(
                 modifier = modifier.padding(end = 16.dp),
                 onClick = { passwordVisible.value = !passwordVisible.value }
             ) {
-                Icon(imageVector = image, description)
+                Icon(
+                    imageVector = image,
+                    null,
+                    tint = Color.Gray
+                )
             }
         }
     )
@@ -85,5 +88,5 @@ internal fun PasswordTextField(
 @Preview(showBackground = true, backgroundColor = 0xFFFFFFFF)
 @Composable
 private fun PasswordTextFieldPreview() {
-    PasswordTextField()
+    PasswordTextField(onPasswordChanged = {})
 }
