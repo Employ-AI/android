@@ -29,6 +29,7 @@ include(
 
 include(
     ":feature",
+    ":feature:auth",
     ":feature:dashboard",
     ":feature:applications",
     ":feature:profile",

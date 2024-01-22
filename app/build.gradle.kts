@@ -58,16 +58,21 @@ android {
 }
 
 dependencies {
-    implementation(projects.core.common)
-    implementation(projects.core.data)
-    implementation(projects.core.designSystem)
-    implementation(projects.core.ui)
+    projects.core.apply {
+        implementation(common)
+        implementation(data)
+        implementation(designSystem)
+        implementation(ui)
+    }
 
-    implementation(projects.feature.dashboard)
-    implementation(projects.feature.onboarding)
-    implementation(projects.feature.account)
-    implementation(projects.feature.matching)
-    
+    projects.feature.apply {
+        implementation(dashboard)
+        implementation(onboarding)
+        implementation(account)
+        implementation(matching)
+        implementation(auth)
+    }
+
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.core.splashscreen)
