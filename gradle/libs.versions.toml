@@ -67,7 +67,7 @@ androidxTestExt = "1.1.5"
 androidxTestRules = "1.5.0"
 androidxTestRunner = "1.5.2"
 junit4 = "4.13.2"
-firebase-firestore = "24.10.0"
+firebase-firestore = "24.10.1"
 firebase-auth = "22.3.0"
 
 [libraries]
