@@ -52,7 +52,7 @@ truth = "1.2.0"
 detekt = "1.23.4"
 material = "1.11.0"
 credential-manager = "1.1.0"
-lottie = "6.1.0"
+lottie = "6.3.0"
 
 # Test versions
 kluent = "1.73"
