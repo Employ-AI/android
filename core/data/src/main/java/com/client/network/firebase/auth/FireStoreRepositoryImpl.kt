@@ -3,13 +3,10 @@ package com.client.network.firebase.auth
 import android.util.Log
 import com.client.model.User
 import com.google.firebase.Firebase
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.firestore
 import javax.inject.Inject
 
-class FireStoreRepositoryImpl @Inject constructor(
-    private val firebaseAuth: FirebaseAuth
-) : FireStoreRepository {
+class FireStoreRepositoryImpl @Inject constructor() : FireStoreRepository {
 
     override fun updateUser(user: User) {
         val db = Firebase.firestore

@@ -31,19 +31,17 @@ class AccountServiceImpl @Inject constructor(
         }
 
     override suspend fun authenticate(email: String, password: String): AuthResponse {
-        return try {
-            AuthResponse.Loading
-            val response = auth
-                .signInWithEmailAndPassword(email, password)
-                .await()
+        AuthResponse.Loading
+        val response = auth
+            .signInWithEmailAndPassword(email, password)
+            .await()
 
-            if (response.user != null) {
+        return when {
+            response.user != null -> {
                 AuthResponse.Success(response.user?.uid ?: response.user?.email.orEmpty())
-            } else {
-                AuthResponse.Error("User not found")
             }
-        } catch (e: Exception) {
-            AuthResponse.Error(e.message.toString())
+
+            else -> AuthResponse.Error("User not found")
         }
     }
 
