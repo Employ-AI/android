@@ -60,6 +60,7 @@ jobs:
     needs: check
     name: Instrumented tests
     runs-on: ubuntu-latest
+    timeout-minutes: 55
     strategy:
       matrix:
         api-level: [ 30 ]
