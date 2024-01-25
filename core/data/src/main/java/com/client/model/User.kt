@@ -1,18 +1,20 @@
 package com.client.model
 
 data class User(
-    val name: String,
-    val surname: String,
-    val nickName: String,
-    val email: String,
-    val password: String,
-    val phoneNumber: String,
-    val bio: String,
-    val profilePicture: String,
-    val country: String,
-    val expertise: String,
-    val interests: String,
-    val languages: String,
-    val birthDate: String,
-    val gender: String
+    val id: String = "",
+    val isAnonymous: Boolean = true,
+    val name: String? = null,
+    val surname: String? = null,
+    val nickName: String? = null,
+    val email: String? = null,
+    val password: String? = null,
+    val phoneNumber: String? = null,
+    val bio: String? = null,
+    val profilePicture: String? = null,
+    val country: String? = null,
+    val expertise: String? = null,
+    val interests: String? = null,
+    val languages: String? = null,
+    val birthDate: String? = null,
+    val gender: String? = null
 )

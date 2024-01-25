@@ -27,7 +27,7 @@ internal fun EmployApp(
 ) {
     val currentDestination = appState.currentDestination
     val destination = appState.currentTopLevelDestination
-    val isFirstLogin = false
+    val isFirstLogin = true
 
     Scaffold(
         containerColor = Color.Transparent,

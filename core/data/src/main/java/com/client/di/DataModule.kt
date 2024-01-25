@@ -1,11 +1,11 @@
 package com.client.di
 
-import com.client.network.NetworkDataSource
-import com.client.network.RetrofitEmployNetwork
-import com.client.network.firebase.FirebaseReadRepository
-import com.client.network.firebase.FirebaseReadRepositoryImpl
-import com.client.network.firebase.auth.FirebaseAuthRepository
-import com.client.network.firebase.auth.FirebaseAuthRepositoryImpl
+import com.client.network.firebase.auth.AccountService
+import com.client.network.firebase.auth.AccountServiceImpl
+import com.client.network.firebase.auth.FireStoreRepository
+import com.client.network.firebase.auth.FireStoreRepositoryImpl
+import com.client.network.service.NetworkDataSource
+import com.client.network.service.RetrofitEmployNetwork
 import com.client.sources.arbeitNow.ArbitNowRepository
 import com.client.sources.arbeitNow.ArbitNowRepositoryImpl
 import dagger.Binds
@@ -15,7 +15,7 @@ import dagger.hilt.components.SingletonComponent
 
 @Module
 @InstallIn(SingletonComponent::class)
-interface DataModule {
+internal interface DataModule {
 
     @Binds
     fun bindArbitNowRepository(
@@ -29,11 +29,11 @@ interface DataModule {
 
     @Binds
     fun bindFirebaseWriteRepository(
-        firebaseWriteRepositoryImpl: FirebaseAuthRepositoryImpl
-    ): FirebaseAuthRepository
+        firebaseWriteRepositoryImpl: FireStoreRepositoryImpl
+    ): FireStoreRepository
 
     @Binds
-    fun bindFirebaseReadRepository(
-        firebaseReadRepositoryImpl: FirebaseReadRepositoryImpl
-    ): FirebaseReadRepository
+    fun bindsAccountService(
+        accountServiceImpl: AccountServiceImpl
+    ): AccountService
 }

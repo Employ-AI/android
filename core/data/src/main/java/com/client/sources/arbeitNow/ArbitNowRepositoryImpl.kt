@@ -3,7 +3,7 @@ package com.client.sources.arbeitNow
 import com.client.Dispatcher
 import com.client.EmployDispatchers.IO
 import com.client.model.arbit.Data
-import com.client.network.NetworkDataSource
+import com.client.network.service.NetworkDataSource
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow

@@ -6,6 +6,9 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.client.auth.navigation.forgotPasswordScreen
+import com.client.auth.navigation.loginScreen
+import com.client.auth.navigation.registerScreen
 import com.client.common.NavRoutes
 import com.client.feature.account.navigation.chooseJobTypeScreen
 import com.client.feature.account.navigation.countrySelectionScreen
@@ -13,10 +16,7 @@ import com.client.feature.account.navigation.expertiseScreen
 import com.client.feature.account.navigation.fillProfileScreen
 import com.client.feature.dashboard.DashboardRoute
 import com.client.feature.matching.navigation.aiMatchingScreen
-import com.client.feature.onboarding.navigation.forgotPasswordScreen
 import com.client.feature.onboarding.navigation.landingScreen
-import com.client.feature.onboarding.navigation.loginScreen
-import com.client.feature.onboarding.navigation.registerScreen
 
 @Composable
 internal fun AppNavHost(

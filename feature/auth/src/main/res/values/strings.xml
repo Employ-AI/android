@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="feature_auth_get_started">Get Started</string>
+    <string name="feature_auth_landing_title">Fast &amp; efficient AI-based platform for Job Seekers</string>
+    <string name="feature_auth_let_s_get_started">Let\'s get started</string>
+    <string name="feature_auth_login_to_your_account">Login to Your Account</string>
+    <string name="feature_auth_password">Password</string>
+    <string name="feature_auth_email">Email</string>
+    <string name="feature_auth_sign_in">Sign in</string>
+    <string name="feature_auth_forgot_the_password">Forgot the password?</string>
+    <string name="feature_auth_don_t_have_an_account">Don\'t have an account? Sign up</string>
+    <string name="feature_auth_or_continue_with">or continue with</string>
+    <string name="feature_auth_create_new_account">"Create New Account"</string>
+    <string name="feature_auth_sign_up">Sign up</string>
+    <string name="feature_auth_already_have_an_account">Already have an account? Sign in</string>
+    <string name="feature_auth_remember_me">Remember me</string>
+    <string name="feature_auth_forgot_password">Forgot Password</string>
+    <string name="feature_auth_send_recovery_email">Send recovery email</string>
+    <string name="feature_auth_employ_ai">Employ AI</string>
+    <string name="feature_auth_error">Error</string>
+    <string name="feature_auth_oops_message">Oops! Something went wrong. Please try again later.</string>
+    <string name="feature_auth_oops_suffix">Error code: </string>
+</resources>
