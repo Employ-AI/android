@@ -9,6 +9,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
@@ -17,11 +18,13 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.client.auth.components.EmailTextField
 import com.client.auth.components.PasswordTextField
 import com.client.auth.components.TextWithHorizontalLines
 import com.client.employ.feature.auth.R
 import com.client.ui.AuthBaseScreen
+import com.client.ui.BaseErrorDialog
 import com.client.ui.SignInWithIcons
 
 @Composable
@@ -29,7 +32,9 @@ fun RegisterRoute(
     registerViewModel: RegisterViewModel = hiltViewModel(),
     onAlreadyAccountExistClick: () -> Unit
 ) {
+    val registerState = registerViewModel.registerState.collectAsStateWithLifecycle()
     RegisterScreen(
+        authState = registerState.value,
         onGoogleSignInClick = {},
         onAppleSignInClick = {},
         onAlreadyAccountExistClick = onAlreadyAccountExistClick,
@@ -40,6 +45,7 @@ fun RegisterRoute(
 @Composable
 internal fun RegisterScreen(
     modifier: Modifier = Modifier,
+    authState: RegisterState,
     onGoogleSignInClick: () -> Unit,
     onAppleSignInClick: () -> Unit,
     onAlreadyAccountExistClick: () -> Unit,
@@ -90,12 +96,33 @@ internal fun RegisterScreen(
             )
         }
     }
+
+    when (authState) {
+        is RegisterState.Loading -> Unit
+        is RegisterState.Success -> {
+            val uid = authState.uid
+            LaunchedEffect(key1 = uid) {
+                // onRegisterSuccess(uid)
+            }
+        }
+
+        is RegisterState.Error -> OnError(authState.message)
+    }
+}
+
+@Composable
+private fun OnError(message: String) {
+    BaseErrorDialog(
+        title = "Error",
+        message = message
+    )
 }
 
 @Preview(showBackground = true, backgroundColor = 0xFFFFFFFF)
 @Composable
 private fun LoginScreenPreview() {
     RegisterScreen(
+        authState = RegisterState.Loading,
         onGoogleSignInClick = {},
         onAppleSignInClick = {},
         onAlreadyAccountExistClick = {},

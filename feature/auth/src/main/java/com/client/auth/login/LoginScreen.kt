@@ -121,7 +121,10 @@ internal fun LoginScreen(
     }
 
     when (authState) {
-        is LoginState.Loading -> Unit
+        is LoginState.Loading -> {
+            // TODO: Add loading indicator
+        }
+
         is LoginState.Success -> {
             val uid = authState.uid
             LaunchedEffect(key1 = uid) {
@@ -135,14 +138,10 @@ internal fun LoginScreen(
 
 @Composable
 private fun OnError(message: String) {
-    val shouldShowDialog = remember { mutableStateOf(true) }
-    if (shouldShowDialog.value) {
-        BaseErrorDialog(
-            title = "Error",
-            message = message,
-            onDismissRequest = { shouldShowDialog.value = false }
-        )
-    }
+    BaseErrorDialog(
+        title = "Error",
+        message = message
+    )
 }
 
 @Preview(showBackground = true, backgroundColor = 0xFFFFFFFF)
@@ -154,7 +153,7 @@ private fun LoginScreenPreview() {
         onDontHaveAnAccountClick = {},
         onForgotPassClick = {},
         onSignInClick = { _, _ -> },
-        authState = LoginState.Success("string"),
+        authState = LoginState.Loading,
         onLoginSuccess = {}
     )
 }

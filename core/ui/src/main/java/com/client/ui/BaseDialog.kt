@@ -12,6 +12,8 @@ import androidx.compose.material3.ElevatedButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
@@ -24,35 +26,41 @@ import com.client.employ.core.ui.R
 fun BaseErrorDialog(
     modifier: Modifier = Modifier,
     title: String,
-    message: String,
-    onDismissRequest: () -> Unit
+    message: String
 ) {
-    Dialog(onDismissRequest = onDismissRequest) {
-        Card(
-            modifier = Modifier.padding(16.dp),
-            shape = RoundedCornerShape(10.dp)
+    val shouldShowDialog = remember { mutableStateOf(true) }
+    if (shouldShowDialog.value) {
+        Dialog(
+            onDismissRequest = {
+                shouldShowDialog.value = false
+            }
         ) {
-            Column(
-                modifier
-                    .background(Color.White)
-                    .padding(16.dp)
+            Card(
+                modifier = Modifier.padding(16.dp),
+                shape = RoundedCornerShape(10.dp)
             ) {
-                Text(
-                    text = title,
-                    style = MaterialTheme.typography.titleLarge
-                )
-                Spacer(modifier = Modifier.height(8.dp))
-                Text(
-                    text = message,
-                    style = MaterialTheme.typography.bodyMedium
-                )
-
-                Spacer(modifier = Modifier.height(8.dp))
-
-                ElevatedButton(
-                    onClick = { /*TODO*/ }
+                Column(
+                    modifier
+                        .background(Color.White)
+                        .padding(16.dp)
                 ) {
-                    Text(text = stringResource(R.string.core_ui_ok))
+                    Text(
+                        text = title,
+                        style = MaterialTheme.typography.titleLarge
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    Text(
+                        text = message,
+                        style = MaterialTheme.typography.bodyMedium
+                    )
+
+                    Spacer(modifier = Modifier.height(8.dp))
+
+                    ElevatedButton(
+                        onClick = { shouldShowDialog.value = false }
+                    ) {
+                        Text(text = stringResource(R.string.core_ui_ok))
+                    }
                 }
             }
         }
@@ -67,8 +75,7 @@ private fun BaseErrorDialogPreview() {
     ) {
         BaseErrorDialog(
             title = "Error",
-            message = "Error message",
-            onDismissRequest = { }
+            message = "Error message"
         )
     }
 }
