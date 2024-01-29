@@ -3,6 +3,7 @@ package com.client.auth.register
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.client.network.firebase.auth.AccountService
+import com.client.network.firebase.auth.AccountServiceImpl.AuthResponse
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -20,14 +21,18 @@ class RegisterViewModel @Inject constructor(
 
     fun onSignUpClicked(email: String, password: String) {
         viewModelScope.launch {
-            val response = accountService.signUpWithEmail(email, password)
-            println("$response")
+            _registerState.value =
+                when (val result = accountService.signUpWithEmail(email, password)) {
+                    is AuthResponse.Loading -> RegisterState.Loading
+                    is AuthResponse.Success -> RegisterState.Success(result.uid)
+                    is AuthResponse.Error -> RegisterState.Error(result.message)
+                }
         }
     }
 }
 
 sealed interface RegisterState {
     data object Loading : RegisterState
-    data class Success(val result: String) : RegisterState
-    data class Error(val error: String) : RegisterState
+    data class Success(val uid: String) : RegisterState
+    data class Error(val message: String) : RegisterState
 }
