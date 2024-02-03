@@ -5,7 +5,9 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.NavOptions
 import androidx.navigation.compose.composable
+import androidx.navigation.navArgument
 import com.client.common.NavRoutes
+import com.client.common.UID
 import com.client.feature.account.CountrySelectionRoute
 
 const val countrySelectionNavigationRoute = NavRoutes.countrySelectionScreen
@@ -15,9 +17,18 @@ fun NavController.navigateToCountrySelection(navOptions: NavOptions? = null) {
 }
 
 fun NavGraphBuilder.countrySelectionScreen(navController: NavHostController) {
-    composable(route = countrySelectionNavigationRoute) {
+    composable(
+        route = "${NavRoutes.countrySelectionScreen}/{$UID}",
+        arguments = listOf(
+            navArgument(name = UID) {
+                defaultValue = ""
+                nullable = false
+            }
+        )
+    ) { backStackEntry ->
+        val uid = backStackEntry.arguments?.getString(UID) ?: ""
         CountrySelectionRoute(
-            onContinueBtnClick = { navController.navigateToChooseJobType() }
+            onCountrySelected = { navController.navigate(NavRoutes.chooseJobTypeScreen + "/$uid") }
         )
     }
 }

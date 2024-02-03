@@ -8,5 +8,6 @@ internal fun Project.configureDetekt(extension: DetektExtension) {
         config.setFrom(file("$rootDir/app/config/detekt/config.yml"))
         parallel = true
         buildUponDefaultConfig = true
+        autoCorrect = true
     }
 }

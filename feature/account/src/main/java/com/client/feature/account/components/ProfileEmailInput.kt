@@ -19,7 +19,8 @@ import com.client.employ.feature.account.R
 
 @Composable
 internal fun ProfileEmailInput(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onValueChange: (String) -> Unit
 ) {
     val email = remember { mutableStateOf("") }
     val containerColor = colorResource(R.color.feature_account_text_field_search_background)
@@ -28,6 +29,7 @@ internal fun ProfileEmailInput(
         value = email.value,
         onValueChange = {
             email.value = it
+            onValueChange(it)
         },
         colors = TextFieldDefaults.colors(
             focusedContainerColor = containerColor,
@@ -38,7 +40,7 @@ internal fun ProfileEmailInput(
         ),
         shape = RoundedCornerShape(25.dp),
         placeholder = {
-            Text(text = stringResource(R.string.feature_account_full_name))
+            Text(text = stringResource(R.string.feature_account_email))
         },
         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email)
     )

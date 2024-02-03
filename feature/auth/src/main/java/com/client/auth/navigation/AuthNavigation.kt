@@ -9,7 +9,6 @@ import com.client.auth.forgot.ForgotPass
 import com.client.auth.login.LoginRoute
 import com.client.auth.register.RegisterRoute
 import com.client.common.NavRoutes
-import com.client.feature.dashboard.navigation.navigateToDashboard
 
 const val loginNavigationRoute = NavRoutes.loginRoute
 const val registerNavigationRoute = NavRoutes.registerRoute
@@ -22,9 +21,11 @@ fun NavController.navigateToLogin(navOptions: NavOptions? = null) {
 fun NavGraphBuilder.loginScreen(navController: NavHostController) {
     composable(route = loginNavigationRoute) {
         LoginRoute(
-            onDontHaveAnAccountClick = { navController.navigateToRegister() },
+            onNotHaveAnAccountClick = { navController.navigateToRegister() },
             onForgotPassClick = { navController.navigateToForgotPassword() },
-            onLoginSuccess = { navController.navigateToDashboard() }
+            onLoginSuccess = { uid ->
+                navController.navigate(route = NavRoutes.countrySelectionScreen + "/$uid")
+            }
         )
     }
 }

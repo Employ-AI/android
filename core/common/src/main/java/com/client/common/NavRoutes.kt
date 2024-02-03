@@ -20,3 +20,5 @@ object NavRoutes {
     // Matching
     const val aiMatchingRoute = "ai_matching_route"
 }
+
+const val UID = "uid"

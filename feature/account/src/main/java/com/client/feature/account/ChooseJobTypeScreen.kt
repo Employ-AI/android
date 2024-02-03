@@ -8,34 +8,49 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyHorizontalGrid
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.client.employ.feature.account.R
 import com.client.feature.account.components.JobTypeItem
 import com.client.ui.AccountBaseScreen
 
 @Composable
 fun ChooseJobTypeRoute(
-    onContinueClick: () -> Unit
+    sharedAccountViewModel: SharedAccountViewModel = hiltViewModel(),
+    onJobTypeSelected: () -> Unit
 ) {
+    val uiState = sharedAccountViewModel.uiState.collectAsStateWithLifecycle()
     ChooseJobTypeScreen(
-        onContinueClick = onContinueClick
+        uiState = uiState.value,
+        onJobTypeSelected = onJobTypeSelected,
+        onContinueClick = sharedAccountViewModel::onJobTypeSelected
     )
 }
 
 @Composable
 internal fun ChooseJobTypeScreen(
     modifier: Modifier = Modifier,
-    onContinueClick: () -> Unit
+    uiState: AccountState,
+    onJobTypeSelected: () -> Unit,
+    onContinueClick: (String) -> Unit
 ) {
     val isFindJobSelected = remember { mutableStateOf(false) }
+    val jobType = remember { mutableStateOf("") }
+
     AccountBaseScreen(
         pageTitle = R.string.feature_account_choose_job_type_title,
         description = R.string.feature_account_choose_job_type_description,
-        onContinueClick = onContinueClick
+        onContinueClick = {
+            if (jobType.value.isNotEmpty()) {
+                onContinueClick(jobType.value)
+            }
+        }
     ) {
         LazyHorizontalGrid(
             modifier = modifier
@@ -51,7 +66,10 @@ internal fun ChooseJobTypeScreen(
                     title = R.string.feature_account_choose_job_type_find_job,
                     description = R.string.feature_account_choose_job_type_find_job_description,
                     image = R.drawable.job_searching,
-                    onCardClick = {}
+                    onCardClick = {
+                        isFindJobSelected.value = true
+                        jobType.value = "Employee"
+                    }
                 )
             }
 
@@ -61,13 +79,29 @@ internal fun ChooseJobTypeScreen(
 
             item {
                 JobTypeItem(
-                    onCardClick = {},
+                    isFindJobSelected = isFindJobSelected.value,
                     title = R.string.feature_account_choose_job_type_find_employee,
                     description = R.string.feature_account_choose_job_type_find_employee_description,
-                    image = R.drawable.recruiter_searching
+                    image = R.drawable.recruiter_searching,
+                    onCardClick = {
+                        isFindJobSelected.value = true
+                        jobType.value = "Employer"
+                    }
                 )
             }
         }
+    }
+
+    when (uiState) {
+        AccountState.Loading -> {
+            // TODO: Show loading
+        }
+
+        is AccountState.OnJobTypeSelected -> {
+            LaunchedEffect(uiState) { onJobTypeSelected() }
+        }
+
+        else -> Unit
     }
 }
 
@@ -75,6 +109,8 @@ internal fun ChooseJobTypeScreen(
 @Composable
 private fun ChooseJobTypeScreenPreview() {
     ChooseJobTypeScreen(
-        onContinueClick = { /*TODO*/ }
+        uiState = AccountState.Loading,
+        onJobTypeSelected = { },
+        onContinueClick = { }
     )
 }

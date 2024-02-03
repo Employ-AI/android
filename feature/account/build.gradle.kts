@@ -17,6 +17,8 @@ dependencies {
     implementation(projects.core.common)
     implementation(projects.core.data)
 
+    implementation(projects.feature.dashboard)
+
     implementation(libs.coil.kt)
     implementation(libs.coil.kt.compose)
     implementation(libs.androidx.compose.ui.test)

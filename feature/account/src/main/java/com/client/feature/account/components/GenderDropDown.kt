@@ -27,7 +27,8 @@ import com.client.employ.feature.account.R
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 internal fun GenderDropDown(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onGenderSelected: (String) -> Unit
 ) {
     val containerColor = colorResource(R.color.feature_account_text_field_search_background)
 
@@ -73,6 +74,7 @@ internal fun GenderDropDown(
                     onClick = {
                         selectedOptionText = selectionOption
                         expanded = false
+                        onGenderSelected(selectionOption)
                     },
                     contentPadding = PaddingValues(0.dp)
                 )
@@ -89,6 +91,6 @@ private fun GenderDropDownPreview() {
             .padding(16.dp)
             .fillMaxSize()
     ) {
-        GenderDropDown()
+        GenderDropDown(onGenderSelected = { })
     }
 }

@@ -5,7 +5,9 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.NavOptions
 import androidx.navigation.compose.composable
+import androidx.navigation.navArgument
 import com.client.common.NavRoutes
+import com.client.common.UID
 import com.client.feature.account.ChooseJobTypeRoute
 
 const val chooseJobTypeNavigation = NavRoutes.chooseJobTypeScreen
@@ -15,9 +17,18 @@ fun NavController.navigateToChooseJobType(navOptions: NavOptions? = null) {
 }
 
 fun NavGraphBuilder.chooseJobTypeScreen(navController: NavHostController) {
-    composable(route = chooseJobTypeNavigation) {
+    composable(
+        route = "${NavRoutes.chooseJobTypeScreen}/{$UID}",
+        arguments = listOf(
+            navArgument(UID) {
+                defaultValue = ""
+                nullable = false
+            }
+        )
+    ) { backStackEntry ->
+        val uid = backStackEntry.arguments?.getString(UID) ?: ""
         ChooseJobTypeRoute(
-            onContinueClick = { navController.navigateToExpertiseScreen() }
+            onJobTypeSelected = { navController.navigate(NavRoutes.expertiseScreen + "/$uid") }
         )
     }
 }

@@ -73,6 +73,8 @@ androidxTestRules = "1.5.0"
 androidxTestRunner = "1.5.2"
 junit4 = "4.13.2"
 
+timber = "5.0.1"
+
 [libraries]
 accompanist-permissions = { group = "com.google.accompanist", name = "accompanist-permissions", version.ref = "accompanist" }
 accompanist-testharness = { group = "com.google.accompanist", name = "accompanist-testharness", version.ref = "accompanist" }
@@ -150,6 +152,8 @@ room-compiler = { group = "androidx.room", name = "room-compiler", version.ref =
 room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room" }
 room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "room" }
 truth = { group = "com.google.truth", name = "truth", version.ref = "truth" }
+
+timber = { group = "com.jakewharton.timber", name = "timber", version.ref = "timber" }
 
 credential-manager = { group = "com.google.android.libraries.identity.googleid", name = "googleid", version.ref = "credential-manager"}
 lottie = { group = "com.airbnb.android", name = "lottie-compose", version.ref = "lottie" }

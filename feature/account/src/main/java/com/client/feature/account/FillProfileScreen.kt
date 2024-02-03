@@ -13,12 +13,17 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.client.feature.account.components.DateOfBirthInput
 import com.client.feature.account.components.FullNameInput
 import com.client.feature.account.components.GenderDropDown
@@ -29,18 +34,31 @@ import com.client.feature.account.components.ProfilePhotoBox
 
 @Composable
 fun FillProfileRoute(
-    onContinueClick: () -> Unit
+    sharedAccountViewModel: SharedAccountViewModel = hiltViewModel(),
+    onProfileFilled: () -> Unit
 ) {
+    val uiState = sharedAccountViewModel.uiState.collectAsStateWithLifecycle()
     FillProfileScreen(
-        onContinueClick = onContinueClick
+        uiState = uiState.value,
+        onUserProfileFilled = onProfileFilled,
+        onContinueClick = sharedAccountViewModel::onProfileFilled
     )
 }
 
 @Composable
 internal fun FillProfileScreen(
     modifier: Modifier = Modifier,
-    onContinueClick: () -> Unit
+    uiState: AccountState,
+    onUserProfileFilled: () -> Unit,
+    onContinueClick: (UserProfile) -> Unit
 ) {
+    val fullName = rememberSaveable { mutableStateOf("") }
+    val nickName = rememberSaveable { mutableStateOf("") }
+    val dateOfBirth = rememberSaveable { mutableStateOf("") }
+    val email = rememberSaveable { mutableStateOf("") }
+    val phone = rememberSaveable { mutableStateOf("") }
+    val gender = rememberSaveable { mutableStateOf("") }
+
     Column(
         modifier = modifier.fillMaxSize()
     ) {
@@ -55,17 +73,17 @@ internal fun FillProfileScreen(
 
             Spacer(modifier = Modifier.height(24.dp))
 
-            FullNameInput()
+            FullNameInput(onValueChange = { fullName.value = it })
 
-            NickNameInput()
+            NickNameInput(onValueChange = { nickName.value = it })
 
-            DateOfBirthInput()
+            DateOfBirthInput(onValueChange = { dateOfBirth.value = it })
 
-            ProfileEmailInput()
+            ProfileEmailInput(onValueChange = { email.value = it })
 
-            PhoneInput()
+            PhoneInput(onValueChange = { phone.value = it })
 
-            GenderDropDown()
+            GenderDropDown(onGenderSelected = { gender.value = it })
         }
 
         Column(
@@ -78,7 +96,18 @@ internal fun FillProfileScreen(
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(48.dp),
-                onClick = onContinueClick
+                onClick = {
+                    onContinueClick(
+                        UserProfile(
+                            fullName = fullName.value,
+                            nickName = nickName.value,
+                            dateOfBirth = dateOfBirth.value,
+                            email = email.value,
+                            phone = phone.value,
+                            gender = gender.value
+                        )
+                    )
+                }
             ) {
                 Text(
                     text = stringResource(com.client.employ.core.ui.R.string.core_ui_continue),
@@ -88,12 +117,23 @@ internal fun FillProfileScreen(
             }
         }
     }
+
+    when (uiState) {
+        is AccountState.Loading -> Unit
+        is AccountState.OnProfileFilled -> LaunchedEffect(uiState) {
+            onUserProfileFilled()
+        }
+
+        else -> Unit
+    }
 }
 
 @Preview(showBackground = true, apiLevel = 33)
 @Composable
 private fun FillProfileScreenPreview() {
     FillProfileScreen(
-        onContinueClick = { /*TODO*/ }
+        uiState = AccountState.Loading,
+        onUserProfileFilled = { },
+        onContinueClick = { }
     )
 }

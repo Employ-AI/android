@@ -31,7 +31,7 @@ import com.client.ui.SignInWithIcons
 @Composable
 fun LoginRoute(
     loginViewModel: LoginViewModel = hiltViewModel(),
-    onDontHaveAnAccountClick: () -> Unit,
+    onNotHaveAnAccountClick: () -> Unit,
     onForgotPassClick: () -> Unit,
     onLoginSuccess: (String) -> Unit
 ) {
@@ -40,7 +40,7 @@ fun LoginRoute(
         authState = authState.value,
         onGoogleSignInClick = {},
         onAppleSignInClick = {},
-        onDontHaveAnAccountClick = onDontHaveAnAccountClick,
+        onDontHaveAnAccountClick = onNotHaveAnAccountClick,
         onForgotPassClick = onForgotPassClick,
         onSignInClick = loginViewModel::onLoginClick,
         onLoginSuccess = onLoginSuccess
@@ -64,15 +64,19 @@ internal fun LoginScreen(
     AuthBaseScreen(pageTitle = R.string.feature_auth_login_to_your_account) {
         Spacer(modifier = modifier.height(25.dp))
 
-        EmailTextField(onEmailChanged = {
-            email.value = it
-        })
+        EmailTextField(
+            onEmailChanged = {
+                email.value = it
+            }
+        )
 
         Spacer(modifier = modifier.height(10.dp))
 
-        PasswordTextField(onPasswordChanged = {
-            password.value = it
-        })
+        PasswordTextField(
+            onPasswordChanged = {
+                password.value = it
+            }
+        )
 
         RememberMeCheckBox()
 
@@ -80,7 +84,13 @@ internal fun LoginScreen(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(top = 10.dp),
-            onClick = { onSignInClick(email.value, password.value) }
+            onClick = {
+                if (email.value.isNotEmpty() && password.value.isNotEmpty()) {
+                    onSignInClick(email.value, password.value)
+                } else {
+                    println("LoginScreen: Email or password is empty!")
+                }
+            }
         ) {
             Text(
                 modifier = Modifier.padding(8.dp),

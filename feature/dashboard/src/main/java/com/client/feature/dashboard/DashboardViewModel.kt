@@ -1,5 +1,6 @@
 package com.client.feature.dashboard
 
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.client.model.arbit.Data
@@ -16,8 +17,12 @@ import javax.inject.Inject
 
 @HiltViewModel
 class DashboardViewModel @Inject constructor(
-    arbitNowRepository: ArbitNowRepository
+    arbitNowRepository: ArbitNowRepository,
+    savedStateHandle: SavedStateHandle
 ) : ViewModel() {
+
+    @Suppress("unused")
+    private val uid = savedStateHandle.get<String>("uid") ?: ""
 
     val jobsList = arbitNowRepository.getJobs()
         .asResult()

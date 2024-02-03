@@ -12,8 +12,8 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -21,26 +21,35 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.client.common.CountryHelper
 import com.client.employ.feature.account.R
 import com.client.feature.account.components.CountryItem
 import com.client.feature.account.components.SearchTextField
+import com.client.ui.CircularProgressIndicator
 
 @Composable
 fun CountrySelectionRoute(
-    onContinueBtnClick: () -> Unit
+    sharedAccountViewModel: SharedAccountViewModel = hiltViewModel(),
+    onCountrySelected: () -> Unit
 ) {
+    val uiState = sharedAccountViewModel.uiState.collectAsStateWithLifecycle()
     CountrySelectionScreen(
-        onContinueBtnClick = {}
+        uiState = uiState.value,
+        onCountrySelected = onCountrySelected,
+        onContinueBtnClick = sharedAccountViewModel::setCountry
     )
 }
 
 @Composable
 internal fun CountrySelectionScreen(
     modifier: Modifier = Modifier,
-    onContinueBtnClick: () -> Unit
+    uiState: AccountState,
+    onCountrySelected: () -> Unit,
+    onContinueBtnClick: (String) -> Unit
 ) {
-    val searchQuery = remember { mutableStateOf("") }
+    val searchQuery = rememberSaveable { mutableStateOf("") }
     val selectedCountry = rememberSaveable { mutableStateOf("") }
 
     Box(
@@ -64,10 +73,7 @@ internal fun CountrySelectionScreen(
                     val countries = CountryHelper.getCountries()
                     CountryItem(
                         countries = countries,
-                        selectedItem = { country ->
-                            selectedCountry.value = country
-                            println("selected country: $country")
-                        }
+                        selectedItem = { country -> selectedCountry.value = country }
                     )
                 }
             }
@@ -77,7 +83,9 @@ internal fun CountrySelectionScreen(
             modifier = modifier
                 .fillMaxWidth()
                 .align(Alignment.BottomCenter),
-            onClick = onContinueBtnClick
+            onClick = {
+                onContinueBtnClick(selectedCountry.value)
+            }
         ) {
             Text(
                 modifier = Modifier.padding(8.dp),
@@ -87,10 +95,26 @@ internal fun CountrySelectionScreen(
             )
         }
     }
+
+    when (uiState) {
+        AccountState.Loading -> CircularProgressIndicator()
+
+        is AccountState.OnCountrySelected -> {
+            LaunchedEffect(key1 = uiState) {
+                onCountrySelected()
+            }
+        }
+
+        else -> Unit
+    }
 }
 
 @Preview(showBackground = true)
 @Composable
 private fun CountrySelectionScreenPreview() {
-    CountrySelectionScreen(onContinueBtnClick = {})
+    CountrySelectionScreen(
+        uiState = AccountState.Loading,
+        onCountrySelected = {},
+        onContinueBtnClick = {}
+    )
 }

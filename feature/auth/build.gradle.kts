@@ -18,6 +18,7 @@ dependencies {
     implementation(projects.core.data)
 
     implementation(projects.feature.dashboard)
+    implementation(projects.feature.account)
 
     implementation(libs.coil.kt)
     implementation(libs.coil.kt.compose)
