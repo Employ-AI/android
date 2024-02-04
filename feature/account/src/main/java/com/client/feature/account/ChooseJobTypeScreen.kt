@@ -8,36 +8,27 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyHorizontalGrid
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.client.employ.feature.account.R
 import com.client.feature.account.components.JobTypeItem
 import com.client.ui.AccountBaseScreen
 
 @Composable
 fun ChooseJobTypeRoute(
-    sharedAccountViewModel: SharedAccountViewModel = hiltViewModel(),
-    onJobTypeSelected: () -> Unit
+    onContinueClick: (String) -> Unit
 ) {
-    val uiState = sharedAccountViewModel.uiState.collectAsStateWithLifecycle()
     ChooseJobTypeScreen(
-        uiState = uiState.value,
-        onJobTypeSelected = onJobTypeSelected,
-        onContinueClick = sharedAccountViewModel::onJobTypeSelected
+        onContinueClick = onContinueClick
     )
 }
 
 @Composable
 internal fun ChooseJobTypeScreen(
     modifier: Modifier = Modifier,
-    uiState: AccountState,
-    onJobTypeSelected: () -> Unit,
     onContinueClick: (String) -> Unit
 ) {
     val isFindJobSelected = remember { mutableStateOf(false) }
@@ -91,26 +82,12 @@ internal fun ChooseJobTypeScreen(
             }
         }
     }
-
-    when (uiState) {
-        AccountState.Loading -> {
-            // TODO: Show loading
-        }
-
-        is AccountState.OnJobTypeSelected -> {
-            LaunchedEffect(uiState) { onJobTypeSelected() }
-        }
-
-        else -> Unit
-    }
 }
 
 @Preview(showBackground = true)
 @Composable
 private fun ChooseJobTypeScreenPreview() {
     ChooseJobTypeScreen(
-        uiState = AccountState.Loading,
-        onJobTypeSelected = { },
         onContinueClick = { }
     )
 }

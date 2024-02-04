@@ -34,14 +34,14 @@ import com.client.feature.account.components.ProfilePhotoBox
 
 @Composable
 fun FillProfileRoute(
-    sharedAccountViewModel: SharedAccountViewModel = hiltViewModel(),
+    accountViewModel: AccountViewModel = hiltViewModel(),
     onProfileFilled: () -> Unit
 ) {
-    val uiState = sharedAccountViewModel.uiState.collectAsStateWithLifecycle()
+    val uiState = accountViewModel.uiState.collectAsStateWithLifecycle()
     FillProfileScreen(
         uiState = uiState.value,
         onUserProfileFilled = onProfileFilled,
-        onContinueClick = sharedAccountViewModel::onProfileFilled
+        onContinueClick = accountViewModel::onProfileFilled
     )
 }
 

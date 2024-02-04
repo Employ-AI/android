@@ -6,11 +6,12 @@ import androidx.navigation.NavHostController
 import androidx.navigation.NavOptions
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
+import com.client.common.COUNTRY
 import com.client.common.NavRoutes
 import com.client.common.UID
 import com.client.feature.account.ChooseJobTypeRoute
 
-const val chooseJobTypeNavigation = NavRoutes.chooseJobTypeScreen
+const val chooseJobTypeNavigation = NavRoutes.CHOOSE_JOB_TYPE_ROUTE
 
 fun NavController.navigateToChooseJobType(navOptions: NavOptions? = null) {
     this.navigate(chooseJobTypeNavigation, navOptions)
@@ -18,17 +19,25 @@ fun NavController.navigateToChooseJobType(navOptions: NavOptions? = null) {
 
 fun NavGraphBuilder.chooseJobTypeScreen(navController: NavHostController) {
     composable(
-        route = "${NavRoutes.chooseJobTypeScreen}/{$UID}",
+        route = "${NavRoutes.CHOOSE_JOB_TYPE_ROUTE}/{$UID}/{$COUNTRY}",
         arguments = listOf(
             navArgument(UID) {
+                defaultValue = ""
+                nullable = false
+            },
+            navArgument(COUNTRY) {
                 defaultValue = ""
                 nullable = false
             }
         )
     ) { backStackEntry ->
         val uid = backStackEntry.arguments?.getString(UID) ?: ""
+        val selectedCountry = backStackEntry.arguments?.getString(COUNTRY) ?: ""
+
         ChooseJobTypeRoute(
-            onJobTypeSelected = { navController.navigate(NavRoutes.expertiseScreen + "/$uid") }
+            onContinueClick = { selectedJobType ->
+                navController.navigate(NavRoutes.EXPERTISE_ROUTE + "/$uid" + "/$selectedCountry" + "/$selectedJobType")
+            }
         )
     }
 }

@@ -8,7 +8,7 @@ import androidx.navigation.compose.composable
 import com.client.common.NavRoutes
 import com.client.feature.matching.AiMatchingRoute
 
-const val aiMatchingNavigationRoute = NavRoutes.aiMatchingRoute
+const val aiMatchingNavigationRoute = NavRoutes.AI_MATCHING_ROUTE
 
 fun NavController.navigateToAiMatchingScreen(navOptions: NavOptions? = null) {
     this.navigate(aiMatchingNavigationRoute, navOptions)

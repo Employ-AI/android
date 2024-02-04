@@ -72,7 +72,7 @@ private fun BottomBarPreview() {
         BottomBar(
             destinations = TabsDestinations.entries,
             onNavigateToDestination = {},
-            currentDestination = NavDestination(NavRoutes.dashboardRoute)
+            currentDestination = NavDestination(NavRoutes.DASHBOARD_ROUTE)
         )
     }
 }
