@@ -16,6 +16,7 @@ android {
 dependencies {
     implementation(projects.core.common)
     implementation(projects.core.data)
+    implementation(projects.core.datastore)
 
     implementation(projects.feature.dashboard)
     implementation(projects.feature.account)
