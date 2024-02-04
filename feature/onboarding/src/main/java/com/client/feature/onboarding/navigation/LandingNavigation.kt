@@ -9,7 +9,7 @@ import com.client.auth.navigation.navigateToLogin
 import com.client.common.NavRoutes
 import com.client.feature.onboarding.LandingRoute
 
-const val landingNavigationRoute = NavRoutes.landingScreen
+const val landingNavigationRoute = NavRoutes.LANDING_SCREEN
 
 fun NavController.navigateToLanding(navOptions: NavOptions? = null) {
     this.navigate(landingNavigationRoute, navOptions)

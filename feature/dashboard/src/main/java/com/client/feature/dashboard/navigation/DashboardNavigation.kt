@@ -8,7 +8,7 @@ import androidx.navigation.compose.composable
 import com.client.common.NavRoutes
 import com.client.feature.dashboard.DashboardRoute
 
-const val dashboardNavigationRoute = NavRoutes.dashboardRoute
+const val dashboardNavigationRoute = NavRoutes.DASHBOARD_ROUTE
 
 fun NavController.navigateToDashboard(navOptions: NavOptions? = null) {
     this.navigate(dashboardNavigationRoute, navOptions)

@@ -10,7 +10,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -113,7 +112,7 @@ private fun FirstLoginToolbar(
     navController: NavHostController
 ) {
     val title = when (currentDestination?.route) {
-        NavRoutes.countrySelectionScreen -> "Select Country"
+        NavRoutes.COUNTRY_SELECTION_ROUTE -> "Select Country"
         else -> null
     }
 
@@ -128,10 +127,10 @@ private fun FirstLoginToolbar(
             )
         },
         navigationIcon = {
-            if (currentDestination?.route != NavRoutes.landingScreen) {
+            if (currentDestination?.route != NavRoutes.LANDING_SCREEN) {
                 IconButton(onClick = { navController.popBackStack() }) {
                     Icon(
-                        imageVector = Icons.Default.ArrowBack,
+                        imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                         contentDescription = null
                     )
                 }

@@ -10,7 +10,7 @@ import com.client.common.NavRoutes
 import com.client.common.UID
 import com.client.feature.account.CountrySelectionRoute
 
-const val countrySelectionNavigationRoute = NavRoutes.countrySelectionScreen
+const val countrySelectionNavigationRoute = NavRoutes.COUNTRY_SELECTION_ROUTE
 
 fun NavController.navigateToCountrySelection(navOptions: NavOptions? = null) {
     this.navigate(countrySelectionNavigationRoute, navOptions)
@@ -18,7 +18,7 @@ fun NavController.navigateToCountrySelection(navOptions: NavOptions? = null) {
 
 fun NavGraphBuilder.countrySelectionScreen(navController: NavHostController) {
     composable(
-        route = "${NavRoutes.countrySelectionScreen}/{$UID}",
+        route = "${NavRoutes.COUNTRY_SELECTION_ROUTE}/{$UID}",
         arguments = listOf(
             navArgument(name = UID) {
                 defaultValue = ""
@@ -28,7 +28,9 @@ fun NavGraphBuilder.countrySelectionScreen(navController: NavHostController) {
     ) { backStackEntry ->
         val uid = backStackEntry.arguments?.getString(UID) ?: ""
         CountrySelectionRoute(
-            onCountrySelected = { navController.navigate(NavRoutes.chooseJobTypeScreen + "/$uid") }
+            onContinueBtnClick = { selectedCountry ->
+                navController.navigate(NavRoutes.CHOOSE_JOB_TYPE_ROUTE + "/$uid" + "/$selectedCountry")
+            }
         )
     }
 }

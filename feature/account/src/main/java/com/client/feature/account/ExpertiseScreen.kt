@@ -5,13 +5,10 @@ import androidx.compose.foundation.layout.FlowColumn
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.client.common.ExpertiseHelper
 import com.client.employ.feature.account.R
 import com.client.feature.account.components.ExpertiseItem
@@ -19,14 +16,10 @@ import com.client.ui.AccountBaseScreen
 
 @Composable
 fun ExpertiseRoute(
-    sharedAccountViewModel: SharedAccountViewModel = hiltViewModel(),
-    onExpertiseSelected: () -> Unit
+    onContinueClick: (String) -> Unit
 ) {
-    val uiState = sharedAccountViewModel.uiState.collectAsStateWithLifecycle()
     ExpertiseScreen(
-        uiState = uiState.value,
-        onExpertiseSelected = onExpertiseSelected,
-        onContinueClick = sharedAccountViewModel::onExpertiseSelected
+        onContinueClick = onContinueClick
     )
 }
 
@@ -34,8 +27,6 @@ fun ExpertiseRoute(
 @Composable
 internal fun ExpertiseScreen(
     modifier: Modifier = Modifier,
-    uiState: AccountState,
-    onExpertiseSelected: () -> Unit,
     onContinueClick: (String) -> Unit
 ) {
     val selectedExpertise = rememberSaveable { mutableListOf("") }
@@ -69,25 +60,12 @@ internal fun ExpertiseScreen(
             }
         }
     }
-
-    when (uiState) {
-        is AccountState.Loading -> Unit
-        is AccountState.OnExpertiseSelected -> {
-            LaunchedEffect(uiState) {
-                onExpertiseSelected()
-            }
-        }
-
-        else -> Unit
-    }
 }
 
 @Preview(showBackground = true, apiLevel = 33)
 @Composable
 private fun ExpertiseScreenPreview() {
     ExpertiseScreen(
-        uiState = AccountState.Loading,
-        onExpertiseSelected = { },
         onContinueClick = { }
     )
 }

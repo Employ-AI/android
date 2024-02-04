@@ -12,7 +12,6 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
@@ -21,8 +20,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.client.common.CountryHelper
 import com.client.employ.feature.account.R
 import com.client.feature.account.components.CountryItem
@@ -30,22 +27,16 @@ import com.client.feature.account.components.SearchTextField
 
 @Composable
 fun CountrySelectionRoute(
-    sharedAccountViewModel: SharedAccountViewModel = hiltViewModel(),
-    onCountrySelected: () -> Unit
+    onContinueBtnClick: (String) -> Unit
 ) {
-    val uiState = sharedAccountViewModel.uiState.collectAsStateWithLifecycle()
     CountrySelectionScreen(
-        uiState = uiState.value,
-        onCountrySelected = onCountrySelected,
-        onContinueBtnClick = sharedAccountViewModel::setCountry
+        onContinueBtnClick = onContinueBtnClick
     )
 }
 
 @Composable
 internal fun CountrySelectionScreen(
     modifier: Modifier = Modifier,
-    uiState: AccountState,
-    onCountrySelected: () -> Unit,
     onContinueBtnClick: (String) -> Unit
 ) {
     val searchQuery = rememberSaveable { mutableStateOf("") }
@@ -94,25 +85,12 @@ internal fun CountrySelectionScreen(
             )
         }
     }
-
-    when (uiState) {
-        AccountState.Loading -> Unit
-        is AccountState.OnCountrySelected -> {
-            LaunchedEffect(key1 = uiState) {
-                onCountrySelected()
-            }
-        }
-
-        else -> Unit
-    }
 }
 
 @Preview(showBackground = true)
 @Composable
 private fun CountrySelectionScreenPreview() {
     CountrySelectionScreen(
-        uiState = AccountState.Loading,
-        onCountrySelected = {},
         onContinueBtnClick = {}
     )
 }
