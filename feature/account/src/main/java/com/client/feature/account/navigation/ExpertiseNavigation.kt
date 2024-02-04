@@ -43,11 +43,7 @@ fun NavGraphBuilder.expertiseScreen(navController: NavHostController) {
         ExpertiseRoute(
             onContinueClick = { selectedExpertise ->
                 navController.navigate(
-                    NavRoutes.FILL_PROFILE_ROUTE +
-                            "/$uid" +
-                            "/$selectedCountry" +
-                            "/$selectedJobType" +
-                            "/$selectedExpertise"
+                    "${NavRoutes.FILL_PROFILE_ROUTE}/$uid/$selectedCountry/$selectedJobType/$selectedExpertise"
                 )
             }
         )
