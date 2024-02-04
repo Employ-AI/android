@@ -57,11 +57,17 @@ internal fun RegisterScreen(
     AuthBaseScreen(pageTitle = R.string.feature_auth_create_new_account) {
         Spacer(modifier = modifier.height(25.dp))
 
-        EmailTextField(onEmailChanged = { email.value = it })
+        EmailTextField(
+            isEmailValid = { /*TODO*/ },
+            onEmailChanged = { email.value = it }
+        )
 
         Spacer(modifier = modifier.height(10.dp))
 
-        PasswordTextField(onPasswordChanged = { password.value = it })
+        PasswordTextField(
+            isPasswordValid = { /*TODO*/ },
+            onPasswordChanged = { password.value = it }
+        )
 
         Spacer(modifier = modifier.height(16.dp))
 

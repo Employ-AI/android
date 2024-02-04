@@ -1,17 +1,19 @@
 package com.client.feature.dashboard.components
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.SuggestionChip
-import androidx.compose.material3.SuggestionChipDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.client.employ.core.ui.R
 
 @Composable
 internal fun RecentJobsChipRow(
@@ -43,8 +45,9 @@ internal fun RecentJobsChipRow(
                     )
                 },
                 onClick = {},
-                border = SuggestionChipDefaults.suggestionChipBorder(
-                    borderColor = MaterialTheme.colorScheme.primary
+                border = BorderStroke(
+                    width = 0.5.dp,
+                    color = colorResource(R.color.core_ui_border_color)
                 ),
                 shape = RoundedCornerShape(16.dp)
             )

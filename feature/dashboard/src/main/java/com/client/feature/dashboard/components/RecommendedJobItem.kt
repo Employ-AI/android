@@ -17,13 +17,12 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Bookmark
 import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.Divider
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedCard
 import androidx.compose.material3.SuggestionChip
-import androidx.compose.material3.SuggestionChipDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
@@ -93,7 +92,7 @@ internal fun RecommendedJobItem(
                                 .padding(5.dp)
                                 .clip(CircleShape)
                                 .size(50.dp),
-                            model = companyLogoUrl ?: "",
+                            model = companyLogoUrl,
                             contentDescription = null,
                             contentScale = ContentScale.Inside
                         )
@@ -143,10 +142,10 @@ internal fun RecommendedJobItem(
                 }
             }
 
-            Divider(
+            HorizontalDivider(
                 modifier = Modifier.padding(horizontal = 4.dp, vertical = 10.dp),
-                color = Color.LightGray,
-                thickness = 0.5.dp
+                thickness = 0.5.dp,
+                color = Color.LightGray
             )
 
             BelowSection(
@@ -200,8 +199,9 @@ private fun BelowSection(
                         )
                     },
                     onClick = {},
-                    border = SuggestionChipDefaults.suggestionChipBorder(
-                        borderColor = colorResource(R.color.feature_dashboard_text_field_search_background)
+                    border = BorderStroke(
+                        width = 0.5.dp,
+                        color = colorResource(R.color.feature_dashboard_text_field_search_background)
                     ),
                     enabled = false
                 )

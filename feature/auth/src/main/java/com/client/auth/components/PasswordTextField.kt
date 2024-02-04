@@ -3,6 +3,7 @@ package com.client.auth.components
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Visibility
@@ -18,6 +19,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
@@ -30,18 +32,25 @@ import com.client.employ.feature.auth.R
 @Composable
 internal fun PasswordTextField(
     modifier: Modifier = Modifier,
+    isPasswordValid: (Boolean) -> Unit,
     onPasswordChanged: (String) -> Unit
 ) {
     val password = rememberSaveable { mutableStateOf("") }
     val containerColor = colorResource(R.color.feature_auth_text_field_background)
     val passwordVisible = rememberSaveable { mutableStateOf(false) }
+    val focusManager = LocalFocusManager.current
 
     TextField(
         modifier = modifier.fillMaxWidth(),
         value = password.value,
         onValueChange = {
             password.value = it
-            if (it.length >= 6) onPasswordChanged(it)
+            if (it.length >= 6) {
+                onPasswordChanged(it)
+                isPasswordValid(true)
+            } else {
+                isPasswordValid(false)
+            }
         },
         colors = TextFieldDefaults.colors(
             focusedContainerColor = containerColor,
@@ -64,6 +73,7 @@ internal fun PasswordTextField(
         },
         visualTransformation = if (passwordVisible.value) VisualTransformation.None else PasswordVisualTransformation(),
         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
+        keyboardActions = KeyboardActions(onNext = { focusManager.clearFocus() }),
         trailingIcon = {
             val image = if (passwordVisible.value) {
                 Icons.Filled.Visibility
@@ -88,5 +98,8 @@ internal fun PasswordTextField(
 @Preview(showBackground = true, backgroundColor = 0xFFFFFFFF)
 @Composable
 private fun PasswordTextFieldPreview() {
-    PasswordTextField(onPasswordChanged = {})
+    PasswordTextField(
+        isPasswordValid = {},
+        onPasswordChanged = {}
+    )
 }

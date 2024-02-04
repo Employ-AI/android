@@ -27,7 +27,6 @@ import com.client.common.CountryHelper
 import com.client.employ.feature.account.R
 import com.client.feature.account.components.CountryItem
 import com.client.feature.account.components.SearchTextField
-import com.client.ui.CircularProgressIndicator
 
 @Composable
 fun CountrySelectionRoute(
@@ -97,8 +96,7 @@ internal fun CountrySelectionScreen(
     }
 
     when (uiState) {
-        AccountState.Loading -> CircularProgressIndicator()
-
+        AccountState.Loading -> Unit
         is AccountState.OnCountrySelected -> {
             LaunchedEffect(key1 = uiState) {
                 onCountrySelected()

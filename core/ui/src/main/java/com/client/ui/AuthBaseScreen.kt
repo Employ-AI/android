@@ -68,7 +68,7 @@ fun AuthBaseScreen(
 @Composable
 private fun AuthBaseScreenPreview() {
     AuthBaseScreen(
-        pageTitle = androidx.compose.material3.R.string.bottom_sheet_dismiss_description,
+        pageTitle = R.string.core_ui_continue,
         content = { /*TODO*/ }
     )
 }

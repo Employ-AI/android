@@ -15,7 +15,7 @@ class LoginViewModel @Inject constructor(
     private val accountService: AccountService
 ) : ViewModel() {
 
-    private val _authState: MutableStateFlow<LoginState> = MutableStateFlow(LoginState.Loading)
+    private val _authState: MutableStateFlow<LoginState> = MutableStateFlow(LoginState.Initial)
     val authState = _authState.asStateFlow()
 
     fun onLoginClick(email: String, password: String) {
@@ -30,6 +30,7 @@ class LoginViewModel @Inject constructor(
 }
 
 sealed interface LoginState {
+    data object Initial : LoginState
     data object Loading : LoginState
     data class Success(val uid: String) : LoginState
     data class Error(val message: String) : LoginState
