@@ -17,13 +17,12 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Bookmark
 import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.Divider
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedCard
 import androidx.compose.material3.SuggestionChip
-import androidx.compose.material3.SuggestionChipDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
@@ -142,10 +141,10 @@ fun JobItem(
                 }
             }
 
-            Divider(
+            HorizontalDivider(
                 modifier = Modifier.padding(horizontal = 4.dp, vertical = 10.dp),
-                color = Color.LightGray,
-                thickness = 0.5.dp
+                thickness = 0.5.dp,
+                color = Color.LightGray
             )
 
             BelowSection(
@@ -199,8 +198,9 @@ private fun BelowSection(
                         )
                     },
                     onClick = {},
-                    border = SuggestionChipDefaults.suggestionChipBorder(
-                        borderColor = colorResource(R.color.core_ui_border_color)
+                    border = BorderStroke(
+                        width = 0.5.dp,
+                        color = colorResource(R.color.core_ui_border_color)
                     ),
                     enabled = false
                 )

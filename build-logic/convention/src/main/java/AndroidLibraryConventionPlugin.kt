@@ -4,6 +4,7 @@ import com.client.convention.configureGradleManagedDevices
 import com.client.convention.configureKotlinAndroid
 import com.client.convention.configurePrintApksTask
 import com.client.convention.disableUnnecessaryAndroidTests
+import com.client.convention.libs
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure
@@ -32,6 +33,8 @@ class AndroidLibraryConventionPlugin : Plugin<Project> {
             }
             dependencies {
                 add("testImplementation", kotlin("test"))
+
+                add("implementation", libs.findLibrary("timber").get())
             }
         }
     }

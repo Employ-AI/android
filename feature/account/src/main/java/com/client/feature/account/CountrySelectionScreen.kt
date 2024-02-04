@@ -13,7 +13,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -28,19 +27,19 @@ import com.client.feature.account.components.SearchTextField
 
 @Composable
 fun CountrySelectionRoute(
-    onContinueBtnClick: () -> Unit
+    onContinueBtnClick: (String) -> Unit
 ) {
     CountrySelectionScreen(
-        onContinueBtnClick = {}
+        onContinueBtnClick = onContinueBtnClick
     )
 }
 
 @Composable
 internal fun CountrySelectionScreen(
     modifier: Modifier = Modifier,
-    onContinueBtnClick: () -> Unit
+    onContinueBtnClick: (String) -> Unit
 ) {
-    val searchQuery = remember { mutableStateOf("") }
+    val searchQuery = rememberSaveable { mutableStateOf("") }
     val selectedCountry = rememberSaveable { mutableStateOf("") }
 
     Box(
@@ -64,10 +63,7 @@ internal fun CountrySelectionScreen(
                     val countries = CountryHelper.getCountries()
                     CountryItem(
                         countries = countries,
-                        selectedItem = { country ->
-                            selectedCountry.value = country
-                            println("selected country: $country")
-                        }
+                        selectedItem = { country -> selectedCountry.value = country }
                     )
                 }
             }
@@ -77,7 +73,9 @@ internal fun CountrySelectionScreen(
             modifier = modifier
                 .fillMaxWidth()
                 .align(Alignment.BottomCenter),
-            onClick = onContinueBtnClick
+            onClick = {
+                onContinueBtnClick(selectedCountry.value)
+            }
         ) {
             Text(
                 modifier = Modifier.padding(8.dp),
@@ -92,5 +90,7 @@ internal fun CountrySelectionScreen(
 @Preview(showBackground = true)
 @Composable
 private fun CountrySelectionScreenPreview() {
-    CountrySelectionScreen(onContinueBtnClick = {})
+    CountrySelectionScreen(
+        onContinueBtnClick = {}
+    )
 }

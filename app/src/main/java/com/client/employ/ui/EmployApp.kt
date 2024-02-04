@@ -1,7 +1,6 @@
 package com.client.employ.ui
 
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.consumeWindowInsets
@@ -62,7 +61,6 @@ internal fun EmployApp(
     }
 }
 
-@OptIn(ExperimentalLayoutApi::class)
 @Composable
 private fun AppNavigation(
     navController: NavHostController,

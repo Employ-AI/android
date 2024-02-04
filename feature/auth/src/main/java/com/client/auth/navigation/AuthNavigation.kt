@@ -9,11 +9,10 @@ import com.client.auth.forgot.ForgotPass
 import com.client.auth.login.LoginRoute
 import com.client.auth.register.RegisterRoute
 import com.client.common.NavRoutes
-import com.client.feature.dashboard.navigation.navigateToDashboard
 
-const val loginNavigationRoute = NavRoutes.loginRoute
-const val registerNavigationRoute = NavRoutes.registerRoute
-const val forgotPassNavigationRoute = NavRoutes.forgotPassRoute
+const val loginNavigationRoute = NavRoutes.LOGIN_ROUTE
+const val registerNavigationRoute = NavRoutes.REGISTER_ROUTE
+const val forgotPassNavigationRoute = NavRoutes.FORGOT_PASSWORD_ROUTE
 
 fun NavController.navigateToLogin(navOptions: NavOptions? = null) {
     this.navigate(loginNavigationRoute, navOptions)
@@ -22,9 +21,11 @@ fun NavController.navigateToLogin(navOptions: NavOptions? = null) {
 fun NavGraphBuilder.loginScreen(navController: NavHostController) {
     composable(route = loginNavigationRoute) {
         LoginRoute(
-            onDontHaveAnAccountClick = { navController.navigateToRegister() },
+            onNotHaveAnAccountClick = { navController.navigateToRegister() },
             onForgotPassClick = { navController.navigateToForgotPassword() },
-            onLoginSuccess = { navController.navigateToDashboard() }
+            onLoginSuccess = { uid ->
+                navController.navigate(route = NavRoutes.COUNTRY_SELECTION_ROUTE + "/$uid")
+            }
         )
     }
 }
@@ -36,7 +37,7 @@ fun NavController.navigateToRegister(navOptions: NavOptions? = null) {
 fun NavGraphBuilder.registerScreen(navController: NavHostController) {
     composable(route = registerNavigationRoute) {
         RegisterRoute(
-            onAlreadyAccountExistClick = { navController.navigate(NavRoutes.loginRoute) }
+            onAlreadyAccountExistClick = { navController.navigate(NavRoutes.LOGIN_ROUTE) }
         )
     }
 }

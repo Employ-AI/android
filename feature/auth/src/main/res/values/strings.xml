@@ -20,4 +20,6 @@
     <string name="feature_auth_error">Error</string>
     <string name="feature_auth_oops_message">Oops! Something went wrong. Please try again later.</string>
     <string name="feature_auth_oops_suffix">Error code: </string>
+    <string name="feature_auth_error_dialog_title">Error</string>
+    <string name="feature_auth_please_enter_valid_email_and_password_description">Please enter valid email and password!</string>
 </resources>

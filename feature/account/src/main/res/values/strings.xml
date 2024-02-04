@@ -18,6 +18,7 @@
     <string name="feature_account_full_name">Full Name</string>
     <string name="feature_account_nick_name">Nick Name</string>
     <string name="feature_account_date_of_birth">Date of birth</string>
+    <string name="feature_account_email">Email</string>
     <string name="feature_account_phone">Phone</string>
     <string name="feature_account_gender">Gender</string>
 </resources>

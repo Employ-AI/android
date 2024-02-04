@@ -19,7 +19,7 @@ import com.client.ui.AccountBaseScreen
 
 @Composable
 fun ChooseJobTypeRoute(
-    onContinueClick: () -> Unit
+    onContinueClick: (String) -> Unit
 ) {
     ChooseJobTypeScreen(
         onContinueClick = onContinueClick
@@ -29,13 +29,19 @@ fun ChooseJobTypeRoute(
 @Composable
 internal fun ChooseJobTypeScreen(
     modifier: Modifier = Modifier,
-    onContinueClick: () -> Unit
+    onContinueClick: (String) -> Unit
 ) {
     val isFindJobSelected = remember { mutableStateOf(false) }
+    val jobType = remember { mutableStateOf("") }
+
     AccountBaseScreen(
         pageTitle = R.string.feature_account_choose_job_type_title,
         description = R.string.feature_account_choose_job_type_description,
-        onContinueClick = onContinueClick
+        onContinueClick = {
+            if (jobType.value.isNotEmpty()) {
+                onContinueClick(jobType.value)
+            }
+        }
     ) {
         LazyHorizontalGrid(
             modifier = modifier
@@ -51,7 +57,10 @@ internal fun ChooseJobTypeScreen(
                     title = R.string.feature_account_choose_job_type_find_job,
                     description = R.string.feature_account_choose_job_type_find_job_description,
                     image = R.drawable.job_searching,
-                    onCardClick = {}
+                    onCardClick = {
+                        isFindJobSelected.value = true
+                        jobType.value = "Employee"
+                    }
                 )
             }
 
@@ -61,10 +70,14 @@ internal fun ChooseJobTypeScreen(
 
             item {
                 JobTypeItem(
-                    onCardClick = {},
+                    isFindJobSelected = isFindJobSelected.value,
                     title = R.string.feature_account_choose_job_type_find_employee,
                     description = R.string.feature_account_choose_job_type_find_employee_description,
-                    image = R.drawable.recruiter_searching
+                    image = R.drawable.recruiter_searching,
+                    onCardClick = {
+                        isFindJobSelected.value = true
+                        jobType.value = "Employer"
+                    }
                 )
             }
         }
@@ -75,6 +88,6 @@ internal fun ChooseJobTypeScreen(
 @Composable
 private fun ChooseJobTypeScreenPreview() {
     ChooseJobTypeScreen(
-        onContinueClick = { /*TODO*/ }
+        onContinueClick = { }
     )
 }

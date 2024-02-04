@@ -25,15 +25,15 @@ internal fun AppNavHost(
 ) {
     NavHost(
         navController = navController,
-        startDestination = NavRoutes.landingScreen,
+        startDestination = NavRoutes.LANDING_SCREEN,
         modifier = modifier
     ) {
         landingScreen(navController)
 
+        // Auth
         loginScreen(navController)
         registerScreen(navController)
         forgotPasswordScreen(navController)
-        // Auth
 
         dashboardScreen(navController)
 
@@ -42,12 +42,14 @@ internal fun AppNavHost(
         chooseJobTypeScreen(navController)
         expertiseScreen(navController)
         fillProfileScreen(navController)
+
+        // Matching
         aiMatchingScreen(navController)
     }
 }
 
 private fun NavGraphBuilder.dashboardScreen(navController: NavHostController) {
-    composable(NavRoutes.dashboardRoute) {
+    composable(NavRoutes.DASHBOARD_ROUTE) {
         DashboardRoute()
     }
 }

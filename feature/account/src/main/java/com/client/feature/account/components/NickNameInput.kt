@@ -19,7 +19,8 @@ import com.client.employ.feature.account.R
 
 @Composable
 internal fun NickNameInput(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onValueChange: (String) -> Unit
 ) {
     val name = remember { mutableStateOf("") }
     val containerColor = colorResource(R.color.feature_account_text_field_search_background)
@@ -28,6 +29,7 @@ internal fun NickNameInput(
         value = name.value,
         onValueChange = {
             name.value = it
+            onValueChange(it)
         },
         colors = TextFieldDefaults.colors(
             focusedContainerColor = containerColor,
