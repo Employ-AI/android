@@ -1,3 +1,5 @@
+![develop](https://github.com/github/docs/actions/workflows/ci.yaml/badge.svg)
+
 This is the official repository of Employ-AI for Android. It is a work in progress 🚧.
 
 The 'Employ-AI' app represents a cutting-edge advancement in job-matching technology, harnessing the
@@ -15,5 +17,8 @@ at [ash.wxrz@hotmail.com](mailto:ash.wxrz@hotmail.com).
 
 ### Files and necessary access
 
-To start collaborating, you will need to clone this repository. You will also need to have access to
-our Google Drive folder, which contains the necessary files for the project.
+To start collaborating, you will need to clone this repository, and you will also need to have
+access to our organization, as well as being a collaborator. Also, the Google Drive folder contains
+the necessary files for the project.
+
+We have Figma for design, and we're using Trello for project management.
