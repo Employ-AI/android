@@ -14,6 +14,8 @@ import androidx.compose.material3.SuggestionChip
 import androidx.compose.material3.SuggestionChipDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -21,23 +23,28 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavHostController
 import com.client.employ.feature.account.R
 import com.client.ui.BaseCenterColumn
 import com.client.employ.core.ui.R as CoreUiR
 
 @Composable
 fun InterestsRoute(
-    navController: NavHostController
+    onInterestClick: (String) -> Unit
 ) {
-    InterestsScreen()
+    InterestsScreen(
+        onInterestClick = { interests ->
+            // TODO: do sth with interests
+        }
+    )
 }
 
 @Composable
 internal fun InterestsScreen(
     modifier: Modifier = Modifier,
+    onInterestClick: (List<String>) -> Unit
 ) {
     val context = LocalContext.current
+    val interests = remember { mutableStateOf(emptyList<String>()) }
     Column(
         modifier = modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally
@@ -64,7 +71,9 @@ internal fun InterestsScreen(
             items(techItems.size) { index ->
                 InterestItem(
                     interest = techItems[index],
-                    onInterestClick = { /*TODO*/ }
+                    onInterestClick = { interest ->
+                        interests.value += ", $interest"
+                    }
                 )
             }
         }
@@ -76,7 +85,13 @@ internal fun InterestsScreen(
                 .fillMaxWidth()
                 .padding(16.dp)
                 .height(48.dp),
-            onClick = { /*TODO*/ }
+            onClick = {
+                if (interests.value.isNotEmpty()) {
+                    onInterestClick(interests.value)
+                } else {
+                    println("Please select at least one interest.")
+                }
+            }
         ) {
             Text(
                 text = stringResource(R.string.feature_account_continue)
@@ -110,6 +125,6 @@ private fun InterestItem(
 @Composable
 private fun InterestsScreenPreview() {
     BaseCenterColumn {
-        InterestsScreen()
+        InterestsScreen(onInterestClick = {})
     }
 }
