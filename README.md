@@ -1,4 +1,4 @@
-![develop](https://github.com/github/docs/actions/workflows/ci.yaml/badge.svg)
+![develop CI](https://github.com/Employ-AI/android/actions/workflows/ci.yaml/badge.svg)
 
 This is the official repository of Employ-AI for Android. It is a work in progress 🚧.
 
