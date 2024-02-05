@@ -7,12 +7,13 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.client.common.ExpertiseHelper
 import com.client.employ.feature.account.R
 import com.client.feature.account.components.ExpertiseItem
 import com.client.ui.AccountBaseScreen
+import com.client.employ.core.ui.R as CoreUiR
 
 @Composable
 fun ExpertiseRoute(
@@ -30,7 +31,7 @@ internal fun ExpertiseScreen(
     onContinueClick: (String) -> Unit
 ) {
     val selectedExpertise = rememberSaveable { mutableListOf("") }
-
+    val context = LocalContext.current
     AccountBaseScreen(
         pageTitle = R.string.feature_account_what_is_your_expertise,
         description = R.string.feature_account_what_is_your_expertise_description,
@@ -44,7 +45,8 @@ internal fun ExpertiseScreen(
         FlowColumn(
             modifier = modifier.fillMaxWidth()
         ) {
-            val expertiseList = ExpertiseHelper.getExpertises()
+            val expertiseList =
+                context.resources.getStringArray(CoreUiR.array.core_ui_expertise_areas).toList()
             expertiseList.forEach { title ->
                 ExpertiseItem(
                     modifier = Modifier.padding(top = 5.dp),
