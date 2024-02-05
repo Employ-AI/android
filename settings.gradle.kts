@@ -35,5 +35,6 @@ include(
     ":feature:profile",
     ":feature:onboarding",
     ":feature:account",
-    ":feature:matching"
+    ":feature:matching",
+    ":core:datastore"
 )

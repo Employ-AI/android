@@ -22,6 +22,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.client.auth.components.EmailTextField
 import com.client.auth.components.PasswordTextField
 import com.client.auth.components.TextWithHorizontalLines
+import com.client.datastore.AuthDatastore
 import com.client.employ.feature.auth.R
 import com.client.ui.AuthBaseScreen
 import com.client.ui.BaseErrorDialog
@@ -101,6 +102,9 @@ internal fun RegisterScreen(
                 fontWeight = FontWeight.Bold
             )
         }
+        LaunchedEffect(key1 = "a") {
+            onRegisterSuccess("a")
+        }
     }
 
     when (authState) {
@@ -108,7 +112,7 @@ internal fun RegisterScreen(
         is RegisterState.Success -> {
             val uid = authState.uid
             LaunchedEffect(key1 = uid) {
-                // onRegisterSuccess(uid)
+                onRegisterSuccess(uid)
             }
         }
 
@@ -134,4 +138,9 @@ private fun LoginScreenPreview() {
         onAlreadyAccountExistClick = {},
         onSignUpClick = { _, _ -> }
     )
+}
+
+private suspend fun onRegisterSuccess(uid: String) {
+    lateinit var datastore: AuthDatastore
+    datastore.saveUid(uid)
 }
