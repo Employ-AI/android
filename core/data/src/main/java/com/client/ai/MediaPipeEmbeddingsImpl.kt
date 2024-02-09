@@ -92,7 +92,7 @@ class MediaPipeEmbeddingsImpl @Inject constructor(
         .embeddings()
         .first()
 
-    companion object {
+    private companion object {
         const val MODEL_NAME = "universal_sentence_encoder.tflite"
         const val MIN_SIMILARITY_VALUE = 0.8
     }
