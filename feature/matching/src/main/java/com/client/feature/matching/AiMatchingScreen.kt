@@ -75,8 +75,9 @@ internal fun AiMatchingScreen(
             AnimatedContent(
                 targetState = isMatchingEnabled.value,
                 transitionSpec = {
-                    fadeIn(animationSpec = tween(durationMillis = 50)) togetherWith
-                        fadeOut(animationSpec = tween(durationMillis = 50))
+                    fadeIn(
+                        animationSpec = tween(durationMillis = 50)
+                    ) togetherWith fadeOut(animationSpec = tween(durationMillis = 50))
                 },
                 label = ""
             ) {
@@ -88,7 +89,11 @@ internal fun AiMatchingScreen(
                 enter = fadeIn(initialAlpha = 0f),
                 exit = fadeOut(animationSpec = tween(durationMillis = 50))
             ) {
-                HiddenComponents()
+                HiddenComponents(
+                    onCancelClick = {
+                        isMatchingEnabled.value = true
+                    }
+                )
             }
         }
     }

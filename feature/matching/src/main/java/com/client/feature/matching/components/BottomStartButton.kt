@@ -12,8 +12,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -25,21 +23,19 @@ internal fun BottomStartButton(
     isStartMatchingButtonEnabled: MutableState<Boolean>,
     onStartMatchingClick: () -> Unit
 ) {
-    val shouldShowButton = remember { mutableStateOf(true) }
     Column(
         modifier = Modifier
             .fillMaxSize()
             .padding(start = 16.dp, end = 16.dp, bottom = 16.dp),
         verticalArrangement = Arrangement.Bottom
     ) {
-        if (shouldShowButton.value) {
+        if (isStartMatchingButtonEnabled.value) {
             Button(
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(48.dp),
                 onClick = {
                     isStartMatchingButtonEnabled.value = false
-                    shouldShowButton.value = false
                     onStartMatchingClick()
                 }
             ) {
