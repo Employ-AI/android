@@ -14,6 +14,7 @@ import com.client.feature.account.navigation.chooseJobTypeScreen
 import com.client.feature.account.navigation.countrySelectionScreen
 import com.client.feature.account.navigation.expertiseScreen
 import com.client.feature.account.navigation.fillProfileScreen
+import com.client.feature.account.navigation.interestsScreen
 import com.client.feature.dashboard.DashboardRoute
 import com.client.feature.matching.navigation.aiMatchingScreen
 import com.client.feature.onboarding.navigation.landingScreen
@@ -42,6 +43,7 @@ internal fun AppNavHost(
         chooseJobTypeScreen(navController)
         expertiseScreen(navController)
         fillProfileScreen(navController)
+        interestsScreen(navController)
 
         // Matching
         aiMatchingScreen(navController)

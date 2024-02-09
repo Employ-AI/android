@@ -21,4 +21,6 @@
     <string name="feature_account_email">Email</string>
     <string name="feature_account_phone">Phone</string>
     <string name="feature_account_gender">Gender</string>
+    <string name="feature_account_you_can_select_up_to_5_interests">You can select up to 5 interests</string>
+    <string name="feature_account_interests">Interests</string>
 </resources>
