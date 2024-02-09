@@ -29,6 +29,8 @@ dependencies {
     implementation(libs.okhttp.logging)
     implementation(libs.retrofit.core)
 
+    implementation(libs.mediapipe.tasks.text)
+
     implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.firestore)
     implementation(libs.firebase.auth)

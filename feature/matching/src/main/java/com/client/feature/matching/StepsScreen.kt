@@ -65,32 +65,32 @@ internal fun ProgressStepsScreen(
 fun ProgressSteps() {
     val steps: List<Step> = listOf(
         Step(
-            title = "Step 1",
-            description = "Basic information",
+            title = stringResource(R.string.feature_matching_step_1),
+            description = stringResource(R.string.feature_matching_basic_information),
             isCompleted = true,
             selectedStepColor = MaterialTheme.colorScheme.primary,
             unSelectedStepColor = Color.LightGray,
             number = 1
         ),
         Step(
-            title = "Step 2",
-            description = "Complete your profile",
+            title = stringResource(R.string.feature_matching_step_2),
+            description = stringResource(R.string.feature_matching_complete_your_profile),
             isCompleted = true,
             selectedStepColor = MaterialTheme.colorScheme.primary,
             unSelectedStepColor = Color.LightGray,
             number = 2
         ),
         Step(
-            title = "Step 3",
-            description = "Onboarding",
+            title = stringResource(R.string.feature_matching_step_3),
+            description = stringResource(R.string.feature_matching_onboarding),
             isCompleted = false,
             selectedStepColor = MaterialTheme.colorScheme.primary,
             unSelectedStepColor = Color.LightGray,
             number = 3
         ),
         Step(
-            title = "Step 4",
-            description = "AI Matching",
+            title = stringResource(R.string.feature_matching_step_4),
+            description = stringResource(id = R.string.feature_matching_complete_your_profile_to_get_started),
             isCompleted = false,
             selectedStepColor = MaterialTheme.colorScheme.primary,
             unSelectedStepColor = Color.LightGray,

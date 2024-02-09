@@ -13,6 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.client.employ.feature.matching.R
 
@@ -34,8 +35,14 @@ internal fun VisibleComponents() {
         Text(
             modifier = Modifier.padding(bottom = 16.dp),
             text = stringResource(R.string.feature_matching_ai_matching_description),
-            style = MaterialTheme.typography.bodyLarge,
+            style = MaterialTheme.typography.bodyMedium,
             textAlign = TextAlign.Center
         )
     }
+}
+
+@Composable
+@Preview(showBackground = true)
+private fun VisibleComponentsPreview() {
+    VisibleComponents()
 }

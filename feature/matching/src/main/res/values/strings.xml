@@ -7,4 +7,12 @@
     <string name="feature_matching_ai_matching_description">We will match you with the best jobs based on your profile and preferences.</string>
     <string name="feature_matching_this_may_take_a_while">This may take a while</string>
     <string name="feature_matching_matching_in_progress">Matching in progress...</string>
+    <string name="feature_matching_step_1">Step 1</string>
+    <string name="feature_matching_basic_information">Basic information</string>
+    <string name="feature_matching_step_2">Step 2</string>
+    <string name="feature_matching_complete_your_profile">Complete your profile</string>
+    <string name="feature_matching_step_3">Step 3</string>
+    <string name="feature_matching_onboarding">Onboarding</string>
+    <string name="feature_matching_step_4">Step 4</string>
+    <string name="feature_matching_cancel">Cancel</string>
 </resources>
