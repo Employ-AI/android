@@ -6,7 +6,7 @@ object NavRoutes {
     const val SEARCH_ROUTE = "search_route"
 
     // Onboarding
-    const val LANDING_SCREEN = "landing_screen_route"
+    const val LANDING_ROUTE = "landing_screen_route"
     const val LOGIN_ROUTE = "login_route"
     const val REGISTER_ROUTE = "register_route"
     const val FORGOT_PASSWORD_ROUTE = "forgot_password_route"

@@ -4,4 +4,6 @@
     <string name="feature_onboarding_employ_ai">Employ-AI</string>
     <string name="feature_onboarding_landing_title">Fast &amp; efficient AI-based platform for Job Seekers</string>
     <string name="feature_onboarding_let_s_get_started">Let\'s get started</string>
+    <string name="feature_onboarding_log_in">Log in</string>
+    <string name="feature_onboarding_create_an_account">Create an account</string>
 </resources>

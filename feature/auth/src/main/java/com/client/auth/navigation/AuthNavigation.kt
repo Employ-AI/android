@@ -7,11 +7,11 @@ import androidx.navigation.NavOptions
 import androidx.navigation.compose.composable
 import com.client.auth.forgot.ForgotPass
 import com.client.auth.login.LoginRoute
-import com.client.auth.register.RegisterRoute
+import com.client.auth.register.CreateAccountRoute
 import com.client.common.NavRoutes
 
 const val loginNavigationRoute = NavRoutes.LOGIN_ROUTE
-const val registerNavigationRoute = NavRoutes.REGISTER_ROUTE
+const val createAccountNavigationRoute = NavRoutes.REGISTER_ROUTE
 const val forgotPassNavigationRoute = NavRoutes.FORGOT_PASSWORD_ROUTE
 
 fun NavController.navigateToLogin(navOptions: NavOptions? = null) {
@@ -21,7 +21,7 @@ fun NavController.navigateToLogin(navOptions: NavOptions? = null) {
 fun NavGraphBuilder.loginScreen(navController: NavHostController) {
     composable(route = loginNavigationRoute) {
         LoginRoute(
-            onNotHaveAnAccountClick = { navController.navigateToRegister() },
+            onNotHaveAnAccountClick = { navController.navigateToCreateAccount() },
             onForgotPassClick = { navController.navigateToForgotPassword() },
             onLoginSuccess = { uid ->
                 navController.navigate(route = NavRoutes.COUNTRY_SELECTION_ROUTE + "/$uid")
@@ -30,13 +30,13 @@ fun NavGraphBuilder.loginScreen(navController: NavHostController) {
     }
 }
 
-fun NavController.navigateToRegister(navOptions: NavOptions? = null) {
-    this.navigate(registerNavigationRoute, navOptions)
+fun NavController.navigateToCreateAccount(navOptions: NavOptions? = null) {
+    this.navigate(createAccountNavigationRoute, navOptions)
 }
 
-fun NavGraphBuilder.registerScreen(navController: NavHostController) {
-    composable(route = registerNavigationRoute) {
-        RegisterRoute(
+fun NavGraphBuilder.createAccountScreen(navController: NavHostController) {
+    composable(route = createAccountNavigationRoute) {
+        CreateAccountRoute(
             onAlreadyAccountExistClick = { navController.navigate(NavRoutes.LOGIN_ROUTE) }
         )
     }
