@@ -8,6 +8,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import com.client.designSystem.theme.EmployM3Theme
+import com.client.employ.ui.components.EmployApp
 import com.google.firebase.auth.FirebaseAuth
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -27,7 +28,8 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    EmployApp()
+                    EmployApp(isFirstLogin = true)
+                    // TODO: Add datastore module to handle isFirstLogin
                 }
             }
         }

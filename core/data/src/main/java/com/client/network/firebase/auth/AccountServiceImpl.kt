@@ -30,13 +30,13 @@ class AccountServiceImpl @Inject constructor(
         }
 
     override suspend fun authenticate(email: String, password: String): AuthResponse {
-        try {
+        return try {
             AuthResponse.Loading
             val response = auth
                 .signInWithEmailAndPassword(email, password)
                 .await()
 
-            return when {
+            when {
                 response.user != null -> {
                     AuthResponse.Success(response.user?.uid ?: response.user?.email.orEmpty())
                 }
