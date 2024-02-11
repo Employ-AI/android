@@ -37,22 +37,26 @@ import com.client.employ.R
 
 @Composable
 internal fun AppTopBar(
-    modifier: Modifier = Modifier,
-    isFirstLogin: Boolean = false,
+    isFirstLogin: Boolean,
     name: String,
     notificationCount: Int,
     navController: NavHostController,
     currentDestination: NavDestination?
 ) {
     when {
-        isFirstLogin -> FirstLoginToolbar(modifier, currentDestination, navController)
-        else -> LoggedInToolbar(modifier)
+        isFirstLogin ->
+            NotLoggedInUserToolbar(
+                currentDestination = currentDestination,
+                navController = navController
+            )
+
+        else -> LoggedInToolbar()
     }
 }
 
 @Composable
 @OptIn(ExperimentalMaterial3Api::class)
-private fun LoggedInToolbar(modifier: Modifier) {
+private fun LoggedInToolbar(modifier: Modifier = Modifier) {
     TopAppBar(
         modifier = modifier.fillMaxWidth(),
         title = {
@@ -107,7 +111,7 @@ private fun LoggedInToolbar(modifier: Modifier) {
 
 @Composable
 @OptIn(ExperimentalMaterial3Api::class)
-private fun FirstLoginToolbar(
+private fun NotLoggedInUserToolbar(
     modifier: Modifier = Modifier,
     currentDestination: NavDestination?,
     navController: NavHostController
@@ -116,6 +120,8 @@ private fun FirstLoginToolbar(
         NavRoutes.COUNTRY_SELECTION_ROUTE -> "Select Country"
         else -> null
     }
+    val isLandingRoute = currentDestination?.route == NavRoutes.LANDING_ROUTE
+    val isLoginRoute = currentDestination?.route == NavRoutes.LOGIN_ROUTE
 
     TopAppBar(
         modifier = modifier.fillMaxWidth(),
@@ -128,7 +134,7 @@ private fun FirstLoginToolbar(
             )
         },
         navigationIcon = {
-            if (currentDestination?.route != NavRoutes.LANDING_SCREEN) {
+            if (isLandingRoute.not() && isLoginRoute.not()) {
                 IconButton(onClick = { navController.popBackStack() }) {
                     Icon(
                         imageVector = Icons.AutoMirrored.Filled.ArrowBack,
@@ -142,24 +148,15 @@ private fun FirstLoginToolbar(
 
 @Preview
 @Composable
-private fun AppTopBarPreview() {
-    AppTopBar(
-        isFirstLogin = false,
-        name = "Mohsen Rzna",
-        notificationCount = 0,
-        navController = NavHostController(LocalContext.current),
-        currentDestination = null
+private fun AppTopBarNotLoggedInPreview() {
+    NotLoggedInUserToolbar(
+        currentDestination = null,
+        navController = NavHostController(LocalContext.current)
     )
 }
 
 @Preview
 @Composable
-private fun AppTopBarTruePreview() {
-    AppTopBar(
-        isFirstLogin = true,
-        name = "Mohsen Rzna",
-        notificationCount = 0,
-        navController = NavHostController(LocalContext.current),
-        currentDestination = null
-    )
+private fun AppTopBarLoggedInPreview() {
+    LoggedInToolbar()
 }

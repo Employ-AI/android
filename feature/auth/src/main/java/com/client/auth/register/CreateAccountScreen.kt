@@ -28,22 +28,22 @@ import com.client.ui.BaseErrorDialog
 import com.client.ui.SignInWithIcons
 
 @Composable
-fun RegisterRoute(
-    registerViewModel: RegisterViewModel = hiltViewModel(),
+fun CreateAccountRoute(
+    createAccountViewModel: CreateAccountViewModel = hiltViewModel(),
     onAlreadyAccountExistClick: () -> Unit
 ) {
-    val registerState = registerViewModel.registerState.collectAsStateWithLifecycle()
-    RegisterScreen(
+    val registerState = createAccountViewModel.registerState.collectAsStateWithLifecycle()
+    CreateAccountScreen(
         authState = registerState.value,
         onGoogleSignInClick = {},
         onAppleSignInClick = {},
         onAlreadyAccountExistClick = onAlreadyAccountExistClick,
-        onSignUpClick = registerViewModel::onSignUpClicked
+        onSignUpClick = createAccountViewModel::onSignUpClicked
     )
 }
 
 @Composable
-internal fun RegisterScreen(
+internal fun CreateAccountScreen(
     modifier: Modifier = Modifier,
     authState: RegisterState,
     onGoogleSignInClick: () -> Unit,
@@ -126,8 +126,8 @@ private fun OnError(message: String) {
 
 @Preview(showBackground = true, backgroundColor = 0xFFFFFFFF)
 @Composable
-private fun LoginScreenPreview() {
-    RegisterScreen(
+private fun CreateAccountScreenPreview() {
+    CreateAccountScreen(
         authState = RegisterState.Loading,
         onGoogleSignInClick = {},
         onAppleSignInClick = {},

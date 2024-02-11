@@ -11,7 +11,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class RegisterViewModel @Inject constructor(
+class CreateAccountViewModel @Inject constructor(
     private val accountService: AccountService
 ) : ViewModel() {
 

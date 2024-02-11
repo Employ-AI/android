@@ -6,9 +6,9 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.client.auth.navigation.createAccountScreen
 import com.client.auth.navigation.forgotPasswordScreen
 import com.client.auth.navigation.loginScreen
-import com.client.auth.navigation.registerScreen
 import com.client.common.NavRoutes
 import com.client.feature.account.navigation.chooseJobTypeScreen
 import com.client.feature.account.navigation.countrySelectionScreen
@@ -22,18 +22,19 @@ import com.client.feature.onboarding.navigation.landingScreen
 @Composable
 internal fun AppNavHost(
     navController: NavHostController,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    isFirstLogin: Boolean
 ) {
     NavHost(
         navController = navController,
-        startDestination = NavRoutes.LANDING_SCREEN,
+        startDestination = if (isFirstLogin) NavRoutes.LANDING_ROUTE else NavRoutes.DASHBOARD_ROUTE,
         modifier = modifier
     ) {
         landingScreen(navController)
 
         // Auth
         loginScreen(navController)
-        registerScreen(navController)
+        createAccountScreen(navController)
         forgotPasswordScreen(navController)
 
         dashboardScreen(navController)

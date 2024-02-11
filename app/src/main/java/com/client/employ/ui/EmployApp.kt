@@ -1,10 +1,8 @@
 package com.client.employ.ui
 
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.consumeWindowInsets
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -15,6 +13,7 @@ import androidx.compose.ui.platform.testTag
 import androidx.navigation.NavDestination
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavHostController
+import com.client.common.NavRoutes
 import com.client.employ.ui.navigation.AppNavHost
 import com.client.employ.ui.navigation.AppState
 import com.client.employ.ui.navigation.TabsDestinations
@@ -22,25 +21,28 @@ import com.client.employ.ui.navigation.navigationAppState
 
 @Composable
 internal fun EmployApp(
-    appState: AppState = navigationAppState()
+    appState: AppState = navigationAppState(),
+    isFirstLogin: Boolean = false
 ) {
     val currentDestination = appState.currentDestination
     val destination = appState.currentTopLevelDestination
-    val isFirstLogin = true
+    val isLandingRoute = currentDestination?.route == NavRoutes.LANDING_ROUTE
 
     Scaffold(
         containerColor = Color.Transparent,
         topBar = {
-            AppTopBar(
-                isFirstLogin = isFirstLogin,
-                navController = appState.navController,
-                currentDestination = appState.currentDestination,
-                name = "Mohsen Rzna",
-                notificationCount = 1
-            )
+            if (isFirstLogin && isLandingRoute.not()) {
+                AppTopBar(
+                    isFirstLogin = isFirstLogin,
+                    name = "John Doe",
+                    notificationCount = 0,
+                    navController = appState.navController,
+                    currentDestination = currentDestination,
+                )
+            }
         },
         bottomBar = {
-            if (!isFirstLogin) {
+            if (isFirstLogin.not()) {
                 BottomBar(
                     destinations = appState.topLevelDestinations,
                     onNavigateToDestination = appState::navigateToSpecificDestination,
@@ -52,22 +54,23 @@ internal fun EmployApp(
         contentColor = MaterialTheme.colorScheme.onBackground,
         contentWindowInsets = WindowInsets(0, 0, 0, 0)
     ) { paddingValues ->
-        Column(modifier = Modifier.fillMaxSize()) {
-            AppNavigation(
-                navController = appState.navController,
-                padding = paddingValues
-            )
-        }
+        AppNavigation(
+            navController = appState.navController,
+            isFirstLogin = isFirstLogin,
+            padding = paddingValues
+        )
     }
 }
 
 @Composable
 private fun AppNavigation(
     navController: NavHostController,
-    padding: PaddingValues
+    padding: PaddingValues,
+    isFirstLogin: Boolean
 ) {
     AppNavHost(
         navController = navController,
+        isFirstLogin = isFirstLogin,
         modifier = Modifier
             .padding(padding)
             .consumeWindowInsets(padding)
