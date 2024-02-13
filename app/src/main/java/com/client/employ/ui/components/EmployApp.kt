@@ -1,4 +1,4 @@
-package com.client.employ.ui
+package com.client.employ.ui.components
 
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.WindowInsets
@@ -22,7 +22,7 @@ import com.client.employ.ui.navigation.navigationAppState
 @Composable
 internal fun EmployApp(
     appState: AppState = navigationAppState(),
-    isFirstLogin: Boolean = false
+    isFirstLogin: Boolean
 ) {
     val currentDestination = appState.currentDestination
     val destination = appState.currentTopLevelDestination

@@ -68,6 +68,7 @@ internal fun LoginScreen(
     val isPasswordValid = remember { mutableStateOf(false) }
     val shouldDisableSignInButton = remember { mutableStateOf(false) }
     val shouldShowErrorDialog = remember { mutableStateOf(false) }
+    val shouldShowLoading = remember { mutableStateOf(false) }
     val keyboardController = LocalSoftwareKeyboardController.current
 
     AuthBaseScreen(pageTitle = R.string.feature_auth_login_to_your_account) {
@@ -106,7 +107,7 @@ internal fun LoginScreen(
 
         TextButton(onClick = onForgotPassClick) {
             Text(
-                text = stringResource(R.string.feature_auth_forgot_the_password),
+                text = stringResource(R.string.feature_auth_forgot_your_password),
                 style = MaterialTheme.typography.bodyMedium,
                 fontWeight = FontWeight.Bold
             )
@@ -134,7 +135,7 @@ internal fun LoginScreen(
 
     when (authState) {
         is LoginState.Initial -> Unit
-        is LoginState.Loading -> CircularProgress()
+        is LoginState.Loading -> shouldShowLoading.value = true
         is LoginState.Success -> {
             val uid = authState.uid
             LaunchedEffect(key1 = uid) {
@@ -151,6 +152,10 @@ internal fun LoginScreen(
 
     if (shouldShowErrorDialog.value) {
         ShowErrorDialog()
+    }
+
+    if (shouldShowLoading.value) {
+        CircularProgress()
     }
 }
 
@@ -207,6 +212,20 @@ private fun OnError(message: String) {
 @Preview(showBackground = true, backgroundColor = 0xFFFFFFFF)
 @Composable
 private fun LoginScreenPreview() {
+    LoginScreen(
+        onGoogleSignInClick = {},
+        onAppleSignInClick = {},
+        onNotHaveAnAccountClick = {},
+        onForgotPassClick = {},
+        onSignInClick = { _, _ -> },
+        authState = LoginState.Success("uid"),
+        onLoginSuccess = {}
+    )
+}
+
+@Preview(showBackground = true, backgroundColor = 0xFFFFFFFF)
+@Composable
+private fun LoginScreenLoadingPreview() {
     LoginScreen(
         onGoogleSignInClick = {},
         onAppleSignInClick = {},

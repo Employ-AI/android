@@ -62,7 +62,7 @@ internal fun CountrySelectionScreen(
             ) {
                 item {
                     val countries =
-                        context.resources.getStringArray(CoreUiR.array.core_ui_tech_interests)
+                        context.resources.getStringArray(CoreUiR.array.core_ui_countries)
                             .toList()
                     CountryItem(
                         countries = countries,
@@ -77,7 +77,9 @@ internal fun CountrySelectionScreen(
                 .fillMaxWidth()
                 .align(Alignment.BottomCenter),
             onClick = {
-                onContinueBtnClick(selectedCountry.value)
+                if (selectedCountry.value.isNotEmpty()) {
+                    onContinueBtnClick(selectedCountry.value)
+                }
             }
         ) {
             Text(

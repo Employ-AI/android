@@ -10,7 +10,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -45,7 +44,6 @@ fun SignInWithIcons(
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun CircularIconButton(
     icon: Painter,
@@ -70,7 +68,8 @@ private fun CircularIconButton(
             Icon(
                 modifier = Modifier.size(24.dp),
                 painter = icon,
-                contentDescription = null
+                contentDescription = null,
+                tint = Color.Unspecified
             )
         }
     }
