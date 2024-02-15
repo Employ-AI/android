@@ -41,12 +41,14 @@ fun StepItem(
             stepNumber = step.number
         )
         Column(
-            modifier = Modifier.padding(start = 4.dp)
+            modifier = Modifier.padding(start = 15.dp)
         ) {
             Text(
                 text = step.title,
-                fontWeight = FontWeight.Bold
+                fontWeight = FontWeight.Bold,
+                style = MaterialTheme.typography.bodyLarge
             )
+
             Text(
                 text = step.description,
                 style = MaterialTheme.typography.bodySmall
@@ -59,8 +61,8 @@ fun StepItem(
 private fun StepCircle(
     modifier: Modifier = Modifier,
     isCompleted: Boolean,
-    selectedStepColor: Color = MaterialTheme.colorScheme.primary,
-    unSelectedStepColor: Color = MaterialTheme.colorScheme.onSurface,
+    selectedStepColor: Color = Color.White,
+    unSelectedStepColor: Color = Color.White,
     stepNumber: Int
 ) {
     Canvas(
@@ -71,9 +73,10 @@ private fun StepCircle(
         } else {
             unSelectedStepColor
         }
+
         drawCircle(
             color = isCompletedColor,
-            radius = 40f
+            radius = 50f
         )
 
         val paint = Paint().apply {
@@ -81,6 +84,7 @@ private fun StepCircle(
             textAlign = Align.CENTER
             typeface = Typeface.DEFAULT_BOLD
         }
+
         drawIntoCanvas { canvas ->
             canvas.nativeCanvas.drawText(
                 stepNumber.toString(),
@@ -102,9 +106,10 @@ fun VerticalLine(
     } else {
         Color.LightGray
     }
+
     Canvas(
         modifier = modifier
-            .padding(start = 19.dp)
+            .padding(start = 20.dp)
             .progressSemantics(0.5f)
             .height(16.dp)
     ) {
@@ -114,14 +119,14 @@ fun VerticalLine(
             color = color,
             start = Offset(x = size.width / 2, y = halfHeight),
             end = Offset(x = size.width / 2, y = 0f),
-            strokeWidth = 4f
+            strokeWidth = 2f
         )
 
         drawLine(
             color = Color.LightGray,
             start = Offset(x = size.width / 2, y = size.height),
             end = Offset(x = size.width / 2, y = halfHeight),
-            strokeWidth = 4f
+            strokeWidth = 1f
         )
     }
 }
@@ -190,7 +195,7 @@ private fun VerticalProgressStepsPreview() {
                 StepItem(step = step)
 
                 if (index < steps.size - 1) {
-                    Spacer(modifier = Modifier.height(4.dp))
+                    Spacer(modifier = Modifier.height(5.dp))
                     VerticalLine(isCompleted = steps[index + 1].isCompleted)
                 }
             }

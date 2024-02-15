@@ -4,34 +4,34 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.client.employ.feature.matching.R
+import com.client.feature.matching.components.ProgressSteps
 import com.client.ui.BaseScrollableScreen
-import com.client.ui.components.Step
-import com.client.ui.components.StepItem
-import com.client.ui.components.VerticalLine
 
 @Composable
-fun ProgressStepsRoute(
+fun StepsRoute(
     navController: NavHostController
 ) {
-    ProgressStepsScreen()
+    StepsScreen()
 }
 
 @Composable
-internal fun ProgressStepsScreen(
+internal fun StepsScreen(
     modifier: Modifier = Modifier,
 ) {
     BaseScrollableScreen(
@@ -40,14 +40,15 @@ internal fun ProgressStepsScreen(
         verticalArrangement = Arrangement.Top
     ) {
         Image(
+            modifier = Modifier.size(width = 225.dp, height = 210.dp),
             painter = painterResource(R.drawable.onboarding_icon),
             contentDescription = null
         )
 
         Text(
-            modifier = Modifier.padding(top = 16.dp),
             text = stringResource(R.string.feature_matching_onboarding_progress),
-            style = MaterialTheme.typography.titleLarge
+            style = MaterialTheme.typography.titleLarge,
+            fontWeight = FontWeight.Bold
         )
 
         Text(
@@ -55,66 +56,33 @@ internal fun ProgressStepsScreen(
             style = MaterialTheme.typography.bodyMedium
         )
 
-        Spacer(modifier = Modifier.height(16.dp))
+        Spacer(modifier = Modifier.height(24.dp))
 
         ProgressSteps()
-    }
-}
 
-@Composable
-fun ProgressSteps() {
-    val steps: List<Step> = listOf(
-        Step(
-            title = stringResource(R.string.feature_matching_step_1),
-            description = stringResource(R.string.feature_matching_basic_information),
-            isCompleted = true,
-            selectedStepColor = MaterialTheme.colorScheme.primary,
-            unSelectedStepColor = Color.LightGray,
-            number = 1
-        ),
-        Step(
-            title = stringResource(R.string.feature_matching_step_2),
-            description = stringResource(R.string.feature_matching_complete_your_profile),
-            isCompleted = true,
-            selectedStepColor = MaterialTheme.colorScheme.primary,
-            unSelectedStepColor = Color.LightGray,
-            number = 2
-        ),
-        Step(
-            title = stringResource(R.string.feature_matching_step_3),
-            description = stringResource(R.string.feature_matching_onboarding),
-            isCompleted = false,
-            selectedStepColor = MaterialTheme.colorScheme.primary,
-            unSelectedStepColor = Color.LightGray,
-            number = 3
-        ),
-        Step(
-            title = stringResource(R.string.feature_matching_step_4),
-            description = stringResource(id = R.string.feature_matching_complete_your_profile_to_get_started),
-            isCompleted = false,
-            selectedStepColor = MaterialTheme.colorScheme.primary,
-            unSelectedStepColor = Color.LightGray,
-            number = 4
-        )
-    )
+        // Spacer(modifier = Modifier.weight(1f))
 
-    Column(
-        modifier = Modifier.padding(16.dp),
-        horizontalAlignment = Alignment.Start
-    ) {
-        steps.forEachIndexed { index, step ->
-            StepItem(step = step)
-
-            if (index < steps.size - 1) {
-                Spacer(modifier = Modifier.height(4.dp))
-                VerticalLine(isCompleted = steps[index + 1].isCompleted)
-            }
-        }
+        /*Button(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(48.dp),
+            onClick = {  }
+        ) {
+            Text(
+                text = stringResource(R.string.feature_matching_finish_onboarding),
+                style = MaterialTheme.typography.bodyLarge,
+                fontWeight = FontWeight.Bold
+            )
+        }*/
     }
 }
 
 @Preview(showBackground = true, backgroundColor = 0xFFFFFFFF)
 @Composable
-fun ProgressStepsPreview() {
-    ProgressStepsScreen()
+private fun StepsPreview() {
+    Column(
+        modifier = Modifier.fillMaxSize()
+    ) {
+        StepsScreen()
+    }
 }
