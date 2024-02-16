@@ -15,4 +15,5 @@
     <string name="feature_matching_onboarding">Onboarding</string>
     <string name="feature_matching_step_4">Step 4</string>
     <string name="feature_matching_cancel">Cancel</string>
+    <string name="feature_matching_finish_onboarding">Finish onboarding</string>
 </resources>

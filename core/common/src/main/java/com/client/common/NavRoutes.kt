@@ -20,6 +20,8 @@ object NavRoutes {
 
     // Matching
     const val AI_MATCHING_ROUTE = "ai_matching_route"
+
+    const val STEPS_ROUTE = "steps_route"
 }
 
 const val UID = "uid"

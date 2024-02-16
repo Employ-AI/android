@@ -17,6 +17,7 @@ import com.client.feature.account.navigation.fillProfileScreen
 import com.client.feature.account.navigation.interestsScreen
 import com.client.feature.dashboard.DashboardRoute
 import com.client.feature.matching.navigation.aiMatchingScreen
+import com.client.feature.matching.navigation.stepsScreen
 import com.client.feature.onboarding.navigation.landingScreen
 
 @Composable
@@ -48,6 +49,8 @@ internal fun AppNavHost(
 
         // Matching
         aiMatchingScreen(navController)
+
+        stepsScreen(navController)
     }
 }
 
