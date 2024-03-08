@@ -57,7 +57,7 @@ detekt = "1.23.5"
 material = "1.11.0"
 material-3 = "1.2.1"
 credential-manager = "1.1.0"
-lottie = "6.3.0"
+lottie = "6.4.0"
 mediapipe = "0.20230731"
 
 # Test versions
