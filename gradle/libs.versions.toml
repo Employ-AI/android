@@ -62,7 +62,7 @@ mediapipe = "0.20230731"
 
 # Test versions
 kluent = "1.73"
-mockito = "5.10.0"
+mockito = "5.11.0"
 mockito-inline = "5.2.0"
 mockitoKotlin = "5.2.1"
 turbine = "1.1.0"
