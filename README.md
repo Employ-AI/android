@@ -15,6 +15,8 @@ targeted and efficient job search experience.
 If you are interested in contributing to this project, please contact us
 at [ash.wxrz@hotmail.com](mailto:ash.wxrz@hotmail.com).
 
+Gitflow: We're using Gitflow best practices for our branches, so please read: https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow
+
 ### Files and necessary access
 
 To start collaborating, you will need to clone this repository, and you will also need to have
