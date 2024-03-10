@@ -24,8 +24,7 @@ import com.client.employ.core.ui.R
 
 @Composable
 fun SignInWithIcons(
-    onGoogleSignInClick: () -> Unit,
-    onAppleSignInClick: () -> Unit
+    onGoogleSignInClick: () -> Unit
 ) {
     Column(horizontalAlignment = Alignment.CenterHorizontally) {
         Row(
@@ -35,10 +34,6 @@ fun SignInWithIcons(
             CircularIconButton(
                 icon = painterResource(id = R.drawable.google_icon),
                 onClick = onGoogleSignInClick
-            )
-            CircularIconButton(
-                icon = painterResource(id = R.drawable.apple_icon),
-                onClick = onAppleSignInClick
             )
         }
     }
@@ -84,8 +79,7 @@ private fun SignInWithIconsPreview() {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         SignInWithIcons(
-            onGoogleSignInClick = {},
-            onAppleSignInClick = {}
+            onGoogleSignInClick = {}
         )
     }
 }
