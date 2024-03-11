@@ -27,7 +27,7 @@ import com.airbnb.lottie.compose.LottieConstants
 import com.airbnb.lottie.compose.animateLottieCompositionAsState
 import com.airbnb.lottie.compose.rememberLottieComposition
 import com.client.employ.feature.matching.R
-import com.client.feature.matching.components.BottomStartButton
+import com.client.feature.matching.components.BottomButton
 import com.client.feature.matching.components.HiddenComponents
 import com.client.feature.matching.components.VisibleComponents
 
@@ -45,13 +45,13 @@ internal fun AiMatchingScreen(
     modifier: Modifier = Modifier,
     onStartMatchingClick: () -> Unit
 ) {
-    val isMatchingEnabled = remember { mutableStateOf(true) }
+    val isMatchingEnabled = remember { mutableStateOf(false) }
     val composition by rememberLottieComposition(
         LottieCompositionSpec.RawRes(R.raw.ai_animation)
     )
     val progress by animateLottieCompositionAsState(
         composition = composition,
-        iterations = if (!isMatchingEnabled.value) LottieConstants.IterateForever else 1
+        iterations = if (isMatchingEnabled.value) LottieConstants.IterateForever else 1
     )
 
     Column(
@@ -67,13 +67,13 @@ internal fun AiMatchingScreen(
             LottieAnimation(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .size(if (!isMatchingEnabled.value) 250.dp else 200.dp),
+                    .size(if (isMatchingEnabled.value) 300.dp else 250.dp),
                 composition = composition,
                 progress = { progress }
             )
 
             AnimatedContent(
-                targetState = isMatchingEnabled.value,
+                targetState = isMatchingEnabled.value.not(),
                 transitionSpec = {
                     fadeIn(
                         animationSpec = tween(durationMillis = 50)
@@ -85,22 +85,24 @@ internal fun AiMatchingScreen(
             }
 
             AnimatedVisibility(
-                visible = !isMatchingEnabled.value,
+                visible = isMatchingEnabled.value,
                 enter = fadeIn(initialAlpha = 0f),
                 exit = fadeOut(animationSpec = tween(durationMillis = 50))
             ) {
-                HiddenComponents(
-                    onCancelClick = {
-                        isMatchingEnabled.value = true
-                    }
-                )
+                HiddenComponents()
             }
         }
     }
 
-    BottomStartButton(
-        isStartMatchingButtonEnabled = isMatchingEnabled,
-        onStartMatchingClick = onStartMatchingClick
+    BottomButton(
+        isMatchingEnabled = isMatchingEnabled,
+        onStartMatchingClick = {
+            isMatchingEnabled.value = true
+            // TODO: Start matching
+        },
+        onCancelClick = {
+            isMatchingEnabled.value = false
+        }
     )
 }
 

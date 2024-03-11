@@ -18,15 +18,12 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavHostController
 import com.client.employ.feature.matching.R
 import com.client.feature.matching.components.ProgressSteps
 import com.client.ui.BaseScrollableScreen
 
 @Composable
-fun StepsRoute(
-    navController: NavHostController
-) {
+fun StepsRoute() {
     StepsScreen()
 }
 
@@ -59,21 +56,6 @@ internal fun StepsScreen(
         Spacer(modifier = Modifier.height(24.dp))
 
         ProgressSteps()
-
-        // Spacer(modifier = Modifier.weight(1f))
-
-        /*Button(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(48.dp),
-            onClick = {  }
-        ) {
-            Text(
-                text = stringResource(R.string.feature_matching_finish_onboarding),
-                style = MaterialTheme.typography.bodyLarge,
-                fontWeight = FontWeight.Bold
-            )
-        }*/
     }
 }
 
