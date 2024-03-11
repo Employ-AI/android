@@ -26,6 +26,16 @@ jobs:
           distribution: 'zulu'
           java-version: 17
 
+      - name: Create local.properties
+        shell: bash
+        run: |
+          echo "BACKEND_URL=${{ secrets.BACKEND_URL }}" >> local.properties &&
+          echo "FIREBASE_DATABASE_URL=${{ secrets.FIREBASE_DATABASE_URL }}" >> local.properties
+
+      - name: Print local.properties
+        shell: bash
+        run: cat local.properties
+
       - name: Setup Gradle
         uses: gradle/gradle-build-action@v3
 
@@ -49,6 +59,16 @@ jobs:
         with:
           distribution: 'zulu'
           java-version: 17
+
+      - name: Create local.properties
+        shell: bash
+        run: |
+          echo "BACKEND_URL=${{ secrets.BACKEND_URL }}" >> local.properties &&
+          echo "FIREBASE_DATABASE_URL=${{ secrets.FIREBASE_DATABASE_URL }}" >> local.properties
+
+      - name: Print local.properties
+        shell: bash
+        run: cat local.properties
 
       - name: Setup Gradle
         uses: gradle/gradle-build-action@v3
@@ -76,6 +96,16 @@ jobs:
         with:
           distribution: 'zulu'
           java-version: '17'
+
+      - name: Create local.properties
+        shell: bash
+        run: |
+          echo "BACKEND_URL=${{ secrets.BACKEND_URL }}" >> local.properties &&
+          echo "FIREBASE_DATABASE_URL=${{ secrets.FIREBASE_DATABASE_URL }}" >> local.properties
+
+      - name: Print local.properties
+        shell: bash
+        run: cat local.properties
 
       - name: Setup Gradle
         uses: gradle/gradle-build-action@v3
