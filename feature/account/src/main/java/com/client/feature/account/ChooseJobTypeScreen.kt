@@ -32,6 +32,7 @@ internal fun ChooseJobTypeScreen(
     onContinueClick: (String) -> Unit
 ) {
     val isFindJobSelected = remember { mutableStateOf(false) }
+    val isFindEmployeeSelected = remember { mutableStateOf(false) }
     val jobType = remember { mutableStateOf("") }
 
     AccountBaseScreen(
@@ -59,6 +60,7 @@ internal fun ChooseJobTypeScreen(
                     image = R.drawable.job_searching,
                     onCardClick = {
                         isFindJobSelected.value = true
+                        isFindEmployeeSelected.value = false
                         jobType.value = "Employee"
                     }
                 )
@@ -70,12 +72,13 @@ internal fun ChooseJobTypeScreen(
 
             item {
                 JobTypeItem(
-                    isFindJobSelected = isFindJobSelected.value,
+                    isFindJobSelected = isFindEmployeeSelected.value,
                     title = R.string.feature_account_choose_job_type_find_employee,
                     description = R.string.feature_account_choose_job_type_find_employee_description,
                     image = R.drawable.recruiter_searching,
                     onCardClick = {
-                        isFindJobSelected.value = true
+                        isFindEmployeeSelected.value = true
+                        isFindJobSelected.value = false
                         jobType.value = "Employer"
                     }
                 )
