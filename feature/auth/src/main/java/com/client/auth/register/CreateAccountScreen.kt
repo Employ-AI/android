@@ -36,7 +36,6 @@ fun CreateAccountRoute(
     CreateAccountScreen(
         authState = registerState.value,
         onGoogleSignInClick = {},
-        onAppleSignInClick = {},
         onAlreadyAccountExistClick = onAlreadyAccountExistClick,
         onSignUpClick = createAccountViewModel::onSignUpClicked
     )
@@ -47,7 +46,6 @@ internal fun CreateAccountScreen(
     modifier: Modifier = Modifier,
     authState: RegisterState,
     onGoogleSignInClick: () -> Unit,
-    onAppleSignInClick: () -> Unit,
     onAlreadyAccountExistClick: () -> Unit,
     onSignUpClick: (String, String) -> Unit
 ) {
@@ -88,8 +86,7 @@ internal fun CreateAccountScreen(
         TextWithHorizontalLines()
 
         SignInWithIcons(
-            onGoogleSignInClick = onGoogleSignInClick,
-            onAppleSignInClick = onAppleSignInClick
+            onGoogleSignInClick = onGoogleSignInClick
         )
 
         Spacer(modifier = modifier.height(36.dp))
@@ -130,7 +127,6 @@ private fun CreateAccountScreenPreview() {
     CreateAccountScreen(
         authState = RegisterState.Loading,
         onGoogleSignInClick = {},
-        onAppleSignInClick = {},
         onAlreadyAccountExistClick = {},
         onSignUpClick = { _, _ -> }
     )

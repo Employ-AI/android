@@ -43,7 +43,6 @@ fun LoginRoute(
     LoginScreen(
         authState = authState.value,
         onGoogleSignInClick = {},
-        onAppleSignInClick = {},
         onNotHaveAnAccountClick = onNotHaveAnAccountClick,
         onForgotPassClick = onForgotPassClick,
         onSignInClick = loginViewModel::onLoginClick,
@@ -56,7 +55,6 @@ internal fun LoginScreen(
     modifier: Modifier = Modifier,
     authState: LoginState,
     onGoogleSignInClick: () -> Unit,
-    onAppleSignInClick: () -> Unit,
     onNotHaveAnAccountClick: () -> Unit,
     onForgotPassClick: () -> Unit,
     onSignInClick: (String, String) -> Unit,
@@ -119,7 +117,6 @@ internal fun LoginScreen(
 
         SignInWithIcons(
             onGoogleSignInClick = onGoogleSignInClick,
-            onAppleSignInClick = onAppleSignInClick
         )
 
         Spacer(modifier = modifier.height(36.dp))
@@ -214,7 +211,6 @@ private fun OnError(message: String) {
 private fun LoginScreenPreview() {
     LoginScreen(
         onGoogleSignInClick = {},
-        onAppleSignInClick = {},
         onNotHaveAnAccountClick = {},
         onForgotPassClick = {},
         onSignInClick = { _, _ -> },
@@ -228,7 +224,6 @@ private fun LoginScreenPreview() {
 private fun LoginScreenLoadingPreview() {
     LoginScreen(
         onGoogleSignInClick = {},
-        onAppleSignInClick = {},
         onNotHaveAnAccountClick = {},
         onForgotPassClick = {},
         onSignInClick = { _, _ -> },
