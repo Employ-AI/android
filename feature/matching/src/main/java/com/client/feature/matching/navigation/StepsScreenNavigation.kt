@@ -16,6 +16,6 @@ fun NavController.navigateToStepsScreen(navOptions: NavOptions? = null) {
 
 fun NavGraphBuilder.stepsScreen(navController: NavHostController) {
     composable(route = stepsScreenNavigationRoute) {
-        StepsRoute(navController)
+        StepsRoute()
     }
 }
