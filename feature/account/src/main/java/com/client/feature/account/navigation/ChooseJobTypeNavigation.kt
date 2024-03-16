@@ -36,7 +36,7 @@ fun NavGraphBuilder.chooseJobTypeScreen(navController: NavHostController) {
 
         ChooseJobTypeRoute(
             onContinueClick = { selectedJobType ->
-                navController.navigate(NavRoutes.EXPERTISE_ROUTE + "/$uid" + "/$selectedCountry" + "/$selectedJobType")
+                navController.navigate(NavRoutes.INTERESTS_ROUTE + "/$uid" + "/$selectedCountry" + "/$selectedJobType")
             }
         )
     }
