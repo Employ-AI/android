@@ -35,7 +35,7 @@ fun NavGraphBuilder.expertiseScreen(navController: NavHostController) {
                 defaultValue = ""
                 nullable = false
             },
-            navArgument(INTEREST){
+            navArgument(INTEREST) {
                 defaultValue = ""
                 nullable = false
             }
@@ -48,9 +48,9 @@ fun NavGraphBuilder.expertiseScreen(navController: NavHostController) {
 
         ExpertiseRoute(
             onContinueClick = { selectedExpertise ->
-                navController.navigate(
-                    "${NavRoutes.FILL_PROFILE_ROUTE}/$uid/$selectedCountry/$selectedJobType/$selectedInterestType/$selectedExpertise"
-                )
+                val route = "${NavRoutes.FILL_PROFILE_ROUTE}/$uid/$selectedCountry/$selectedJobType/" +
+                    "$selectedInterestType/$selectedExpertise"
+                navController.navigate(route)
             }
         )
     }
