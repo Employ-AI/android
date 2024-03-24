@@ -8,13 +8,14 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.staggeredgrid.LazyVerticalStaggeredGrid
 import androidx.compose.foundation.lazy.staggeredgrid.StaggeredGridCells
+import androidx.compose.foundation.lazy.staggeredgrid.items
 import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.SuggestionChip
 import androidx.compose.material3.SuggestionChipDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -29,12 +30,10 @@ import com.client.employ.core.ui.R as CoreUiR
 
 @Composable
 fun InterestsRoute(
-    onInterestClick: (String) -> Unit
+    onInterestClick: (List<String>) -> Unit
 ) {
     InterestsScreen(
-        onInterestClick = { interests ->
-            // TODO: do sth with interests
-        }
+        onInterestClick = onInterestClick
     )
 }
 
@@ -44,7 +43,8 @@ internal fun InterestsScreen(
     onInterestClick: (List<String>) -> Unit
 ) {
     val context = LocalContext.current
-    val interests = remember { mutableStateOf(emptyList<String>()) }
+    val selectedInterests = remember { mutableStateListOf<String>() }
+
     Column(
         modifier = modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally
@@ -68,11 +68,21 @@ internal fun InterestsScreen(
         ) {
             val techItems =
                 context.resources.getStringArray(CoreUiR.array.core_ui_tech_interests).toList()
-            items(techItems.size) { index ->
+            items(techItems) { interest ->
                 InterestItem(
-                    interest = techItems[index],
-                    onInterestClick = { interest ->
-                        interests.value += ", $interest"
+                    interest = interest,
+                    isSelected = selectedInterests.contains(interest),
+                    onInterestClick = { clickedInterest ->
+                        if (selectedInterests.size < 5 || selectedInterests.contains(clickedInterest)) {
+                            if (selectedInterests.contains(clickedInterest)) {
+                                selectedInterests.remove(clickedInterest)
+                            } else {
+                                selectedInterests.add(clickedInterest)
+                            }
+                        } else {
+                            // Provide a message or indication that only 5 interests are allowed
+                            // You can show a Snackbar, Toast, etc.
+                        }
                     }
                 )
             }
@@ -86,8 +96,8 @@ internal fun InterestsScreen(
                 .padding(16.dp)
                 .height(48.dp),
             onClick = {
-                if (interests.value.isNotEmpty()) {
-                    onInterestClick(interests.value)
+                if (selectedInterests.isNotEmpty()) {
+                    onInterestClick(selectedInterests)
                 } else {
                     println("Please select at least one interest.")
                 }
@@ -103,8 +113,21 @@ internal fun InterestsScreen(
 @Composable
 private fun InterestItem(
     interest: String,
+    isSelected: Boolean,
     onInterestClick: (String) -> Unit
 ) {
+    val chipColors = if (isSelected) {
+        SuggestionChipDefaults.suggestionChipColors(
+            containerColor = MaterialTheme.colorScheme.primaryContainer,
+            labelColor = MaterialTheme.colorScheme.primary
+        )
+    } else {
+        SuggestionChipDefaults.suggestionChipColors(
+            containerColor = MaterialTheme.colorScheme.secondary,
+            labelColor = MaterialTheme.colorScheme.onSecondary
+        )
+    }
+
     SuggestionChip(
         modifier = Modifier.padding(4.dp),
         onClick = { onInterestClick(interest) },
@@ -114,10 +137,7 @@ private fun InterestItem(
                 textAlign = TextAlign.Center
             )
         },
-        colors = SuggestionChipDefaults.suggestionChipColors(
-            containerColor = MaterialTheme.colorScheme.primaryContainer,
-            labelColor = MaterialTheme.colorScheme.primary
-        )
+        colors = chipColors
     )
 }
 
@@ -125,6 +145,6 @@ private fun InterestItem(
 @Composable
 private fun InterestsScreenPreview() {
     BaseCenterColumn {
-        InterestsScreen(onInterestClick = {})
+        InterestsScreen {}
     }
 }
