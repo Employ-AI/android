@@ -3,7 +3,7 @@ package com.client.employ.ui.navigation
 import androidx.compose.ui.graphics.vector.ImageVector
 import com.client.designSystem.icon.EmployIcons
 import com.client.employ.R
-import com.client.employ.feature.dashboard.R as dashboard
+import com.client.employ.feature.dashboard.ui.R as dashboard
 
 enum class TabsDestinations(
     val selectedIcon: ImageVector,

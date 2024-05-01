@@ -15,7 +15,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.client.auth.components.EmailTextField
-import com.client.employ.feature.auth.R
 import com.client.employ.feature.auth.ui.R
 import com.client.ui.AuthBaseScreen
 
