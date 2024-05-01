@@ -12,7 +12,7 @@
     <string name="feature_account_choose_job_type_find_employee_description">I want to find employees</string>
 
     <string name="feature_account_what_is_your_expertise">What\'s your expertise?</string>
-    <string name="feature_account_what_is_your_expertise_description">Please select your field of expertise \n(up to 5)</string>
+    <string name="feature_account_what_is_your_expertise_description">Please select your field of expertise</string>
 
     <string name="feature_account_fill_your_profile">Fill Your Profile</string>
     <string name="feature_account_full_name">Full Name</string>
