@@ -18,6 +18,9 @@ dependencies {
     implementation(projects.core.data)
     implementation(projects.core.ui)
 
+    implementation(projects.feature.matching.data)
+    implementation(projects.feature.matching.domain)
+
     implementation(libs.coil.kt)
     implementation(libs.coil.kt.compose)
     implementation(libs.androidx.compose.ui.test)

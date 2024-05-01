@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "com.client.employ.account.data"
+    namespace = "com.client.employ.onboarding.data"
 
     buildFeatures {
         buildConfig = true

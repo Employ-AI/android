@@ -8,7 +8,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.client.Dispatcher
 import com.client.EmployDispatchers.IO
-import com.client.ai.MediaPipeEmbeddings
+import com.client.account.data.MediaPipeEmbeddings
 import com.client.model.JobSimilarity
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
