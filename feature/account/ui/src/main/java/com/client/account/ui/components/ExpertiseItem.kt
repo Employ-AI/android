@@ -4,11 +4,9 @@ import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Checkbox
-import androidx.compose.material3.CheckboxDefaults
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedCard
+import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
@@ -20,38 +18,41 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.client.employ.feature.account.ui.R
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 internal fun ExpertiseItem(
     modifier: Modifier = Modifier,
-    title: String,
-    onClick: () -> Unit
+    expertiseList: List<String>,
+    selectedItem: (String) -> Unit,
 ) {
-    val checked = remember { mutableStateOf(false) }
-    OutlinedCard(
-        modifier = modifier.fillMaxWidth(),
-        onClick = onClick,
-        border = BorderStroke(0.5.dp, colorResource(R.color.feature_account_border_color))
-    ) {
-        Row(
-            modifier = modifier
-                .fillMaxWidth()
-                .padding(5.dp),
-            verticalAlignment = Alignment.CenterVertically
+    val selectedOption = remember { mutableStateOf(expertiseList[0]) }
+    expertiseList.forEach { expertise ->
+        OutlinedCard(
+            modifier = modifier.fillMaxWidth(),
+            onClick = {
+                selectedOption.value = expertise
+                selectedItem(expertise)
+            },
+            border = BorderStroke(0.5.dp, colorResource(R.color.feature_account_border_color))
         ) {
-            Checkbox(
-                checked = checked.value,
-                onCheckedChange = { checked.value = it },
-                colors = CheckboxDefaults.colors(
-                    disabledCheckedColor = MaterialTheme.colorScheme.primary,
-                    disabledUncheckedColor = MaterialTheme.colorScheme.primary
+            Row(
+                modifier = modifier
+                    .fillMaxWidth()
+                    .padding(5.dp),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                RadioButton(
+                    selected = selectedOption.value == expertise,
+                    onClick = {
+                        selectedOption.value = expertise
+                        selectedItem(expertise)
+                    }
                 )
-            )
 
-            Text(
-                text = title,
-                style = MaterialTheme.typography.bodyMedium
-            )
+                Text(
+                    text = expertise,
+                    style = MaterialTheme.typography.bodyMedium
+                )
+            }
         }
     }
 }
@@ -60,7 +61,7 @@ internal fun ExpertiseItem(
 @Composable
 private fun ExpertiseItemPreview() {
     ExpertiseItem(
-        title = "Android",
-        onClick = { /*TODO*/ }
+        expertiseList = listOf("Android", "iOS", "Web"),
+        selectedItem = {}
     )
 }
