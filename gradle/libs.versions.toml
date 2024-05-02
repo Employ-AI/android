@@ -60,6 +60,7 @@ material-3 = "1.2.1"
 credential-manager = "1.1.0"
 lottie = "6.4.0"
 mediapipe = "0.20230731"
+reusable-components = "1.1.6"
 
 # Test versions
 kluent = "1.73"
@@ -172,6 +173,8 @@ detekt-gradlePlugin = { group = "io.gitlab.arturbosch.detekt", name = "detekt-gr
 detekt-formatting = { group = "io.gitlab.arturbosch.detekt", name = "detekt-formatting", version.ref = "detekt" }
 androidx-test-ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "androidx-test-ext-junit" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+
+reusableComponents = { group = "io.github.linx64", name = "reusablecomponents", version.ref = "reusable-components" }
 
 # Test dependencies
 junit = { group = "junit", name = "junit", version.ref = "junit" }

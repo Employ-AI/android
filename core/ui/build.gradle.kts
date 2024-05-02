@@ -19,6 +19,7 @@ dependencies {
     implementation(libs.coil.kt)
     implementation(libs.coil.kt.compose)
     api(libs.lottie)
+    api(libs.reusableComponents)
 
     testImplementation(libs.junit)
     testImplementation(libs.junit4)

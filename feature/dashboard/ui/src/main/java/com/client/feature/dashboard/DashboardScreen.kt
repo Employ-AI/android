@@ -41,16 +41,14 @@ internal fun DashboardScreen(
             .padding(top = 32.dp)
     ) {
         item { DashboardHeader() }
-
         item { RecommendationRow() }
-
         item {
             LazyRow(
                 horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
                 items(10) {
                     when (jobsState) {
-                        is DashboardState.Loading -> Unit
+                        is DashboardState.Loading, is DashboardState.Error -> Unit
                         is DashboardState.Success -> {
                             RecommendedJobItem(
                                 positionTitle = jobsState.jobs[it].title,
@@ -61,16 +59,12 @@ internal fun DashboardScreen(
                                 tags = jobsState.jobs[it].tags
                             )
                         }
-                        else -> Unit
                     }
                 }
             }
         }
-
         item { RecentJobsRow() }
-
         item { RecentJobsChipRow() }
-
         item { JobsList() }
     }
 }
