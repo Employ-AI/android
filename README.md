@@ -13,7 +13,7 @@ targeted and efficient job search experience.
 ## Collaboration
 
 If you are interested in contributing to this project, please contact us
-at [ash.wxrz@hotmail.com](mailto:ash.wxrz@hotmail.com).
+[here](mailto:ash.wxrz@hotmail.com).
 
 Gitflow: We're using Gitflow best practices for our branches, so please read: https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow
 
