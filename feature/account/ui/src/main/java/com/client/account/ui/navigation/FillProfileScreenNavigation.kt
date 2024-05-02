@@ -6,6 +6,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.NavOptions
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
+import com.client.account.ui.FillProfileRoute
 import com.client.common.COUNTRY
 import com.client.common.EXPERTISE
 import com.client.common.INTEREST
