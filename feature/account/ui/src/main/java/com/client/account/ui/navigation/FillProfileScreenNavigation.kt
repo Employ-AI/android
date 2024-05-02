@@ -9,6 +9,7 @@ import androidx.navigation.navArgument
 import com.client.account.ui.FillProfileRoute
 import com.client.common.COUNTRY
 import com.client.common.EXPERTISE
+import com.client.common.INTEREST
 import com.client.common.JOB_TYPE
 import com.client.common.NavRoutes
 import com.client.common.UID
@@ -21,7 +22,7 @@ fun NavController.navigateToFillProfile(navOptions: NavOptions? = null) {
 
 fun NavGraphBuilder.fillProfileScreen(navController: NavHostController) {
     composable(
-        route = "${NavRoutes.FILL_PROFILE_ROUTE}/{$UID}/{$COUNTRY}/{$JOB_TYPE}/{$EXPERTISE}",
+        route = "${NavRoutes.FILL_PROFILE_ROUTE}/{$UID}/{$COUNTRY}/{$JOB_TYPE}/{$INTEREST}/{$EXPERTISE}",
         arguments = listOf(
             navArgument(UID) {
                 defaultValue = ""
@@ -35,6 +36,14 @@ fun NavGraphBuilder.fillProfileScreen(navController: NavHostController) {
                 defaultValue = ""
                 nullable = false
             },
+            navArgument(INTEREST) {
+                defaultValue = ""
+                nullable = false
+            },
+            navArgument(EXPERTISE) {
+                defaultValue = ""
+                nullable = false
+            }
         )
     ) { backStackEntry ->
         val uid = backStackEntry.arguments?.getString(UID) ?: ""
