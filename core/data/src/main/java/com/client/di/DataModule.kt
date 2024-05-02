@@ -1,7 +1,5 @@
 package com.client.di
 
-import com.client.ai.MediaPipeEmbeddings
-import com.client.ai.MediaPipeEmbeddingsImpl
 import com.client.network.firebase.auth.AccountService
 import com.client.network.firebase.auth.AccountServiceImpl
 import com.client.network.firebase.auth.FireStoreRepository
@@ -38,9 +36,4 @@ internal interface DataModule {
     fun bindsAccountService(
         accountServiceImpl: AccountServiceImpl
     ): AccountService
-
-    @Binds
-    fun bindMediaPipeEmbeddings(
-        mediaPipeEmbeddingsImpl: MediaPipeEmbeddingsImpl
-    ): MediaPipeEmbeddings
 }
