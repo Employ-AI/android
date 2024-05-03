@@ -38,7 +38,7 @@ internal fun AppNavHost(
         createAccountScreen(navController)
         forgotPasswordScreen(navController)
 
-        dashboardScreen(navController)
+        dashboardScreen()
 
         // Account setup
         countrySelectionScreen(navController)
@@ -54,7 +54,7 @@ internal fun AppNavHost(
     }
 }
 
-private fun NavGraphBuilder.dashboardScreen(navController: NavHostController) {
+private fun NavGraphBuilder.dashboardScreen() {
     composable(NavRoutes.DASHBOARD_ROUTE) {
         DashboardRoute()
     }

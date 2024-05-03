@@ -20,17 +20,19 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.client.account.ui.components.DateOfBirthInput
+import com.client.account.ui.components.DateTextField
 import com.client.account.ui.components.FullNameInput
 import com.client.account.ui.components.GenderDropDown
 import com.client.account.ui.components.NickNameInput
 import com.client.account.ui.components.PhoneInput
 import com.client.account.ui.components.ProfileEmailInput
 import com.client.account.ui.components.ProfilePhotoBox
+import com.client.designSystem.theme.EmployM3Theme
+import com.client.reusablecomponents.previews.AppScreenComponent
+import com.client.reusablecomponents.previews.MultiThemePreviews
 
 @Composable
 fun FillProfileRoute(
@@ -57,7 +59,7 @@ internal fun FillProfileScreen(
     val dateOfBirth = rememberSaveable { mutableStateOf("") }
     val email = rememberSaveable { mutableStateOf("") }
     val phone = rememberSaveable { mutableStateOf("") }
-    val gender = rememberSaveable { mutableStateOf("") }
+    val gender = rememberSaveable { mutableStateOf("male") }
 
     Column(
         modifier = modifier.fillMaxSize()
@@ -70,19 +72,15 @@ internal fun FillProfileScreen(
             verticalArrangement = Arrangement.spacedBy(16.dp),
         ) {
             ProfilePhotoBox()
-
             Spacer(modifier = Modifier.height(24.dp))
-
             FullNameInput(onValueChange = { fullName.value = it })
-
             NickNameInput(onValueChange = { nickName.value = it })
-
-            DateOfBirthInput(onValueChange = { dateOfBirth.value = it })
-
+            DateTextField(
+                onValueChange = { dateOfBirth.value = it },
+                value = dateOfBirth.value
+            )
             ProfileEmailInput(onValueChange = { email.value = it })
-
             PhoneInput(onValueChange = { phone.value = it })
-
             GenderDropDown(onGenderSelected = { gender.value = it })
         }
 
@@ -128,12 +126,16 @@ internal fun FillProfileScreen(
     }
 }
 
-@Preview(showBackground = true, apiLevel = 33)
+@MultiThemePreviews
 @Composable
 private fun FillProfileScreenPreview() {
-    FillProfileScreen(
-        uiState = AccountState.Loading,
-        onUserProfileFilled = { },
-        onContinueClick = { }
-    )
+    AppScreenComponent {
+        EmployM3Theme(dark = false) {
+            FillProfileScreen(
+                uiState = AccountState.Loading,
+                onUserProfileFilled = { },
+                onContinueClick = { }
+            )
+        }
+    }
 }
