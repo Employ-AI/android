@@ -72,7 +72,7 @@ junit = "4.13.2"
 androidx-test-ext-junit = "1.2.1"
 androidxTestCore = "1.6.1"
 androidxTestExt = "1.2.1"
-androidxTestRules = "1.6.0"
+androidxTestRules = "1.6.1"
 androidxTestRunner = "1.6.1"
 junit4 = "4.13.2"
 
