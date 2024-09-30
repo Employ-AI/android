@@ -64,7 +64,7 @@ reusable-components = "1.2"
 
 # Test versions
 kluent = "1.73"
-mockito = "5.14.0"
+mockito = "5.14.1"
 mockito-inline = "5.2.0"
 mockitoKotlin = "5.4.0"
 turbine = "1.1.0"
